@@ -68,19 +68,25 @@
 	\frac{d^2x}{dt^2}=-\frac{k}{m}x.
 	\]
 	
-	La solución general de esta ecuación es
+	La solución general de esta ecuación puede escribirse como
 	
 	\[
-	x(t)=A\cos(\omega t+\phi),
+	x(t)=C_1\cos(\omega t)+C_2\sin(\omega t),
 	\]
 	
-	donde
+	donde \(C_1\) y \(C_2\) son constantes arbitrarias y
 	
 	\[
 	\omega=\sqrt{\frac{k}{m}}
 	\]
 	
-	es la frecuencia angular.
+	es la frecuencia angular. De manera equivalente, la solución puede expresarse como
+	
+	\[
+	x(t)=A\cos(\omega t+\phi),
+	\]
+	
+	donde la amplitud \(A\) y la fase \(\phi\) quedan determinadas por \(C_1\) y \(C_2\).
 	
 	El período de oscilación está dado por
 	
@@ -162,7 +168,13 @@
 	\[
 	\psi_k(x,t)
 	=
-	Ae^{i(kx-\omega t)}.
+	Ae^{i(kx-\omega t)},
+	\]
+	
+	siempre que la frecuencia angular y el número de onda satisfagan la relación de dispersión
+	
+	\[
+	\omega=\frac{\hbar k^2}{2m}.
 	\]
 	
 	\section{Definiciones básicas}
@@ -261,13 +273,13 @@
 	
 	\subsection{Definición: solución general}
 	
-	La \textbf{solución general} de una ecuación diferencial de orden \(m\) es, en condiciones regulares \footnote{Ciertas hipótesis matemáticas que garantizan la existencia de soluciones.}, una familia de soluciones que contiene \(m\) constantes arbitrarias e independientes.
+	En muchos casos regulares, la \textbf{solución general} de una ecuación diferencial de orden \(m\) puede expresarse localmente como una familia de soluciones que depende de \(m\) constantes arbitrarias e independientes.
 	
 	\subsection{Definición: solución particular}
 	
 	Una \textbf{solución particular} se obtiene a partir de la solución general al asignar valores específicos a sus constantes arbitrarias.
 	
-	\section{Definición: problema de valor inicial}
+	\section{Problemas de valor inicial}
 	
 	Un \textbf{problema de valor inicial (PVI)} consiste en una ecuación diferencial acompañada por condiciones impuestas sobre la solución y sus derivadas en un mismo punto.
 	
@@ -354,7 +366,7 @@
 	
 	Estas condiciones permiten, cuando existe unicidad, seleccionar una única solución dentro de la familia de soluciones de la ecuación diferencial.
 	
-	\section{Definición: ecuación diferencial lineal}
+	\section{Ecuaciones diferenciales lineales}
 	
 	Una ecuación diferencial de orden \(m\) es \textbf{lineal} si puede escribirse en la forma
 	
