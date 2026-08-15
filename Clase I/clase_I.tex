@@ -162,6 +162,10 @@
 	\[
 	\omega=\frac{\hbar k^2}{2m}.
 	\]
+	\begin{quote}
+		\textbf{Para pensar.} Verifique que esta función satisface la ecuación de Schrödinger. Para hacerlo, calcule su derivada respecto del tiempo y su derivada segunda respecto de la posición, y sustituya ambas expresiones en la ecuación. Si no logra completar la demostración, puede consultar el apéndice.
+	\end{quote}
+	
 	\clearpage
 	\section{Definiciones básicas}
 	
@@ -597,5 +601,75 @@
 	\phi=\operatorname{atan2}(-C_2,C_1).
 	\]
 	Esta última expresión determina correctamente el cuadrante de la fase. Si \(A=0\), entonces \(C_1=C_2=0\), la solución es idénticamente nula y la fase puede elegirse arbitrariamente.
+	
+	\clearpage
+	\section{Verificación de una solución de la ecuación de Schrödinger}
+	
+	Para una partícula libre en una dimensión, la ecuación de Schrödinger es
+	
+	\[
+	i\hbar\frac{\partial\psi}{\partial t}
+	=
+	-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}.
+	\]
+	Consideremos la onda plana
+	
+	\[
+	\psi_k(x,t)=Ae^{i(kx-\omega t)}.
+	\]
+	Su derivada respecto del tiempo es
+	
+	\[
+	\frac{\partial\psi_k}{\partial t}
+	=
+	-i\omega Ae^{i(kx-\omega t)}
+	=
+	-i\omega\psi_k.
+	\]
+	Por lo tanto, el miembro izquierdo de la ecuación de Schrödinger resulta
+	
+	\[
+	i\hbar\frac{\partial\psi_k}{\partial t}
+	=
+	i\hbar(-i\omega)\psi_k
+	=
+	\hbar\omega\psi_k.
+	\]
+	Por otra parte, las derivadas espaciales son
+	
+	\[
+	\frac{\partial\psi_k}{\partial x}
+	=
+	ik\psi_k
+	\]
+	y
+	
+	\[
+	\frac{\partial^2\psi_k}{\partial x^2}
+	=
+	-k^2\psi_k.
+	\]
+	Entonces, el miembro derecho es
+	
+	\[
+	-\frac{\hbar^2}{2m}\frac{\partial^2\psi_k}{\partial x^2}
+	=
+	-\frac{\hbar^2}{2m}(-k^2)\psi_k
+	=
+	\frac{\hbar^2k^2}{2m}\psi_k.
+	\]
+	Ambos miembros son iguales si
+	
+	\[
+	\hbar\omega
+	=
+	\frac{\hbar^2k^2}{2m},
+	\]
+	es decir, si
+	
+	\[
+	\omega=\frac{\hbar k^2}{2m}.
+	\]
+	Por lo tanto, la onda plana propuesta es una solución de la ecuación de Schrödinger siempre que \(k\) y \(\omega\) satisfagan esta relación de dispersión.
 
 \end{document}
