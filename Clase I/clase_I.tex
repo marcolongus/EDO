@@ -249,6 +249,44 @@
 	
 	Se denomina \textbf{intervalo de definición} al intervalo en el cual la solución y las funciones que intervienen en la ecuación diferencial están definidas y poseen la regularidad necesaria.
 	
+	\subsubsection*{Discusión: el dominio de una ecuación diferencial}
+	
+	En la expresión general de una EDO de primer orden,
+	
+	\[
+	F(x,y,y')=0,
+	\]
+	la función \(F\) no necesariamente está definida para todos los valores de \((x,y,y')\). En general, se especifica un conjunto \(\Omega\subseteq\mathbb{R}^3\) y se considera
+	
+	\[
+	F\colon\Omega\longrightarrow\mathbb{R}.
+	\]
+	Restringir \(F\) a \(\Omega\) significa indicar cuáles son las combinaciones de \(x\), \(y\) e \(y'\) para las cuales la ecuación tiene sentido. Por lo tanto, una función \(y=\varphi(x)\), definida en un intervalo \(I\), solo puede ser solución si
+	
+	\[
+	\bigl(x,\varphi(x),\varphi'(x)\bigr)\in\Omega
+	\]
+	para todo \(x\in I\), además de satisfacer la ecuación.
+	
+	En el caso explícito,
+	
+	\[
+	y'=f(x,y),
+	\]
+	se considera habitualmente una función \(f\colon D\to\mathbb{R}\), con \(D\subseteq\mathbb{R}^2\). Por ejemplo, para
+	
+	\[
+	y'=\frac{1}{x-y},
+	\]
+	el dominio natural es
+	
+	\[
+	D=\left\{(x,y)\in\mathbb{R}^2:x\neq y\right\}.
+	\]
+	La recta \(y=x\) queda excluida: allí la ecuación no está definida. En consecuencia, el intervalo de definición de una solución no puede extenderse atravesando un punto en el que \(x=\varphi(x)\).
+	
+	Esta restricción del dominio no debe confundirse con afirmar que \(F\) es una función \textbf{acotada}. Una función es acotada si sus valores permanecen entre cotas finitas; restringir su dominio solo especifica dónde está definida.
+	
 	\subsection{Definición: solución general}
 	
 	La \textbf{solución general} de una ecuación diferencial de orden \(m\) es, en condiciones regulares \footnote{Ciertas hipótesis matemáticas que garantizan la existencia de soluciones.}, una familia de soluciones que contiene \(m\) constantes arbitrarias e independientes.
@@ -452,7 +490,26 @@
 	\[
 	g(x)\neq 0.
 	\]
-
+	\subsubsection*{Discusión: importancia de las ecuaciones lineales}
+	
+	Las ecuaciones diferenciales lineales ocupan un lugar central porque poseen una estructura matemática que permite desarrollar métodos generales de resolución. En particular, si \(y_1\) e \(y_2\) son soluciones de una ecuación lineal homogénea, entonces cualquier combinación lineal
+	
+	\[
+	y=c_1y_1+c_2y_2
+	\]
+	también es solución. Esta propiedad se conoce como \textbf{principio de superposición} y no se cumple, en general, para ecuaciones no lineales.
+	
+	Como consecuencia, las soluciones de una ecuación lineal homogénea forman un espacio vectorial. Para una ecuación de orden \(m\), bajo condiciones regulares, este espacio tiene dimensión \(m\); por eso su solución general puede construirse a partir de \(m\) soluciones linealmente independientes.
+	
+	Además, si \(y_p\) es una solución particular de una ecuación lineal no homogénea y \(y_h\) es la solución general de la ecuación homogénea asociada, entonces la solución general de la ecuación no homogénea es
+	
+	\[
+	y=y_h+y_p.
+	\]
+	Esta estructura separa el comportamiento propio del sistema, descrito por \(y_h\), de la respuesta al término externo \(g(x)\), descrita por \(y_p\).
+	
+	Las ecuaciones lineales también son importantes porque muchos sistemas no lineales pueden aproximarse localmente mediante ecuaciones lineales alrededor de un estado de equilibrio. Por eso, aunque la naturaleza sea frecuentemente no lineal, el estudio de ecuaciones lineales constituye el punto de partida para analizar estabilidad, oscilaciones y respuesta ante perturbaciones.
+	
 	\clearpage
 	\appendix
 	
