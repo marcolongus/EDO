@@ -257,6 +257,37 @@
 	
 	Una \textbf{solución particular} se obtiene a partir de la solución general al asignar valores específicos a sus constantes arbitrarias.
 	
+	Por ejemplo, la ecuación del oscilador armónico,
+	
+	\[
+	\ddot{x}+\omega^2x=0,
+	\]
+	es una ecuación diferencial de segundo orden. Su solución general,
+	
+	\[
+	x(t)=C_1\cos(\omega t)+C_2\sin(\omega t),
+	\]
+	contiene dos constantes arbitrarias, \(C_1\) y \(C_2\). Cada elección de estas constantes determina una solución particular. Por ejemplo, si se especifican la posición y la velocidad iniciales,
+	
+	\[
+	x(0)=x_0,
+	\qquad
+	\dot{x}(0)=v_0,
+	\]
+	se obtiene
+	
+	\[
+	C_1=x_0,
+	\qquad
+	C_2=\frac{v_0}{\omega},
+	\]
+	y, por lo tanto, la solución particular
+	
+	\[
+	x(t)=x_0\cos(\omega t)+\frac{v_0}{\omega}\sin(\omega t).
+	\]
+	Este ejemplo anticipa la noción de problema de valor inicial que estudiaremos a continuación.
+	
 	\clearpage
 	\section{Problemas de valor inicial}
 	
