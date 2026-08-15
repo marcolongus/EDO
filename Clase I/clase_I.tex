@@ -251,41 +251,39 @@
 	
 	\subsubsection*{Discusión: el dominio de una ecuación diferencial}
 	
-	En la expresión general de una EDO de primer orden,
-	
-	\[
-	F(x,y,y')=0,
-	\]
-	la función \(F\) no necesariamente está definida para todos los valores de \((x,y,y')\). En general, se especifica un conjunto \(\Omega\subseteq\mathbb{R}^3\) y se considera
-	
-	\[
-	F\colon\Omega\longrightarrow\mathbb{R}.
-	\]
-	Restringir \(F\) a \(\Omega\) significa indicar cuáles son las combinaciones de \(x\), \(y\) e \(y'\) para las cuales la ecuación tiene sentido. Por lo tanto, una función \(y=\varphi(x)\), definida en un intervalo \(I\), solo puede ser solución si
-	
-	\[
-	\bigl(x,\varphi(x),\varphi'(x)\bigr)\in\Omega
-	\]
-	para todo \(x\in I\), además de satisfacer la ecuación.
-	
-	En el caso explícito,
+	Para una EDO de primer orden escrita en forma normal,
 	
 	\[
 	y'=f(x,y),
 	\]
-	se considera habitualmente una función \(f\colon D\to\mathbb{R}\), con \(D\subseteq\mathbb{R}^2\). Por ejemplo, para
+	la función \(f\) no necesariamente está definida para todos los pares \((x,y)\in\mathbb{R}^2\). En general, se especifica un conjunto \(D\subseteq\mathbb{R}^2\) y se considera
+	
+	\[
+	f\colon D\longrightarrow\mathbb{R}.
+	\]
+	Restringir \(f\) a \(D\) significa indicar cuáles son los pares \((x,y)\) para los cuales la ecuación diferencial tiene sentido. Por lo tanto, una función \(y=\varphi(x)\), definida en un intervalo \(I\), solo puede ser solución si
+	
+	\[
+	\bigl(x,\varphi(x)\bigr)\in D
+	\]
+	para todo \(x\in I\), además de satisfacer
+	
+	\[
+	\varphi'(x)=f\bigl(x,\varphi(x)\bigr).
+	\]
+	Por ejemplo, para
 	
 	\[
 	y'=\frac{1}{x-y},
 	\]
-	el dominio natural es
+	el dominio natural de \(f(x,y)=1/(x-y)\) es
 	
 	\[
 	D=\left\{(x,y)\in\mathbb{R}^2:x\neq y\right\}.
 	\]
 	La recta \(y=x\) queda excluida: allí la ecuación no está definida. En consecuencia, el intervalo de definición de una solución no puede extenderse atravesando un punto en el que \(x=\varphi(x)\).
 	
-	Esta restricción del dominio no debe confundirse con afirmar que \(F\) es una función \textbf{acotada}. Una función es acotada si sus valores permanecen entre cotas finitas; restringir su dominio solo especifica dónde está definida.
+	Esta restricción del dominio no debe confundirse con afirmar que \(f\) es una función \textbf{acotada}. Una función es acotada si sus valores permanecen entre cotas finitas; restringir su dominio solo especifica dónde está definida.
 	
 	\subsection{Definición: solución general}
 	
