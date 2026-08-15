@@ -1,10 +1,21 @@
 \documentclass[12pt,a4paper]{article}
 
-\usepackage[spanish]{babel}
+% ---------------------------------------------------------
+% Idioma y tipografía
+% ---------------------------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{mathpazo}
+\usepackage{microtype}
 
+
+% ---------------------------------------------------------
+% Matemática y tablas
+% ---------------------------------------------------------
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
 \usepackage{geometry}
 \usepackage{enumitem}
 
@@ -29,7 +40,7 @@
 	
 	Muchos de ustedes ya han trabajado con ecuaciones diferenciales, aunque probablemente no las hayan identificado como tales. Un ejemplo clásico es el movimiento de una masa unida a un resorte.
 	
-	\section{El oscilador armónico}
+	\subsection{El oscilador armónico}
 	
 	Consideremos una masa \(m\) unida a un resorte de constante elástica \(k\).
 	
@@ -105,7 +116,7 @@
 	
 	lo que demuestra que la función propuesta satisface la ecuación diferencial.
 	
-	\section{Otros ejemplos en física}
+	\subsection{Otros ejemplos en física}
 	
 	La física moderna también está formulada en términos de ecuaciones diferenciales.
 	
@@ -250,13 +261,13 @@
 	
 	\subsection{Definición: solución general}
 	
-	La \textbf{solución general} de una ecuación diferencial de orden \(m\) es, en condiciones regulares, una familia de soluciones que contiene \(m\) constantes arbitrarias e independientes.
+	La \textbf{solución general} de una ecuación diferencial de orden \(m\) es, en condiciones regulares \footnote{Ciertas hipótesis matemáticas que garantizan la existencia de soluciones.}, una familia de soluciones que contiene \(m\) constantes arbitrarias e independientes.
 	
 	\subsection{Definición: solución particular}
 	
 	Una \textbf{solución particular} se obtiene a partir de la solución general al asignar valores específicos a sus constantes arbitrarias.
 	
-	\subsection{Definición: problema de valor inicial}
+	\section{Definición: problema de valor inicial}
 	
 	Un \textbf{problema de valor inicial (PVI)} consiste en una ecuación diferencial acompañada por condiciones impuestas sobre la solución y sus derivadas en un mismo punto.
 	
@@ -343,7 +354,7 @@
 	
 	Estas condiciones permiten, cuando existe unicidad, seleccionar una única solución dentro de la familia de soluciones de la ecuación diferencial.
 	
-	\subsection{Definición: ecuación diferencial lineal}
+	\section{Definición: ecuación diferencial lineal}
 	
 	Una ecuación diferencial de orden \(m\) es \textbf{lineal} si puede escribirse en la forma
 	
@@ -434,5 +445,7 @@
 	\[
 	g(x)\neq 0.
 	\]
-	
+
+
+		
 \end{document}
