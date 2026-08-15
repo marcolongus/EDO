@@ -1,0 +1,438 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+
+\geometry{
+	margin=2.5cm
+}
+
+\title{Ecuaciones Diferenciales Ordinarias\\Clase 1}
+\author{}
+\date{}
+
+\begin{document}
+	
+	\maketitle
+	
+	
+	\section{Introducción}
+	
+	La física constituye uno de los principales motores para la construcción de ecuaciones diferenciales. Sin embargo, no es la única disciplina en la que aparecen. La química, la biología, la economía y la ingeniería utilizan ecuaciones diferenciales para describir sistemas que evolucionan en el tiempo o en el espacio.
+	
+	Siempre que una magnitud cambia y nos interesa comprender cómo ocurre esa variación, es muy probable que exista una ecuación diferencial capaz de modelar el fenómeno.
+	
+	Muchos de ustedes ya han trabajado con ecuaciones diferenciales, aunque probablemente no las hayan identificado como tales. Un ejemplo clásico es el movimiento de una masa unida a un resorte.
+	
+	\section{El oscilador armónico}
+	
+	Consideremos una masa \(m\) unida a un resorte de constante elástica \(k\).
+	
+	La segunda ley de Newton establece que
+	
+	\[
+	m\frac{d^2x}{dt^2}=\sum_{i=1}^{N}F_i(x,\dot{x},t).
+	\]
+	
+	En este caso, la única fuerza que actúa sobre el sistema es la fuerza restauradora del resorte, dada por la ley de Hooke:
+	
+	\[
+	F=-kx.
+	\]
+	
+	Sustituyendo esta expresión en la segunda ley de Newton, obtenemos
+	
+	\[
+	m\frac{d^2x}{dt^2}=-kx.
+	\]
+	
+	Dividiendo ambos miembros por \(m\),
+	
+	\[
+	\frac{d^2x}{dt^2}=-\frac{k}{m}x.
+	\]
+	
+	La solución general de esta ecuación es
+	
+	\[
+	x(t)=A\cos(\omega t+\phi),
+	\]
+	
+	donde
+	
+	\[
+	\omega=\sqrt{\frac{k}{m}}
+	\]
+	
+	es la frecuencia angular.
+	
+	El período de oscilación está dado por
+	
+	\[
+	T=2\pi\sqrt{\frac{m}{k}}.
+	\]
+	
+	Las derivadas de la posición son
+	
+	\[
+	\dot{x}(t)=-A\omega\sin(\omega t+\phi)
+	\]
+	
+	y
+	
+	\[
+	\ddot{x}(t)=-A\omega^2\cos(\omega t+\phi).
+	\]
+	
+	Observando que
+	
+	\[
+	\omega^2=\frac{k}{m},
+	\]
+	
+	se obtiene
+	
+	\[
+	\ddot{x}(t)
+	=-\frac{k}{m}A\cos(\omega t+\phi)
+	=-\frac{k}{m}x(t),
+	\]
+	
+	lo que demuestra que la función propuesta satisface la ecuación diferencial.
+	
+	\section{Otros ejemplos en física}
+	
+	La física moderna también está formulada en términos de ecuaciones diferenciales.
+	
+	Las ecuaciones de Einstein,
+	
+	\[
+	G_{\mu\nu}+\Lambda g_{\mu\nu}
+	=
+	\frac{8\pi G}{c^4}T_{\mu\nu},
+	\]
+	
+	constituyen un sistema de ecuaciones diferenciales acopladas que describe la geometría del espacio-tiempo.
+	
+	Por otra parte, la ecuación de Schrödinger para una partícula libre en una dimensión es
+	
+	\[
+	i\hbar\frac{\partial\psi}{\partial t}
+	=
+	\hat{H}\psi,
+	\]
+	
+	donde el operador hamiltoniano está definido como
+	
+	\[
+	\hat{H}
+	=
+	-\frac{\hbar^2}{2m}
+	\frac{\partial^2}{\partial x^2}.
+	\]
+	
+	Por lo tanto,
+	
+	\[
+	i\hbar
+	\frac{\partial\psi(x,t)}{\partial t}
+	=
+	-\frac{\hbar^2}{2m}
+	\frac{\partial^2\psi(x,t)}{\partial x^2}.
+	\]
+	
+	Una solución particular es
+	
+	\[
+	\psi_k(x,t)
+	=
+	Ae^{i(kx-\omega t)}.
+	\]
+	
+	\section{Definiciones básicas}
+	
+	A continuación se introducen algunas definiciones fundamentales que utilizaremos a lo largo del curso.
+	
+	\subsection{Definición: ecuación diferencial ordinaria}
+	
+	Una \textbf{ecuación diferencial ordinaria (EDO)} es una ecuación que relaciona una función desconocida de una única variable independiente con una o más de sus derivadas.
+	
+	En forma general,
+	
+	\[
+	F\left(
+	x,
+	y,
+	\frac{dy}{dx},
+	\frac{d^2y}{dx^2},
+	\dots,
+	\frac{d^m y}{dx^m}
+	\right)
+	=
+	0.
+	\]
+	
+	Aquí,
+	
+	\[
+	y=y(x)
+	\]
+	
+	es la función desconocida y \(x\) es la variable independiente.
+	
+	\subsection{Definición: orden de una ecuación diferencial}
+	
+	El \textbf{orden} de una ecuación diferencial es el orden de la derivada de mayor orden que aparece en la ecuación.
+	
+	Por ejemplo,
+	
+	\[
+	\frac{dy}{dx}+y=0
+	\]
+	
+	es una ecuación diferencial de primer orden, mientras que
+	
+	\[
+	\frac{d^2y}{dx^2}+y=0
+	\]
+	
+	es una ecuación diferencial de segundo orden.
+	
+	\subsection{Definición: forma normal}
+	
+	Una ecuación diferencial de orden \(m\) está en \textbf{forma normal} cuando la derivada de mayor orden aparece despejada.
+	
+	Es decir,
+	
+	\[
+	\frac{d^m y}{dx^m}
+	=
+	f\left(
+	x,
+	y,
+	\frac{dy}{dx},
+	\dots,
+	\frac{d^{m-1}y}{dx^{m-1}}
+	\right).
+	\]
+	
+	En particular, para una ecuación de primer orden,
+	
+	\[
+	\frac{dy}{dx}
+	=
+	f(x,y).
+	\]
+	
+	\subsection{Definición: solución de una ecuación diferencial}
+	
+	Una función
+	
+	\[
+	y=\varphi(x)
+	\]
+	
+	es una \textbf{solución} de una ecuación diferencial en un intervalo \(I\) si:
+	
+	\begin{enumerate}[label=\arabic*.]
+		\item posee todas las derivadas requeridas por la ecuación en \(I\);
+		\item al sustituirse en la ecuación diferencial, la satisface para todo \(x\in I\).
+	\end{enumerate}
+	
+	\subsection{Definición: intervalo de definición}
+	
+	Se denomina \textbf{intervalo de definición} al intervalo en el cual la solución y las funciones que intervienen en la ecuación diferencial están definidas y poseen la regularidad necesaria.
+	
+	\subsection{Definición: solución general}
+	
+	La \textbf{solución general} de una ecuación diferencial de orden \(m\) es, en condiciones regulares, una familia de soluciones que contiene \(m\) constantes arbitrarias e independientes.
+	
+	\subsection{Definición: solución particular}
+	
+	Una \textbf{solución particular} se obtiene a partir de la solución general al asignar valores específicos a sus constantes arbitrarias.
+	
+	\subsection{Definición: problema de valor inicial}
+	
+	Un \textbf{problema de valor inicial (PVI)} consiste en una ecuación diferencial acompañada por condiciones impuestas sobre la solución y sus derivadas en un mismo punto.
+	
+	Para una ecuación diferencial de primer orden,
+	
+	\[
+	\frac{dy}{dx}
+	=
+	f(x,y),
+	\]
+	
+	una condición inicial tiene la forma
+	
+	\[
+	y(x_0)=y_0.
+	\]
+	
+	Por lo tanto, el problema de valor inicial se escribe como
+	
+	\[
+	\begin{cases}
+		\dfrac{dy}{dx}=f(x,y),\\[0.3cm]
+		y(x_0)=y_0.
+	\end{cases}
+	\]
+	
+	Para una ecuación diferencial de orden \(m\),
+	
+	\[
+	\frac{d^m y}{dx^m}
+	=
+	f\left(
+	x,
+	y,
+	\frac{dy}{dx},
+	\dots,
+	\frac{d^{m-1}y}{dx^{m-1}}
+	\right),
+	\]
+	
+	un problema de valor inicial queda determinado al especificar
+	
+	\[
+	y(x_0)=y_0,
+	\]
+	
+	\[
+	y'(x_0)=y_1,
+	\]
+	
+	\[
+	y''(x_0)=y_2,
+	\]
+	
+	\[
+	\vdots
+	\]
+	
+	\[
+	y^{(m-1)}(x_0)=y_{m-1}.
+	\]
+	
+	Es decir, se especifican el valor de la función y los valores de sus primeras \(m-1\) derivadas en un mismo punto \(x_0\).
+	
+	En conjunto,
+	
+	\[
+	\begin{cases}
+		\dfrac{d^m y}{dx^m}
+		=
+		f\left(
+		x,
+		y,
+		y',
+		\dots,
+		y^{(m-1)}
+		\right),\\[0.3cm]
+		y(x_0)=y_0,\\
+		y'(x_0)=y_1,\\
+		\hspace{0.4cm}\vdots\\
+		y^{(m-1)}(x_0)=y_{m-1}.
+	\end{cases}
+	\]
+	
+	Estas condiciones permiten, cuando existe unicidad, seleccionar una única solución dentro de la familia de soluciones de la ecuación diferencial.
+	
+	\subsection{Definición: ecuación diferencial lineal}
+	
+	Una ecuación diferencial de orden \(m\) es \textbf{lineal} si puede escribirse en la forma
+	
+	\[
+	a_m(x)\frac{d^m y}{dx^m}
+	+
+	a_{m-1}(x)\frac{d^{m-1}y}{dx^{m-1}}
+	+
+	\cdots
+	+
+	a_1(x)\frac{dy}{dx}
+	+
+	a_0(x)y
+	=
+	g(x),
+	\]
+	
+	donde las funciones
+	
+	\[
+	a_0(x),a_1(x),\dots,a_m(x)
+	\]
+	
+	y \(g(x)\) son funciones conocidas, y
+	
+	\[
+	a_m(x)\neq 0
+	\]
+	
+	en el intervalo de interés.
+	
+	La función desconocida \(y\) y sus derivadas aparecen únicamente de manera lineal: no aparecen productos entre ellas, potencias distintas de uno ni funciones no lineales de \(y\) o de sus derivadas.
+	
+	Por ejemplo,
+	
+	\[
+	y''+x y'-3y=\sin x
+	\]
+	
+	es lineal, mientras que
+	
+	\[
+	y''+y^2=0
+	\]
+	
+	no es lineal.
+	
+	\subsection{Definición: ecuación lineal homogénea y no homogénea}
+	
+	Una ecuación diferencial lineal
+	
+	\[
+	a_m(x)y^{(m)}
+	+
+	a_{m-1}(x)y^{(m-1)}
+	+
+	\cdots
+	+
+	a_1(x)y'
+	+
+	a_0(x)y
+	=
+	g(x)
+	\]
+	
+	se denomina \textbf{homogénea} si
+	
+	\[
+	g(x)=0,
+	\]
+	
+	es decir,
+	
+	\[
+	a_m(x)y^{(m)}
+	+
+	a_{m-1}(x)y^{(m-1)}
+	+
+	\cdots
+	+
+	a_0(x)y
+	=
+	0.
+	\]
+	
+	Se denomina \textbf{no homogénea} si
+	
+	\[
+	g(x)\neq 0.
+	\]
+	
+\end{document}
