@@ -80,13 +80,69 @@
 	\omega=\sqrt{\frac{k}{m}}
 	\]
 	
-	es la frecuencia angular. De manera equivalente, la solución puede expresarse como
+	es la frecuencia angular. Esta solución también puede escribirse utilizando una amplitud y una fase. En efecto, proponemos
 	
 	\[
-	x(t)=A\cos(\omega t+\phi),
+	x(t)=A\cos(\omega t+\phi).
 	\]
 	
-	donde la amplitud \(A\) y la fase \(\phi\) quedan determinadas por \(C_1\) y \(C_2\).
+	Aplicando la identidad trigonométrica del coseno de una suma,
+	
+	\[
+	\cos(\alpha+\beta)
+	=
+	\cos\alpha\cos\beta
+	-
+	\sin\alpha\sin\beta,
+	\]
+	
+	obtenemos
+	
+	\[
+	x(t)
+	=
+	A\cos\phi\cos(\omega t)
+	-
+	A\sin\phi\sin(\omega t).
+	\]
+	
+	Comparando esta expresión con
+	
+	\[
+	x(t)=C_1\cos(\omega t)+C_2\sin(\omega t),
+	\]
+	
+	se concluye que
+	
+	\[
+	C_1=A\cos\phi,
+	\qquad
+	C_2=-A\sin\phi.
+	\]
+	
+	Elevando ambas ecuaciones al cuadrado y sumándolas,
+	
+	\[
+	C_1^2+C_2^2
+	=
+	A^2\left(\cos^2\phi+\sin^2\phi\right)
+	=
+	A^2.
+	\]
+	
+	Por lo tanto, tomando \(A\geq 0\),
+	
+	\[
+	A=\sqrt{C_1^2+C_2^2}.
+	\]
+	
+	La fase puede determinarse mediante
+	
+	\[
+	\phi=\operatorname{atan2}(-C_2,C_1),
+	\]
+	
+	lo que fija correctamente el cuadrante. Así, ambas formas de escribir la solución son equivalentes.
 	
 	El período de oscilación está dado por
 	
