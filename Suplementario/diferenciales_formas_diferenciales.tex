@@ -1,0 +1,540 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------------------------------------------------------
+% Idioma y tipografía
+% ---------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+\usepackage{mathpazo}
+\usepackage{microtype}
+
+% ---------------------------------------------------------
+% Matemática y formato
+% ---------------------------------------------------------
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{
+	margin=2.5cm
+}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dd}{\mathrm{d}}
+
+\title{Ecuaciones Diferenciales Ordinarias\\Notas para el docente: diferenciales y formas diferenciales}
+\author{Benjamín Marcolongo}
+\date{}
+
+\begin{document}
+
+	\maketitle
+
+	\section{Propósito}
+
+	Estas notas desarrollan una interpretación geométrica de la forma diferencial de una EDO de primer orden. El objetivo es precisar qué representan los símbolos \(dx\) y \(dy\), por qué una expresión
+	\[
+	M(x,y)\,dx+N(x,y)\,dy=0
+	\]
+define direcciones tangentes y cómo se relacionan las ecuaciones de Pfaff con las soluciones implícitas, las ecuaciones exactas, los factores integrantes y la posible pérdida de soluciones durante una manipulación algebraica.
+
+	La notación elemental sugiere que \(dx\) y \(dy\) son incrementos infinitesimales. Esa intuición es útil, pero la formulación geométrica es más precisa: son secciones del fibrado cotangente y actúan linealmente sobre vectores tangentes.
+
+	\clearpage
+	\section{El diferencial como covector}
+
+	Sea \(M\) una variedad suave y sea
+	\[
+	f\colon M\longrightarrow\R
+	\]
+una función suave. El diferencial de \(f\) en \(p\in M\) es el covector
+	\[
+	df_p\in T_p^*M
+	\]
+definido por
+	\[
+	df_p(v)=v[f],
+	\]
+para todo \(v\in T_pM\). Si \(\gamma(s)\) es una curva con \(\gamma(0)=p\) y \(\dot{\gamma}(0)=v\), entonces
+	\[
+	df_p(v)
+	=
+	\left.\frac{d}{ds}f\bigl(\gamma(s)\bigr)\right|_{s=0}.
+	\]
+
+	En coordenadas locales \((x^1,\dots,x^n)\),
+	\[
+	df
+	=
+	\sum_{i=1}^{n}
+	\frac{\partial f}{\partial x^i}\,dx^i.
+	\]
+Los objetos \(dx^i\) son los diferenciales de las funciones coordenadas
+	\[
+	x^i\colon M\longrightarrow\R.
+	\]
+Forman la co-base dual de \(\{\partial/\partial x^i\}\):
+	\[
+	dx^i\left(\frac{\partial}{\partial x^j}\right)
+	=
+	\delta^i_j.
+	\]
+
+	En \(\R^2\), si
+	\[
+	v=v^x\frac{\partial}{\partial x}
+	+v^y\frac{\partial}{\partial y},
+	\]
+entonces
+	\[
+	dx(v)=v^x,
+	\qquad
+	dy(v)=v^y.
+	\]
+Así, \(dx\) y \(dy\) no son vectores ni números pequeños: son funcionales lineales que extraen las componentes de un vector tangente.
+
+	\subsection{Relación con la linealización}
+
+	En un espacio vectorial, el diferencial es la parte lineal principal del incremento:
+	\[
+	f(p+v)
+	=
+	f(p)+df_p(v)+o(\lVert v\rVert).
+	\]
+Esta fórmula justifica la intuición elemental. El incremento finito \(\Delta f\) solo coincide aproximadamente con \(df\), mientras que \(df_p(v)\) está definido exactamente como la linealización de \(f\) en \(p\).
+
+	\clearpage
+	\section{Pullback a una curva}
+
+	Sea
+	\[
+	\gamma\colon I\longrightarrow M,
+	\qquad
+	s\longmapsto \gamma(s),
+	\]
+una curva suave. Si \(\alpha\) es una 1-forma sobre \(M\), su pullback es la 1-forma sobre \(I\)
+	\[
+	\gamma^*\alpha
+	=
+	\alpha_{\gamma(s)}\bigl(\dot{\gamma}(s)\bigr)\,ds.
+	\]
+
+	Para una curva del plano
+	\[
+	\gamma(s)=\bigl(x(s),y(s)\bigr),
+	\]
+se obtiene
+	\[
+	\gamma^*(dx)=\dot{x}(s)\,ds,
+	\qquad
+	\gamma^*(dy)=\dot{y}(s)\,ds.
+	\]
+Esta es la interpretación precisa de las expresiones simbólicas
+	\[
+	dx=\dot{x}\,ds,
+	\qquad
+	dy=\dot{y}\,ds
+	\]
+cuando se restringen los diferenciales a una curva parametrizada.
+
+	Si se elige \(x\) como parámetro, de modo que \(\gamma(x)=(x,y(x))\), entonces
+	\[
+	\gamma^*(dx)=dx,
+	\qquad
+	\gamma^*(dy)=\dot{y}\,dx,
+	\]
+donde el punto representa en este caso derivación respecto de \(x\).
+
+	Esta elección requiere que \(x\) sea una coordenada válida a lo largo de la curva, es decir, que \(\dot{x}\neq 0\) en la parametrización original. Las tangentes verticales son precisamente los puntos en los que esta descripción deja de ser posible.
+
+	\clearpage
+	\section{La ecuación de Pfaff}
+
+	Sea
+	\[
+	\alpha
+	=
+	M(x,y)\,dx+N(x,y)\,dy
+	\]
+una 1-forma sobre una región \(U\subseteq\R^2\). La ecuación de Pfaff
+	\[
+	\alpha=0
+	\]
+no afirma que la 1-forma sea idénticamente nula. Indica que una curva solución \(\gamma\) debe satisfacer
+	\[
+	\gamma^*\alpha=0,
+	\]
+o equivalentemente,
+	\[
+	\alpha_{\gamma(s)}\bigl(\dot{\gamma}(s)\bigr)=0.
+	\]
+En coordenadas,
+	\[
+	M\bigl(x(s),y(s)\bigr)\dot{x}(s)
+	+
+	N\bigl(x(s),y(s)\bigr)\dot{y}(s)
+	=0.
+	\]
+
+	En cada punto donde \(\alpha_p\neq 0\), la forma define la distribución unidimensional
+	\[
+	\mathcal{D}_p=\ker\alpha_p\subset T_pU.
+	\]
+Las curvas solución son las curvas integrales de esta distribución. Un campo vectorial que genera localmente el núcleo es
+	\[
+	X
+	=
+	N\frac{\partial}{\partial x}
+	-
+	M\frac{\partial}{\partial y},
+	\]
+pues
+	\[
+	\alpha(X)=MN-NM=0.
+	\]
+
+	Si se usa \(x\) como parámetro y \(N\neq 0\), la ecuación se reduce a
+	\[
+	M(x,y)+N(x,y)\dot{y}=0,
+	\]
+es decir,
+	\[
+	\dot{y}=-\frac{M(x,y)}{N(x,y)}.
+	\]
+La forma normal no es entonces otra ecuación: es la representación de la misma distribución en una carta y con una elección particular de parámetro.
+
+	\subsection{Reparametrización}
+
+	La condición \(\gamma^*\alpha=0\) es invariante ante reparametrizaciones regulares. Si \(\widetilde{\gamma}=\gamma\circ\sigma\), el vector tangente se multiplica por \(\dot{\sigma}\), pero la anulación de \(\alpha(\dot{\gamma})\) no cambia. Esta invariancia queda parcialmente oculta al escribir directamente \(\dot{y}=f(x,y)\).
+
+	\clearpage
+	\section{Interpretación geométrica en el plano}
+
+	Usando el producto euclídeo para identificar covectores y vectores, la 1-forma
+	\[
+	\alpha=M\,dx+N\,dy
+	\]
+corresponde al vector normal
+	\[
+	\alpha^\sharp=(M,N).
+	\]
+La condición
+	\[
+	\alpha(\dot{\gamma})=0
+	\]
+expresa que el vector tangente es perpendicular a \((M,N)\).
+
+	El ejemplo básico es
+	\[
+	\alpha=x\,dx+y\,dy.
+	\]
+Como
+	\[
+	\alpha=d\left(\frac{x^2+y^2}{2}\right),
+	\]
+las curvas integrales satisfacen
+	\[
+	x^2+y^2=C.
+	\]
+Geométricamente, \((x,y)\) es normal a las circunferencias, mientras que
+	\[
+	X
+	=
+	y\frac{\partial}{\partial x}
+	-
+	x\frac{\partial}{\partial y}
+	\]
+es tangente a ellas.
+
+	Esta identificación euclídea es útil en el plano, pero no es intrínseca: transformar una 1-forma en un vector requiere una métrica. La formulación \(\ker\alpha\) no necesita elegir ninguna.
+
+	\clearpage
+	\section{Formas exactas y primeras integrales}
+
+	La ecuación es exacta si existe una función \(F\colon U\to\R\) tal que
+	\[
+	\alpha=dF.
+	\]
+Para una curva integral,
+	\[
+	0
+	=
+	\gamma^*\alpha
+	=
+	\gamma^*(dF)
+	=
+	d(F\circ\gamma).
+	\]
+Por lo tanto,
+	\[
+	F\circ\gamma=C,
+	\]
+y las soluciones son curvas de nivel
+	\[
+	F(x,y)=C.
+	\]
+
+	Si
+	\[
+	\alpha=M\,dx+N\,dy,
+	\]
+entonces
+	\[
+	d\alpha
+	=
+	\left(
+	\frac{\partial N}{\partial x}
+	-
+	\frac{\partial M}{\partial y}
+	\right)
+	dx\wedge dy.
+	\]
+Toda forma exacta es cerrada. En una región simplemente conexa del plano, una 1-forma cerrada es exacta. Localmente, esta equivalencia es una consecuencia del lema de Poincaré.
+
+	\subsection{Soluciones implícitas y valores regulares}
+
+	Si \(dF_p\neq 0\), el conjunto de nivel \(F^{-1}(C)\) es localmente una subvariedad unidimensional. Para representarlo como una gráfica \(y=y(x)\) se necesita además
+	\[
+	\frac{\partial F}{\partial y}(p)\neq 0.
+	\]
+En ese caso,
+	\[
+	\dot{y}
+	=
+	-\frac{\partial F/\partial x}{\partial F/\partial y}.
+	\]
+Si \(dF_p=0\), el conjunto de nivel puede dejar de ser regular, bifurcarse o reducirse a un punto. Esta singularidad del conjunto de nivel no debe identificarse automáticamente con una solución singular de la EDO.
+
+	\subsection{Una obstrucción global}
+
+	En \(\R^2\setminus\{0\}\), la forma
+	\[
+	\alpha
+	=
+	\frac{-y\,dx+x\,dy}{x^2+y^2}
+	\]
+es cerrada, pero no exacta globalmente. Localmente es \(d\theta\), mientras que sobre una circunferencia orientada positivamente
+	\[
+	\oint \alpha=2\pi.
+	\]
+El ejemplo muestra que la condición \(d\alpha=0\) garantiza potenciales locales, pero la topología del dominio puede impedir la existencia de una primera integral global univaluada.
+
+	\clearpage
+	\section{Integrabilidad y factores integrantes}
+
+	En una variedad de dimensión arbitraria, la distribución de hiperplanos \(\ker\alpha\) es integrable si satisface la condición de Frobenius
+	\[
+	\alpha\wedge d\alpha=0.
+	\]
+En dimensión dos esta condición se cumple automáticamente, porque \(\alpha\wedge d\alpha\) sería una 3-forma. Por lo tanto, toda 1-forma suave y no nula sobre una superficie define localmente una foliación por curvas.
+
+	Esto no significa que \(\alpha\) sea exacta. Significa que localmente existe una función \(F\) y una función no nula \(g\) tales que
+	\[
+	\alpha=g\,dF.
+	\]
+Equivalentemente, existe un factor integrante \(\mu=1/g\) para el cual
+	\[
+	\mu\alpha=dF.
+	\]
+
+	Como ejemplo, consideremos
+	\[
+	\alpha=dy-y\,dx.
+	\]
+No es cerrada:
+	\[
+	d\alpha=dx\wedge dy.
+	\]
+Sin embargo, el factor
+	\[
+	\mu(x)=e^{-x}
+	\]
+produce
+	\[
+	e^{-x}\alpha
+	=
+	e^{-x}\,dy-ye^{-x}\,dx
+	=
+	d\left(ye^{-x}\right).
+	\]
+Por consiguiente,
+	\[
+	ye^{-x}=C,
+	\]
+o
+	\[
+	y=Ce^x.
+	\]
+
+	Multiplicar \(\alpha\) por una función \(\mu\) que no se anula preserva la distribución:
+	\[
+	\ker(\mu\alpha)=\ker\alpha.
+	\]
+Si \(\mu\) se anula, esta equivalencia falla porque el rango de la forma puede cambiar sobre el conjunto de ceros.
+
+	\clearpage
+	\section{Separación de variables y dominio}
+
+	La ecuación
+	\[
+	\dot{y}=g(x)h(y)
+	\]
+puede asociarse con la forma
+	\[
+	\alpha=dy-g(x)h(y)\,dx.
+	\]
+Sobre una región donde \(h(y)\neq 0\), multiplicar por \(1/h(y)\) da
+	\[
+	\widetilde{\alpha}
+	=
+	\frac{1}{h(y)}\,dy-g(x)\,dx.
+	\]
+Esta forma es exacta:
+	\[
+	\widetilde{\alpha}
+	=
+	d\left(
+	\int^y\frac{d\eta}{h(\eta)}
+	-
+	\int^x g(\xi)\,d\xi
+	\right).
+	\]
+La separación de variables puede interpretarse así como la búsqueda inmediata de un factor integrante que convierte la ecuación de Pfaff en una forma exacta.
+
+	La restricción \(h(y)\neq 0\) no es un detalle algebraico. Si \(h(y_\ast)=0\), la curva
+	\[
+	y=y_\ast
+	\]
+puede ser una solución integral de la forma original, pero queda fuera del dominio de \(\widetilde{\alpha}\).
+
+	Para
+	\[
+	\dot{y}=x\sqrt{y},
+	\qquad y\geq 0,
+	\]
+la forma original
+	\[
+	\alpha=dy-x\sqrt{y}\,dx
+	\]
+se anula sobre el vector tangente a la curva \(y=0\). En cambio,
+	\[
+	\frac{dy}{\sqrt{y}}-x\,dx
+	\]
+solo está definida para \(y>0\). La solución nula no desaparece por un misterio analítico: fue eliminada al cambiar el dominio de la 1-forma.
+
+	Además, \(\sqrt{y}\) no es localmente Lipschitz en \(y=0\). La degeneración que permite pegar ramas no nulas con segmentos de la solución nula es consistente con la pérdida de unicidad del campo de direcciones.
+
+	\clearpage
+	\section{Puntos singulares de la forma de Pfaff}
+
+	La discusión anterior presupone \(\alpha_p\neq 0\). Si
+	\[
+	M(p)=N(p)=0,
+	\]
+entonces
+	\[
+	\ker\alpha_p=T_pU,
+	\]
+y la distribución deja de tener rango constante. En ese punto, la ecuación no selecciona una única dirección tangente.
+
+	Conviene distinguir tres nociones:
+
+	\begin{enumerate}[label=\arabic*.]
+		\item un punto singular de la 1-forma, donde \(\alpha_p=0\);
+		\item un punto crítico de una primera integral, donde \(dF_p=0\);
+		\item una solución singular, entendida como una solución que no pertenece a una familia uniparamétrica dada.
+	\end{enumerate}
+
+	Estas nociones pueden relacionarse en ejemplos particulares, pero no son equivalentes.
+
+	La formulación geométrica natural de una ecuación de Clairaut no vive solamente en el plano \((x,y)\), sino en el espacio de jets \(J^1(\mathbb{R},\mathbb{R})\), con coordenadas \((x,y,p)\) y forma de contacto
+	\[
+	\vartheta=dy-p\,dx.
+	\]
+Para la ecuación
+	\[
+	y=xp+p^2,
+	\]
+las soluciones corresponden a curvas integrales de \(\ker\vartheta\) contenidas en esa superficie. La familia regular se obtiene fijando \(p=C\). La envolvente aparece donde la proyección al plano \((x,y)\) se vuelve singular respecto del parámetro:
+	\[
+	\frac{\partial}{\partial p}\left(y-xp-p^2\right)=-(x+2p)=0.
+	\]
+De aquí,
+	\[
+	p=-\frac{x}{2},
+	\qquad
+	y=-\frac{x^2}{4}.
+	\]
+Así, la singularidad relevante es una singularidad de la proyección de la familia legendriana, no simplemente un cero de una 1-forma sobre el plano.
+
+	\clearpage
+	\section{Puente pedagógico}
+
+	Para una primera clase no introduciría fibrados cotangentes ni pullbacks. Presentaría dos niveles de lectura.
+
+	\subsection{Lectura elemental}
+
+	Los símbolos \(dx\) y \(dy\) representan las componentes horizontal y vertical de un desplazamiento tangente. La ecuación
+	\[
+	M\,dx+N\,dy=0
+	\]
+selecciona los desplazamientos permitidos. En el plano,
+	\[
+	(M,N)\cdot(dx,dy)=0,
+	\]
+por lo que la dirección tangente es perpendicular a \((M,N)\).
+
+	\subsection{Lectura matemática subyacente}
+
+	En realidad, \(dx\) y \(dy\) son la co-base coordenada, y la ecuación selecciona el núcleo de una 1-forma. La escritura con desplazamientos infinitesimales funciona porque el pullback a una curva convierte
+	\[
+	dx\mapsto\dot{x}\,ds,
+	\qquad
+	dy\mapsto\dot{y}\,ds.
+	\]
+
+	La frase que utilizaría con los alumnos es:
+
+	\begin{quote}
+		La forma diferencial no determina directamente la altura de la solución. Determina qué direcciones tangentes están permitidas en cada punto; las curvas que siguen esas direcciones son las soluciones.
+	\end{quote}
+
+	El ejemplo
+	\[
+	x\,dx+y\,dy=0
+	\]
+es particularmente eficiente porque conecta en una sola figura la dirección tangente, el vector normal, el diferencial exacto y la solución implícita
+	\[
+	x^2+y^2=C.
+	\]
+
+	\clearpage
+	\section{Resumen conceptual}
+
+	\begin{itemize}[leftmargin=*]
+		\item El símbolo \(dx\) es el diferencial de la función coordenada \(x\), es decir, un covector de la co-base coordenada.
+		\item La igualdad simbólica \(dx=\dot{x}\,ds\) debe entenderse como una igualdad después de aplicar el pullback a una curva.
+		\item Una ecuación de Pfaff \(\alpha=0\) define la distribución \(\ker\alpha\); sus soluciones son las curvas integrales de esa distribución.
+		\item La forma normal \(\dot{y}=f(x,y)\) requiere elegir \(x\) como parámetro y excluye localmente tangentes verticales.
+		\item Si \(\alpha=dF\), las soluciones son curvas de nivel de una primera integral \(F\).
+		\item En dimensión dos, toda 1-forma no nula es localmente integrable, aunque no necesariamente exacta.
+		\item Dividir una forma por una función que puede anularse cambia su dominio y puede eliminar soluciones.
+		\item Los puntos singulares de una 1-forma, los puntos críticos de una primera integral y las soluciones singulares son conceptos diferentes.
+	\end{itemize}
+
+	\section*{Bibliografía}
+
+	\begin{itemize}[leftmargin=*]
+		\item Lee, John M. \textit{Introduction to Smooth Manifolds}.
+		\item Spivak, Michael. \textit{Calculus on Manifolds}.
+		\item Arnold, Vladimir I. \textit{Ordinary Differential Equations}.
+		\item Zill, Dennis G. \textit{A First Course in Differential Equations with Modeling Applications}.
+	\end{itemize}
+
+	\subsection*{Nota sobre la elaboración del material}
+
+	Este material fue elaborado por Benjamín Marcolongo con la asistencia de \textbf{GPT-5.6 Sol}, un modelo de OpenAI utilizado a través del entorno Codex, para la organización, redacción y revisión del contenido.
+
+\end{document}
