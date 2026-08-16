@@ -1,0 +1,348 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------------------------------------------------------
+% Idioma y tipografía
+% ---------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+\usepackage{mathpazo}
+\usepackage{microtype}
+
+% ---------------------------------------------------------
+% Matemática y formato
+% ---------------------------------------------------------
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{
+	margin=2.5cm
+}
+
+\title{Ecuaciones Diferenciales Ordinarias\\Material suplementario}
+\author{Benjamín Marcolongo}
+\date{}
+
+\begin{document}
+
+	\maketitle
+
+	\section{Introducción}
+
+	En las primeras clases utilizamos principalmente ecuaciones de primer orden escritas en forma normal,
+	\[
+	\dot{y}=f(x,y),
+	\]
+y buscamos soluciones expresadas como funciones explícitas \(y=\varphi(x)\). Sin embargo, ni las ecuaciones diferenciales ni sus soluciones tienen que presentarse siempre de esa manera.
+
+	En este material utilizaremos la notación de Newton,
+	\[
+	\dot{y}=\frac{dy}{dx},
+	\qquad
+	\ddot{y}=\frac{d^2y}{dx^2}.
+	\]
+Aunque el punto se emplea habitualmente cuando la variable independiente es el tiempo, aquí indicará derivación respecto de $x$.
+
+	Este material complementa la discusión anterior con tres ideas:
+	\begin{enumerate}[label=\arabic*.]
+		\item una solución puede quedar definida mediante una relación implícita entre \(x\) e \(y\);
+		\item una EDO de primer orden puede escribirse en forma diferencial;
+		\item al manipular una ecuación pueden perderse soluciones que deben estudiarse por separado.
+	\end{enumerate}
+
+	Estas cuestiones no son meramente formales. Determinan qué curvas representan realmente soluciones, en qué intervalos lo hacen y si la familia obtenida mediante un método de resolución contiene todas las soluciones posibles.
+
+	\clearpage
+	\section{Soluciones explícitas e implícitas}
+
+	\subsection{Solución explícita}
+
+	Una solución está dada en \textbf{forma explícita} cuando la variable dependiente aparece despejada:
+	\[
+	y=\varphi(x).
+	\]
+Por ejemplo,
+	\[
+	y=Ce^{3x}
+	\]
+es una familia explícita de soluciones de \(\dot{y}=3y\).
+
+	\subsection{Solución implícita}
+
+	Con frecuencia, el proceso de integración conduce a una relación de la forma
+	\[
+	\Phi(x,y)=C,
+	\]
+sin que resulte posible o conveniente despejar \(y\). En ese caso se habla de una \textbf{solución implícita}.
+
+	Estrictamente, una solución de una EDO es una función. Por lo tanto, la relación \(\Phi(x,y)=C\) constituye una solución implícita cuando define, al menos localmente, una o más funciones diferenciables \(y=\varphi(x)\) que satisfacen la ecuación diferencial.
+
+	Si \(\Phi\) es continuamente diferenciable y
+	\[
+	\frac{\partial\Phi}{\partial y}(x_0,y_0)\neq 0,
+	\]
+el teorema de la función implícita garantiza que, cerca de \((x_0,y_0)\), la ecuación \(\Phi(x,y)=C\) determina una única función \(y=\varphi(x)\). Derivando respecto de \(x\),
+	\[
+	\frac{d}{dx}\Phi\bigl(x,y(x)\bigr)=0,
+	\]
+y aplicando la regla de la cadena,
+	\[
+	\frac{\partial\Phi}{\partial x}
+	+
+	\frac{\partial\Phi}{\partial y}\,\dot{y}=0.
+	\]
+Siempre que \(\partial\Phi/\partial y\neq 0\), se obtiene
+	\[
+	\dot{y}
+	=-\frac{\partial\Phi/\partial x}{\partial\Phi/\partial y}.
+	\]
+Esta expresión permite verificar directamente qué ecuación diferencial satisfacen las curvas de nivel \(\Phi(x,y)=C\).
+
+	\subsection{Ejemplo: una familia de circunferencias}
+
+	Consideremos
+	\[
+	\dot{y}=-\frac{x}{y},
+	\]
+definida en la región \(y\neq 0\). Separando variables,
+	\[
+	y\,dy=-x\,dx.
+	\]
+Al integrar,
+	\[
+	\frac{y^2}{2}=-\frac{x^2}{2}+C,
+	\]
+o, redefiniendo la constante,
+	\[
+	x^2+y^2=C.
+	\]
+Esta relación describe circunferencias cuando \(C>0\), pero una circunferencia completa no es la gráfica de una función \(y(x)\). Para obtener soluciones explícitas debemos considerar por separado sus dos ramas:
+	\[
+	y(x)=\sqrt{C-x^2}
+	\qquad\text{o}\qquad
+	y(x)=-\sqrt{C-x^2}.
+	\]
+Cada rama es solución en cualquier intervalo abierto contenido en
+	\[
+	(-\sqrt{C},\sqrt{C}).
+	\]
+Los extremos no se incluyen: allí \(y=0\), la ecuación original no está definida y la tangente a la circunferencia es vertical.
+
+	\begin{quote}
+		\textbf{Idea central.} Una curva implícita puede contener varias ramas solución y también puntos en los que deja de representar una función diferenciable de \(x\). Por eso siempre debe indicarse el intervalo de definición.
+	\end{quote}
+
+	\clearpage
+	\section{Forma diferencial de una EDO}
+
+	Una ecuación de primer orden puede escribirse en la \textbf{forma diferencial}
+	\[
+	M(x,y)\,dx+N(x,y)\,dy=0.
+	\]
+Si \(y=y(x)\), entonces \(dy=\dot{y}\,dx\). A lo largo de una curva solución,
+	\[
+	M(x,y)\,dx+N(x,y)\dot{y}\,dx=0,
+	\]
+y, por lo tanto,
+	\[
+	M(x,y)+N(x,y)\dot{y}=0.
+	\]
+En una región donde \(N(x,y)\neq 0\), esta ecuación es equivalente a la forma normal
+	\[
+	\dot{y}=-\frac{M(x,y)}{N(x,y)}.
+	\]
+
+	La condición \(N\neq 0\) es importante. Si \(N\) se anula, no siempre es posible despejar \(\dot{y}\), y la forma diferencial puede describir curvas con tangentes verticales que no pueden representarse localmente como \(y=y(x)\).
+
+	\subsection{Relación con las ecuaciones separables}
+
+	Una ecuación separable
+	\[
+	\dot{y}=g(x)h(y)
+	\]
+puede escribirse, en una región donde \(h(y)\neq 0\), como
+	\[
+	-g(x)\,dx+\frac{1}{h(y)}\,dy=0.
+	\]
+Integrar cada término produce una relación implícita:
+	\[
+	-\int g(x)\,dx
+	+
+	\int\frac{1}{h(y)}\,dy
+	=C.
+	\]
+La notación diferencial ayuda a reconocer la separación, pero no vuelve legítima una división por cero. Los valores \(y_\ast\) que satisfacen \(h(y_\ast)=0\) deben analizarse antes de dividir por \(h(y)\).
+
+	\subsection{Diferenciales exactos}
+
+	Si existe una función \(\Phi(x,y)\) tal que
+	\[
+	M(x,y)=\frac{\partial\Phi}{\partial x},
+	\qquad
+	N(x,y)=\frac{\partial\Phi}{\partial y},
+	\]
+entonces
+	\[
+	M(x,y)\,dx+N(x,y)\,dy=d\Phi.
+	\]
+La ecuación diferencial se reduce a
+	\[
+	d\Phi=0,
+	\]
+y sus soluciones quedan definidas implícitamente por
+	\[
+	\Phi(x,y)=C.
+	\]
+	Si $M$ y $N$ poseen derivadas parciales continuas en una región abierta y simplemente conexa, la condición
+	\[
+	\frac{\partial M}{\partial y}
+	=
+	\frac{\partial N}{\partial x}
+	\]
+es necesaria y suficiente para que la ecuación sea exacta en esa región. La igualdad se obtiene al observar que, si $M=\partial\Phi/\partial x$ y $N=\partial\Phi/\partial y$, entonces las derivadas parciales mixtas de $\Phi$ deben coincidir.
+
+	Por ejemplo,
+	\[
+	(2x+y)\,dx+(x+2y)\,dy=0
+	\]
+es exacta porque
+	\[
+	d\left(x^2+xy+y^2\right)
+	=
+	(2x+y)\,dx+(x+2y)\,dy.
+	\]
+Por lo tanto, su solución implícita es
+	\[
+	x^2+xy+y^2=C.
+	\]
+Este procedimiento será desarrollado sistemáticamente al estudiar ecuaciones exactas.
+
+	\subsection{Equivalencia y dominio}
+
+	Multiplicar una ecuación diferencial por una función $\mu(x,y)$ que nunca se anula no modifica sus curvas solución. En cambio, si $\mu$ puede valer cero, la nueva ecuación puede admitir curvas adicionales contenidas en el conjunto $\mu(x,y)=0$. Recíprocamente, dividir por $\mu$ elimina cualquier solución que se encuentre en ese conjunto.
+
+	Por lo tanto, las expresiones
+	\[
+	M\,dx+N\,dy=0
+	\]
+y
+	\[
+	\mu M\,dx+\mu N\,dy=0
+	\]
+son equivalentes solamente en una región donde $\mu\neq 0$. Toda transformación algebraica de una EDO debe ir acompañada por una revisión de su dominio y de los factores que fueron cancelados.
+
+	\clearpage
+	\section{Soluciones singulares}
+
+	Al resolver una EDO suele obtenerse una familia uniparamétrica de soluciones,
+	\[
+	\Phi(x,y,C)=0.
+	\]
+Una \textbf{solución singular} es una solución que no puede obtenerse asignando ningún valor a \(C\) en la familia encontrada.
+
+	No debe confundirse una solución singular con una solución particular. Una solución particular se obtiene fijando el parámetro \(C\); una solución singular queda fuera de toda la familia.
+
+	\subsection{Ejemplo: una solución perdida al dividir}
+
+	Consideremos la ecuación
+	\[
+	\dot{y}=x\sqrt{y},
+	\qquad y\geq 0.
+	\]
+La función
+	\[
+	y(x)=0
+	\]
+es una solución, ya que ambos miembros de la ecuación son nulos.
+
+	Para buscar soluciones positivas dividimos por \(\sqrt{y}\):
+	\[
+	\frac{dy}{\sqrt{y}}=x\,dx.
+	\]
+Integrando,
+	\[
+	2\sqrt{y}=\frac{x^2}{2}+C_1,
+	\]
+y redefiniendo la constante,
+	\[
+	\sqrt{y}=\frac{x^2}{4}+C.
+	\]
+En los intervalos donde el miembro derecho es no negativo,
+	\[
+	y(x)=\left(\frac{x^2}{4}+C\right)^2.
+	\]
+En particular, si se buscan soluciones definidas para todo \(x\in\mathbb{R}\), debe tomarse \(C\geq 0\). Para \(C=0\) se obtiene
+	\[
+	y(x)=\frac{x^4}{16},
+	\]
+pero ningún valor constante de \(C\) produce la solución idénticamente nula. En el sentido de la definición anterior, \(y=0\) es una solución singular respecto de esta familia.
+
+	La solución se perdió exactamente en el paso en el que dividimos por \(\sqrt{y}\). Este es el mismo riesgo señalado en la Clase II al resolver ecuaciones separables.
+
+	\subsection{Soluciones singulares como envolventes}
+
+	En la teoría clásica, el ejemplo característico de solución singular aparece como la envolvente de una familia de soluciones. Consideremos la ecuación de Clairaut
+	\[
+	y=x\dot{y}+\dot{y}^{2}.
+	\]
+La familia de rectas
+	\[
+	y=Cx+C^2
+	\]
+satisface la ecuación para todo \(C\in\mathbb{R}\). Derivando la ecuación original,
+	\[
+	\dot{y}
+	=
+	\dot{y}
+	+x\ddot{y}
+	+2\dot{y}\ddot{y},
+	\]
+de donde
+	\[
+	\left(x+2\dot{y}\right)\ddot{y}=0.
+	\]
+La rama \(\ddot{y}=0\) produce la familia de rectas. La otra posibilidad es
+	\[
+	\dot{y}=-\frac{x}{2}.
+	\]
+Al sustituirla en la ecuación original se obtiene
+	\[
+	y_s(x)=-\frac{x^2}{4}.
+	\]
+Esta parábola también satisface la EDO, pero no coincide con ninguna recta de la familia. Además, es tangente a cada una de ellas para un valor apropiado de \(x\); por eso constituye su envolvente.
+
+	\subsection{Una precisión terminológica}
+
+	El término «solución singular» no se usa de manera completamente uniforme en todos los textos. En un sentido amplio, se aplica a una solución que no pertenece a la familia general obtenida. En un sentido más restringido, se reserva para soluciones envolventes, como la parábola del ejemplo de Clairaut.
+
+	En este curso utilizaremos siempre una formulación explícita: indicaremos si una solución fue excluida por una división o si es una verdadera envolvente de una familia. Esto evita que la terminología oculte el mecanismo matemático.
+
+	\begin{quote}
+		\textbf{Regla práctica.} Antes de dividir por una expresión que depende de \(x\), de \(y\) o de sus derivadas, iguale esa expresión a cero y compruebe por separado si aparecen soluciones adicionales.
+	\end{quote}
+
+	\clearpage
+	\section{Resumen}
+
+	\begin{itemize}[leftmargin=*]
+		\item Una relación \(\Phi(x,y)=C\) representa una solución implícita cuando define localmente una función diferenciable que satisface la EDO.
+		\item Una curva implícita completa no tiene por qué ser la gráfica de una única función \(y(x)\); puede ser necesario separarla en ramas.
+		\item La forma diferencial \(M\,dx+N\,dy=0\) equivale a \(\dot{y}=-M/N\) solamente donde \(N\neq 0\).
+		\item Si \(M\,dx+N\,dy=d\Phi\), las soluciones están dadas por las curvas de nivel \(\Phi(x,y)=C\).
+		\item Dividir por una expresión que puede anularse puede eliminar soluciones.
+		\item Una solución singular satisface la EDO, pero no pertenece a la familia uniparamétrica considerada. En los ejemplos clásicos puede aparecer como la envolvente de esa familia.
+	\end{itemize}
+
+	\section*{Bibliografía}
+
+	\begin{itemize}[leftmargin=*]
+		\item Zill, Dennis G. \textit{A First Course in Differential Equations with Modeling Applications}. 12.\textsuperscript{a} edición, edición métrica internacional. Blue Kingfisher, 2023. Capítulos 1 y 2. ISBN: 9798214038209.
+	\end{itemize}
+
+	\subsection*{Nota sobre la elaboración del material}
+
+	Este material fue elaborado por Benjamín Marcolongo con la asistencia de \textbf{GPT-5.6 Sol}, un modelo de OpenAI utilizado a través del entorno Codex, para la organización, redacción y revisión del contenido.
+
+\end{document}
