@@ -5,7 +5,7 @@
 % ---------------------------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
+\usepackage[provide=*,spanish]{babel}
 \usepackage{mathpazo}
 \usepackage{microtype}
 
@@ -320,6 +320,124 @@ Por lo tanto,
 	\[
 	y(x)=\frac{x^3}{3}+x+1.
 	\]
+
+	\clearpage
+	\section{Familias de soluciones y formas de representación}
+
+	\subsection{Familias uniparamétricas de soluciones}
+
+	Una \textbf{familia uniparamétrica de soluciones} es una colección de soluciones que depende de un único parámetro libre. Puede representarse como
+
+	\[
+	\{y_C\}_{C\in A},
+	\]
+donde $A$ es el conjunto de valores admisibles del parámetro $C$. Para cada valor fijo de $C$, la función $y_C$ es una solución de la ecuación diferencial en algún intervalo.
+
+	Por ejemplo, para
+
+	\[
+	y'=3y,
+	\]
+la expresión
+
+	\[
+	y_C(x)=Ce^{3x},
+	\qquad C\in\mathbb{R},
+	\]
+define una familia uniparamétrica de soluciones. El parámetro $C$ no es una nueva variable independiente: identifica los distintos miembros de la familia.
+
+	Una condición inicial permite, cuando el problema posee solución única, seleccionar un miembro particular. Si
+
+	\[
+	y(x_0)=y_0,
+	\]
+entonces
+
+	\[
+	C=y_0e^{-3x_0}.
+	\]
+Para una EDO de primer orden se espera, bajo condiciones regulares, que la solución general contenga un parámetro libre. Sin embargo, una familia obtenida mediante integración no necesariamente contiene todas las soluciones: pueden existir soluciones de equilibrio o soluciones singulares que deban agregarse por separado.
+
+	\subsection{Soluciones explícitas e implícitas}
+
+	Una solución está dada en \textbf{forma explícita} cuando la variable dependiente aparece despejada:
+
+	\[
+	y=\varphi(x).
+	\]
+	En cambio, una familia puede quedar descrita mediante una relación
+
+	\[
+	\Phi(x,y,C)=0,
+	\]
+sin que resulte posible o conveniente despejar $y$. En ese caso se habla de una \textbf{representación implícita} de las soluciones.
+
+	Estrictamente, una solución de una EDO sigue siendo una función. La relación anterior representa una solución implícita cuando determina, al menos localmente, una función diferenciable $y=\varphi(x)$ que satisface la ecuación diferencial.
+
+	Si $\Phi$ es continuamente diferenciable y
+
+	\[
+	\frac{\partial\Phi}{\partial y}(x_0,y_0,C)\neq 0,
+	\]
+el teorema de la función implícita garantiza que, cerca de $(x_0,y_0)$, la relación determina una única rama $y=\varphi(x)$. Derivando respecto de $x$,
+
+	\[
+	\frac{\partial\Phi}{\partial x}
+	+
+	\frac{\partial\Phi}{\partial y}\frac{dy}{dx}
+	=0,
+	\]
+de modo que
+
+	\[
+	\frac{dy}{dx}
+	=
+	-\frac{\partial\Phi/\partial x}{\partial\Phi/\partial y}.
+	\]
+
+	\subsection{Ejemplo: una familia implícita de circunferencias}
+
+	Consideremos
+
+	\[
+	\frac{dy}{dx}=-\frac{x}{y},
+	\]
+definida en la región $y\neq 0$. Separando variables,
+
+	\[
+	y\,dy=-x\,dx.
+	\]
+Al integrar y redefinir la constante, se obtiene la familia implícita
+
+	\[
+	x^2+y^2=C,
+	\qquad C>0.
+	\]
+Cada valor de $C$ describe una circunferencia, pero una circunferencia completa no es la gráfica de una función $y(x)$. Para obtener soluciones explícitas deben elegirse sus ramas:
+
+	\[
+	y(x)=\sqrt{C-x^2}
+	\qquad\text{o}\qquad
+	y(x)=-\sqrt{C-x^2}.
+	\]
+Cada rama es solución en cualquier intervalo abierto contenido en
+
+	\[
+	(-\sqrt{C},\sqrt{C}).
+	\]
+Los extremos no se incluyen porque allí $y=0$, la ecuación diferencial original no está definida y la circunferencia tiene tangente vertical.
+
+	Para una condición inicial $y(x_0)=y_0\neq 0$, el parámetro queda determinado por
+
+	\[
+	C=x_0^2+y_0^2,
+	\]
+mientras que el signo de $y_0$ selecciona la rama correspondiente.
+
+	\begin{quote}
+		\textbf{Idea central.} La constante de integración describe una familia de curvas. Una relación implícita puede contener varias ramas, y cada rama debe analizarse como una función junto con su intervalo de definición.
+	\end{quote}
+
 	\clearpage
 	\section{Ecuaciones de variables separables}
 
@@ -347,7 +465,7 @@ Integrando ambos miembros,
 	=
 	\int g(x)\,dx+C.
 	\]
-El resultado puede definir a \(y\) de manera explícita o implícita. Una relación implícita también constituye una solución si define una función diferenciable que satisface la ecuación en el intervalo considerado.
+	El resultado puede definir a $y$ de manera explícita o dejar una relación implícita, en el sentido desarrollado en la sección anterior. Despejar $y$ es útil cuando puede hacerse, pero no es necesario para caracterizar las curvas solución.
 
 	\subsection{Procedimiento}
 
