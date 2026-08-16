@@ -36,9 +36,14 @@
 	En la clase anterior definimos qué es una ecuación diferencial ordinaria, qué significa que una función sea solución y cómo se formula un problema de valor inicial. A partir de ahora nos concentraremos en ecuaciones de primer orden escritas en forma normal,
 
 	\[
-	y'=f(x,y),
+	\dot{y}=f(x,y),
 	\]
-junto con una condición inicial
+En esta clase utilizaremos la notación de Newton siempre que la variable respecto de la cual se deriva esté clara. Cuando \(x\) sea la variable independiente, adoptaremos la convención
+
+	\[
+	\dot{y}=\frac{dy}{dx}.
+	\]
+Cuando sea necesario evitar una ambigüedad, escribiremos explícitamente \(d/dx\), \(d/dt\) o una derivada parcial. La ecuación se complementa con una condición inicial
 
 	\[
 	y(x_0)=y_0.
@@ -60,7 +65,7 @@ Frente a un problema de este tipo aparecen, al menos, tres preguntas diferentes:
 
 	\[
 	\begin{cases}
-		y'=f(x,y),\\[0.2cm]
+		\dot{y}=f(x,y),\\[0.2cm]
 		y(x_0)=y_0.
 	\end{cases}
 	\]
@@ -83,7 +88,7 @@ son continuas en \(R\), entonces existe un intervalo abierto \(I\), que contiene
 
 	\[
 	\begin{cases}
-		y'=y^2,\\
+		\dot{y}=y^2,\\
 		y(0)=1.
 	\end{cases}
 	\]
@@ -106,7 +111,7 @@ Sin embargo, no está definida en \(x=1\). El intervalo máximo que contiene al 
 
 	\[
 	\begin{cases}
-		y'=\sqrt{|y|},\\
+		\dot{y}=\sqrt{|y|},\\
 		y(0)=0,
 	\end{cases}
 	\]
@@ -127,42 +132,16 @@ es una solución, pero también existen soluciones que permanecen en cero durant
 	En una ecuación de primer orden
 
 	\[
-	y'=f(x,y),
+	\dot{y}=f(x,y),
 	\]
 el valor \(f(x,y)\) indica la pendiente que debe tener una curva solución al pasar por el punto \((x,y)\). Un \textbf{campo de direcciones} se construye dibujando, en cada punto de una grilla, un pequeño segmento con pendiente \(f(x,y)\).
 
 	Una solución \(y=\varphi(x)\) debe ser tangente a esos segmentos, ya que
 
 	\[
-	\varphi'(x)=f\bigl(x,\varphi(x)\bigr).
+	\dot{\varphi}(x)=f\bigl(x,\varphi(x)\bigr).
 	\]
 El campo no proporciona necesariamente una fórmula para \(\varphi\), pero permite anticipar regiones de crecimiento y decrecimiento, comportamientos asintóticos y posibles soluciones de equilibrio.
-
-	\subsection{Isoclinas}
-
-	Se denomina \textbf{isoclina} de pendiente \(c\) al conjunto de puntos que satisface
-
-	\[
-	f(x,y)=c.
-	\]
-Sobre una misma isoclina, todos los segmentos del campo tienen la misma pendiente.
-
-	Por ejemplo, para
-
-	\[
-	y'=x-y,
-	\]
-las isoclinas están dadas por
-
-	\[
-	x-y=c,
-	\]
-o, equivalentemente,
-
-	\[
-	y=x-c.
-	\]
-En particular, sobre la recta \(y=x\) la pendiente es cero. Por encima de esa recta se cumple \(x-y<0\), por lo que las soluciones decrecen; por debajo se cumple \(x-y>0\), por lo que crecen.
 
 	\subsection{¿Pueden cruzarse dos curvas solución?}
 
@@ -174,7 +153,7 @@ En particular, sobre la recta \(y=x\) la pendiente es cero. Por encima de esa re
 en contradicción con la unicidad. Por lo tanto, en una región donde se cumplen las hipótesis del teorema de existencia y unicidad, las curvas solución no se intersectan.
 
 	\begin{quote}
-		\textbf{Relación con la Guía 1.} Los problemas 14 y 17 proponen interpretar campos de direcciones y asociar ecuaciones con posibles curvas solución. Antes de intentar resolver una ecuación, conviene estudiar el signo de \(f(x,y)\) y las isoclinas más simples.
+		\textbf{Relación con la Guía 1.} Los problemas 14 y 17 proponen interpretar campos de direcciones y asociar ecuaciones con posibles curvas solución. Antes de intentar resolver una ecuación, conviene identificar las regiones donde \(f(x,y)\) es positiva, negativa o nula.
 	\end{quote}
 
 	\clearpage
@@ -183,7 +162,7 @@ en contradicción con la unicidad. Por lo tanto, en una región donde se cumplen
 	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente:
 
 	\[
-	y'=f(y).
+	\dot{y}=f(y).
 	\]
 Si la variable independiente representa el tiempo, la tasa de cambio depende solamente del estado actual del sistema y no del instante en el que se lo observa.
 
@@ -204,12 +183,12 @@ es una solución de la ecuación diferencial.
 	Los puntos críticos dividen la recta de estados en intervalos. Dentro de cada intervalo, el signo de \(f(y)\) determina el sentido de evolución:
 
 	\[
-	f(y)>0 \quad\Longrightarrow\quad y'>0,
+	f(y)>0 \quad\Longrightarrow\quad \dot{y}>0,
 	\]
 por lo que \(y\) crece, mientras que
 
 	\[
-	f(y)<0 \quad\Longrightarrow\quad y'<0,
+	f(y)<0 \quad\Longrightarrow\quad \dot{y}<0,
 	\]
 por lo que \(y\) decrece. Esta información se representa mediante una \textbf{recta de fase}.
 
@@ -230,7 +209,7 @@ por lo que \(y\) decrece. Esta información se representa mediante una \textbf{r
 	Consideremos la ecuación autónoma
 
 	\[
-	y'=y-y^3=y(1-y)(1+y).
+	\dot{y}=y-y^3=y(1-y)(1+y).
 	\]
 Los puntos críticos satisfacen
 
@@ -262,19 +241,19 @@ El signo de \(f(y)=y-y^3\) en los intervalos determinados por esos puntos es
 	Tomemos como positiva la dirección vertical hacia abajo. Para un cuerpo que cae con una resistencia del aire proporcional a la velocidad,
 
 	\[
-	m\frac{dv}{dt}=mg-kv,
+	m\dot{v}=mg-kv,
 	\]
 con \(m>0\) y \(k>0\). En forma normal,
 
 	\[
-	\frac{dv}{dt}=g-\frac{k}{m}v.
+	\dot{v}=g-\frac{k}{m}v.
 	\]
 El único punto crítico es
 
 	\[
 	v_T=\frac{mg}{k}.
 	\]
-Si \(v<v_T\), entonces \(dv/dt>0\) y la velocidad aumenta. Si \(v>v_T\), entonces \(dv/dt<0\) y la velocidad disminuye. En ambos casos la evolución apunta hacia \(v_T\); por eso la velocidad terminal es un equilibrio asintóticamente estable.
+Si \(v<v_T\), entonces \(\dot{v}>0\) y la velocidad aumenta. Si \(v>v_T\), entonces \(\dot{v}<0\) y la velocidad disminuye. En ambos casos la evolución apunta hacia \(v_T\); por eso la velocidad terminal es un equilibrio asintóticamente estable.
 
 	\begin{quote}
 		\textbf{Relación con la Guía 1.} Los problemas 15 y 16 se resuelven cualitativamente identificando puntos críticos y construyendo la recta de fase.
@@ -286,7 +265,7 @@ Si \(v<v_T\), entonces \(dv/dt>0\) y la velocidad aumenta. Si \(v>v_T\), entonce
 	El caso más sencillo de una EDO de primer orden es
 
 	\[
-	y'=g(x),
+	\dot{y}=g(x),
 	\]
 donde la derivada depende únicamente de la variable independiente. Integrando respecto de \(x\), se obtiene
 
@@ -301,7 +280,7 @@ La constante \(C\) representa una familia uniparamétrica de soluciones. Una con
 
 	\[
 	\begin{cases}
-		y'=x^2+1,\\
+		\dot{y}=x^2+1,\\
 		y(0)=1.
 	\end{cases}
 	\]
@@ -336,7 +315,7 @@ donde $A$ es el conjunto de valores admisibles del parámetro $C$. Para cada val
 	Por ejemplo, para
 
 	\[
-	y'=3y,
+	\dot{y}=3y,
 	\]
 la expresión
 
@@ -384,13 +363,13 @@ el teorema de la función implícita garantiza que, cerca de $(x_0,y_0)$, la rel
 	\[
 	\frac{\partial\Phi}{\partial x}
 	+
-	\frac{\partial\Phi}{\partial y}\frac{dy}{dx}
+	\frac{\partial\Phi}{\partial y}\dot{y}
 	=0,
 	\]
 de modo que
 
 	\[
-	\frac{dy}{dx}
+	\dot{y}
 	=
 	-\frac{\partial\Phi/\partial x}{\partial\Phi/\partial y}.
 	\]
@@ -400,7 +379,7 @@ de modo que
 	Consideremos
 
 	\[
-	\frac{dy}{dx}=-\frac{x}{y},
+	\dot{y}=-\frac{x}{y},
 	\]
 definida en la región $y\neq 0$. Separando variables,
 
@@ -444,7 +423,7 @@ mientras que el signo de $y_0$ selecciona la rama correspondiente.
 	Una ecuación de primer orden es \textbf{separable} si puede escribirse como
 
 	\[
-	\frac{dy}{dx}=g(x)h(y).
+	\dot{y}=g(x)h(y).
 	\]
 Antes de dividir por \(h(y)\), deben buscarse sus ceros. Si
 
@@ -472,7 +451,7 @@ Integrando ambos miembros,
 	Para resolver una ecuación separable conviene seguir este orden:
 
 	\begin{enumerate}[label=\arabic*.]
-		\item escribirla en la forma \(y'=g(x)h(y)\);
+		\item escribirla en la forma \(\dot{y}=g(x)h(y)\);
 		\item encontrar las soluciones de equilibrio resolviendo \(h(y)=0\);
 		\item separar las variables en los intervalos donde \(h(y)\neq 0\);
 		\item integrar ambos miembros;
@@ -485,7 +464,7 @@ Integrando ambos miembros,
 	La ecuación
 
 	\[
-	y'=3y
+	\dot{y}=3y
 	\]
 es separable. La solución de equilibrio es \(y=0\). Para \(y\neq 0\),
 
@@ -511,7 +490,7 @@ con \(C\in\mathbb{R}\). En este caso, la elección \(C=0\) recupera la solución
 
 	\[
 	\begin{cases}
-		y'=3y+1,\\
+		\dot{y}=3y+1,\\
 		y(0)=1.
 	\end{cases}
 	\]
@@ -540,7 +519,7 @@ La condición \(y(0)=1\) da \(K=4\). Por lo tanto,
 	El modelo logístico normalizado está dado por
 
 	\[
-	\frac{dy}{dt}=y(1-y).
+	\dot{y}=y(1-y).
 	\]
 Antes de separar variables identificamos las soluciones de equilibrio
 
@@ -577,7 +556,7 @@ y la familia de soluciones no constantes puede escribirse como
 	\]
 en cualquier intervalo donde el denominador no se anule. La solución de equilibrio \(y=1\) corresponde a \(C=0\), mientras que \(y=0\) debe agregarse por separado.
 
-	El análisis cualitativo permite interpretar esta fórmula. Si \(0<y<1\), entonces \(y'>0\) y la población crece hacia \(y=1\). Si \(y>1\), entonces \(y'<0\) y decrece hacia el mismo equilibrio. Por lo tanto, \(y=1\) es asintóticamente estable y \(y=0\) es inestable.
+	El análisis cualitativo permite interpretar esta fórmula. Si \(0<y<1\), entonces \(\dot{y}>0\) y la población crece hacia \(y=1\). Si \(y>1\), entonces \(\dot{y}<0\) y decrece hacia el mismo equilibrio. Por lo tanto, \(y=1\) es asintóticamente estable y \(y=0\) es inestable.
 
 	\begin{quote}
 		\textbf{Relación con la Guía 1.} Los problemas 18--20 practican integración directa, separación de variables y PVI. El problema 25 retoma estos métodos en modelos de crecimiento.
@@ -629,7 +608,7 @@ en cualquier intervalo donde el denominador no se anule. La solución de equilib
 
 	\[
 	\begin{cases}
-		y'=\sqrt{|y|},\\
+		\dot{y}=\sqrt{|y|},\\
 		y(0)=0.
 	\end{cases}
 	\]
@@ -645,12 +624,12 @@ Además de la solución nula, para cada \(a\geq 0\) podemos definir
 La función es derivable en \(x=a\), ya que las derivadas laterales valen cero. Para \(x<a\),
 
 	\[
-	y_a'(x)=0=\sqrt{|y_a(x)|}.
+	\dot{y}_a(x)=0=\sqrt{|y_a(x)|}.
 	\]
 Para \(x>a\),
 
 	\[
-	y_a'(x)=\frac{x-a}{2}
+	\dot{y}_a(x)=\frac{x-a}{2}
 	\]
 y
 
