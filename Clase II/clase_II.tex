@@ -1,0 +1,550 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------------------------------------------------------
+% Idioma y tipografía
+% ---------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{mathpazo}
+\usepackage{microtype}
+
+% ---------------------------------------------------------
+% Matemática y tablas
+% ---------------------------------------------------------
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{
+	margin=2.5cm
+}
+
+\title{Ecuaciones Diferenciales Ordinarias\\Clase 2}
+\author{Benjamín Marcolongo}
+\date{}
+
+\begin{document}
+
+	\maketitle
+
+	\section{Introducción}
+
+	En la clase anterior definimos qué es una ecuación diferencial ordinaria, qué significa que una función sea solución y cómo se formula un problema de valor inicial. A partir de ahora nos concentraremos en ecuaciones de primer orden escritas en forma normal,
+
+	\[
+	y'=f(x,y),
+	\]
+junto con una condición inicial
+
+	\[
+	y(x_0)=y_0.
+	\]
+Frente a un problema de este tipo aparecen, al menos, tres preguntas diferentes:
+
+	\begin{enumerate}[label=\arabic*.]
+		\item ¿existe una solución que pase por el punto \((x_0,y_0)\)?
+		\item si existe, ¿es única?
+		\item ¿podemos encontrarla explícitamente o, al menos, describir cualitativamente su comportamiento?
+	\end{enumerate}
+
+	No todas las ecuaciones diferenciales pueden resolverse mediante una fórmula cerrada. Sin embargo, muchas propiedades de sus soluciones pueden deducirse directamente de la función \(f(x,y)\). Esta idea conduce al estudio de campos de direcciones y ecuaciones autónomas. Luego introduciremos uno de los primeros métodos analíticos de resolución: la separación de variables.
+
+	\clearpage
+	\section{Existencia y unicidad}
+
+	Consideremos el problema de valor inicial
+
+	\[
+	\begin{cases}
+		y'=f(x,y),\\[0.2cm]
+		y(x_0)=y_0.
+	\end{cases}
+	\]
+La sola escritura del problema no garantiza que exista una solución, ni que sea única. Las respuestas dependen de las propiedades de \(f\) cerca del punto inicial.
+
+	\subsection{Teorema local de existencia y unicidad}
+
+	Sea \(R\) un rectángulo del plano que contiene al punto \((x_0,y_0)\). Si \(f\) y su derivada parcial respecto de \(y\),
+
+	\[
+	\frac{\partial f}{\partial y},
+	\]
+son continuas en \(R\), entonces existe un intervalo abierto \(I\), que contiene a \(x_0\), en el cual el problema de valor inicial posee una única solución.
+
+	Las hipótesis anteriores son \textbf{suficientes}, pero no necesarias. Además, la conclusión es local: asegura una solución en algún intervalo alrededor de \(x_0\), pero no afirma que esa solución pueda prolongarse para todo \(x\in\mathbb{R}\).
+
+	\subsubsection*{Discusión: existencia no significa existencia global}
+
+	Consideremos
+
+	\[
+	\begin{cases}
+		y'=y^2,\\
+		y(0)=1.
+	\end{cases}
+	\]
+La función \(f(x,y)=y^2\) y su derivada \(\partial f/\partial y=2y\) son continuas en todo \(\mathbb{R}^2\). Por lo tanto, el PVI tiene una única solución local. Esa solución es
+
+	\[
+	y(x)=\frac{1}{1-x}.
+	\]
+Sin embargo, no está definida en \(x=1\). El intervalo máximo que contiene al punto inicial es
+
+	\[
+	I=(-\infty,1).
+	\]
+	Así, una solución puede ser única y aun así dejar de existir en tiempo finito porque su valor crece sin límite.
+
+	\newpage
+	\subsubsection*{Discusión: puede existir más de una solución}
+
+	Para el PVI
+
+	\[
+	\begin{cases}
+		y'=\sqrt{|y|},\\
+		y(0)=0,
+	\end{cases}
+	\]
+la función \(f(y)=\sqrt{|y|}\) es continua, pero no tiene una derivada continua respecto de \(y\) en \(y=0\). El problema posee más de una solución. Por ejemplo,
+
+	\[
+	y(x)=0
+	\]
+es una solución, pero también existen soluciones que permanecen en cero durante cierto tiempo y luego comienzan a crecer. La verificación se desarrolla en el apéndice.
+
+	\begin{quote}
+		\textbf{Idea central.} La continuidad de \(f\) está vinculada con la existencia; una condición adicional que controle cómo cambia \(f\) respecto de \(y\) permite garantizar la unicidad.
+	\end{quote}
+
+	\clearpage
+	\section{Campos de direcciones}
+
+	En una ecuación de primer orden
+
+	\[
+	y'=f(x,y),
+	\]
+el valor \(f(x,y)\) indica la pendiente que debe tener una curva solución al pasar por el punto \((x,y)\). Un \textbf{campo de direcciones} se construye dibujando, en cada punto de una grilla, un pequeño segmento con pendiente \(f(x,y)\).
+
+	Una solución \(y=\varphi(x)\) debe ser tangente a esos segmentos, ya que
+
+	\[
+	\varphi'(x)=f\bigl(x,\varphi(x)\bigr).
+	\]
+El campo no proporciona necesariamente una fórmula para \(\varphi\), pero permite anticipar regiones de crecimiento y decrecimiento, comportamientos asintóticos y posibles soluciones de equilibrio.
+
+	\subsection{Isoclinas}
+
+	Se denomina \textbf{isoclina} de pendiente \(c\) al conjunto de puntos que satisface
+
+	\[
+	f(x,y)=c.
+	\]
+Sobre una misma isoclina, todos los segmentos del campo tienen la misma pendiente.
+
+	Por ejemplo, para
+
+	\[
+	y'=x-y,
+	\]
+las isoclinas están dadas por
+
+	\[
+	x-y=c,
+	\]
+o, equivalentemente,
+
+	\[
+	y=x-c.
+	\]
+En particular, sobre la recta \(y=x\) la pendiente es cero. Por encima de esa recta se cumple \(x-y<0\), por lo que las soluciones decrecen; por debajo se cumple \(x-y>0\), por lo que crecen.
+
+	\subsection{¿Pueden cruzarse dos curvas solución?}
+
+	Si por un punto \((x_0,y_0)\) pasa una única solución, dos curvas solución diferentes no pueden cruzarse allí. Si lo hicieran, ambas resolverían el mismo PVI
+
+	\[
+	y(x_0)=y_0,
+	\]
+en contradicción con la unicidad. Por lo tanto, en una región donde se cumplen las hipótesis del teorema de existencia y unicidad, las curvas solución no se intersectan.
+
+	\begin{quote}
+		\textbf{Relación con la Guía 1.} Los problemas 14 y 17 proponen interpretar campos de direcciones y asociar ecuaciones con posibles curvas solución. Antes de intentar resolver una ecuación, conviene estudiar el signo de \(f(x,y)\) y las isoclinas más simples.
+	\end{quote}
+
+	\clearpage
+	\section{Ecuaciones autónomas}
+
+	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente:
+
+	\[
+	y'=f(y).
+	\]
+Si la variable independiente representa el tiempo, la tasa de cambio depende solamente del estado actual del sistema y no del instante en el que se lo observa.
+
+	\subsection{Puntos críticos y soluciones de equilibrio}
+
+	Un valor \(y_\ast\) es un \textbf{punto crítico} o \textbf{punto de equilibrio} si
+
+	\[
+	f(y_\ast)=0.
+	\]
+En ese caso, la función constante
+
+	\[
+	y(x)=y_\ast
+	\]
+es una solución de la ecuación diferencial.
+
+	Los puntos críticos dividen la recta de estados en intervalos. Dentro de cada intervalo, el signo de \(f(y)\) determina el sentido de evolución:
+
+	\[
+	f(y)>0 \quad\Longrightarrow\quad y'>0,
+	\]
+por lo que \(y\) crece, mientras que
+
+	\[
+	f(y)<0 \quad\Longrightarrow\quad y'<0,
+	\]
+por lo que \(y\) decrece. Esta información se representa mediante una \textbf{recta de fase}.
+
+	\subsection{Estabilidad}
+
+	Un equilibrio es:
+
+	\begin{itemize}[leftmargin=*]
+		\item \textbf{asintóticamente estable} si las soluciones que comienzan suficientemente cerca permanecen cerca y tienden hacia él;
+		\item \textbf{inestable} si existen soluciones inicialmente cercanas que se alejan;
+		\item \textbf{semiestable} si atrae soluciones de un lado y las repele del otro.
+	\end{itemize}
+
+	En una recta de fase, un equilibrio es asintóticamente estable si las flechas apuntan hacia él desde ambos lados, e inestable si apuntan hacia afuera.
+
+	\subsection{Ejemplo: una ecuación cúbica}
+
+	Consideremos la ecuación autónoma
+
+	\[
+	y'=y-y^3=y(1-y)(1+y).
+	\]
+Los puntos críticos satisfacen
+
+	\[
+	y(1-y)(1+y)=0,
+	\]
+por lo que
+
+	\[
+	y_\ast=-1,\qquad y_\ast=0,\qquad y_\ast=1.
+	\]
+El signo de \(f(y)=y-y^3\) en los intervalos determinados por esos puntos es
+
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\toprule
+			Intervalo & \((-\infty,-1)\) & \((-1,0)\) & \((0,1)\) & \((1,\infty)\) \\
+			\midrule
+			Signo de \(f(y)\) & \(+\) & \(-\) & \(+\) & \(-\) \\
+			Evolución & crece & decrece & crece & decrece \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+
+	Por lo tanto, \(y=-1\) e \(y=1\) son equilibrios asintóticamente estables, mientras que \(y=0\) es inestable. Esta conclusión se obtiene sin resolver explícitamente la ecuación.
+
+	\subsection{Ejemplo físico: velocidad terminal}
+
+	Tomemos como positiva la dirección vertical hacia abajo. Para un cuerpo que cae con una resistencia del aire proporcional a la velocidad,
+
+	\[
+	m\frac{dv}{dt}=mg-kv,
+	\]
+con \(m>0\) y \(k>0\). En forma normal,
+
+	\[
+	\frac{dv}{dt}=g-\frac{k}{m}v.
+	\]
+El único punto crítico es
+
+	\[
+	v_T=\frac{mg}{k}.
+	\]
+Si \(v<v_T\), entonces \(dv/dt>0\) y la velocidad aumenta. Si \(v>v_T\), entonces \(dv/dt<0\) y la velocidad disminuye. En ambos casos la evolución apunta hacia \(v_T\); por eso la velocidad terminal es un equilibrio asintóticamente estable.
+
+	\begin{quote}
+		\textbf{Relación con la Guía 1.} Los problemas 15 y 16 se resuelven cualitativamente identificando puntos críticos y construyendo la recta de fase.
+	\end{quote}
+
+	\clearpage
+	\section{Resolución por integración directa}
+
+	El caso más sencillo de una EDO de primer orden es
+
+	\[
+	y'=g(x),
+	\]
+donde la derivada depende únicamente de la variable independiente. Integrando respecto de \(x\), se obtiene
+
+	\[
+	y(x)=\int g(x)\,dx+C.
+	\]
+La constante \(C\) representa una familia uniparamétrica de soluciones. Una condición inicial permite seleccionar un único valor de \(C\).
+
+	\subsection{Ejemplo: un problema de valor inicial}
+
+	Consideremos
+
+	\[
+	\begin{cases}
+		y'=x^2+1,\\
+		y(0)=1.
+	\end{cases}
+	\]
+	Integrando,\nopagebreak[4]
+
+	\[
+	y(x)=\frac{x^3}{3}+x+C.
+	\]
+La condición inicial implica
+
+	\[
+	1=y(0)=C.
+	\]
+Por lo tanto,
+
+	\[
+	y(x)=\frac{x^3}{3}+x+1.
+	\]
+	\clearpage
+	\section{Ecuaciones de variables separables}
+
+	Una ecuación de primer orden es \textbf{separable} si puede escribirse como
+
+	\[
+	\frac{dy}{dx}=g(x)h(y).
+	\]
+Antes de dividir por \(h(y)\), deben buscarse sus ceros. Si
+
+	\[
+	h(y_\ast)=0,
+	\]
+entonces \(y(x)=y_\ast\) es una solución de equilibrio. Dividir por \(h(y)\) puede hacer que estas soluciones se pierdan.
+
+	En un intervalo donde \(h(y)\neq 0\), podemos separar las variables:
+
+	\[
+	\frac{1}{h(y)}\,dy=g(x)\,dx.
+	\]
+Integrando ambos miembros,
+
+	\[
+	\int\frac{1}{h(y)}\,dy
+	=
+	\int g(x)\,dx+C.
+	\]
+El resultado puede definir a \(y\) de manera explícita o implícita. Una relación implícita también constituye una solución si define una función diferenciable que satisface la ecuación en el intervalo considerado.
+
+	\subsection{Procedimiento}
+
+	Para resolver una ecuación separable conviene seguir este orden:
+
+	\begin{enumerate}[label=\arabic*.]
+		\item escribirla en la forma \(y'=g(x)h(y)\);
+		\item encontrar las soluciones de equilibrio resolviendo \(h(y)=0\);
+		\item separar las variables en los intervalos donde \(h(y)\neq 0\);
+		\item integrar ambos miembros;
+		\item despejar \(y\), si es posible;
+		\item imponer la condición inicial y determinar el intervalo de definición.
+	\end{enumerate}
+
+	\subsection{Ejemplo: crecimiento exponencial}
+
+	La ecuación
+
+	\[
+	y'=3y
+	\]
+es separable. La solución de equilibrio es \(y=0\). Para \(y\neq 0\),
+
+	\[
+	\frac{1}{y}\,dy=3\,dx.
+	\]
+	\newpage
+	Integrando,
+
+	\[
+	\ln|y|=3x+C.
+	\]
+Al exponenciar y absorber el signo en una nueva constante,
+
+	\[
+	y=Ce^{3x},
+	\]
+con \(C\in\mathbb{R}\). En este caso, la elección \(C=0\) recupera la solución de equilibrio.
+
+	\subsection{Ejemplo: un PVI separable}
+
+	Consideremos
+
+	\[
+	\begin{cases}
+		y'=3y+1,\\
+		y(0)=1.
+	\end{cases}
+	\]
+La ecuación puede escribirse como
+
+	\[
+	\frac{dy}{3y+1}=dx.
+	\]
+Integrando,
+
+	\[
+	\frac{1}{3}\ln|3y+1|=x+C.
+	\]
+Equivalentemente,
+
+	\[
+	3y+1=Ke^{3x}.
+	\]
+La condición \(y(0)=1\) da \(K=4\). Por lo tanto,
+
+	\[
+	y(x)=\frac{4e^{3x}-1}{3}.
+	\]
+	\subsection{Ejemplo: crecimiento logístico}
+
+	El modelo logístico normalizado está dado por
+
+	\[
+	\frac{dy}{dt}=y(1-y).
+	\]
+Antes de separar variables identificamos las soluciones de equilibrio
+
+	\[
+	y(t)=0
+	\qquad\text{y}\qquad
+	y(t)=1.
+	\]
+Para una solución no constante con \(y\neq 0\) y \(y\neq 1\),
+
+	\[
+	\frac{dy}{y(1-y)}=dt.
+	\]
+	\newpage
+	Como
+
+	\[
+	\frac{1}{y(1-y)}=\frac{1}{y}+\frac{1}{1-y},
+	\]
+	obtenemos
+
+	\[
+	\ln|y|-\ln|1-y|=t+C.
+	\]
+Luego,
+
+	\[
+	\ln\left|\frac{y}{1-y}\right|=t+C,
+	\]
+y la familia de soluciones no constantes puede escribirse como
+
+	\[
+	y(t)=\frac{1}{1+Ce^{-t}},
+	\]
+en cualquier intervalo donde el denominador no se anule. La solución de equilibrio \(y=1\) corresponde a \(C=0\), mientras que \(y=0\) debe agregarse por separado.
+
+	El análisis cualitativo permite interpretar esta fórmula. Si \(0<y<1\), entonces \(y'>0\) y la población crece hacia \(y=1\). Si \(y>1\), entonces \(y'<0\) y decrece hacia el mismo equilibrio. Por lo tanto, \(y=1\) es asintóticamente estable y \(y=0\) es inestable.
+
+	\begin{quote}
+		\textbf{Relación con la Guía 1.} Los problemas 18--20 practican integración directa, separación de variables y PVI. El problema 25 retoma estos métodos en modelos de crecimiento.
+	\end{quote}
+
+	\clearpage
+	\section{Cómo abordar una EDO de primer orden}
+
+	Ante una ecuación de primer orden, no conviene comenzar a manipular símbolos de manera automática. Un análisis ordenado debería responder:
+
+	\begin{enumerate}[label=\arabic*.]
+		\item ¿cuál es la variable independiente y cuál es la dependiente?
+		\item ¿en qué dominio está definida la ecuación?
+		\item ¿hay una condición inicial?
+		\item ¿se cumplen hipótesis que garanticen existencia y unicidad?
+		\item ¿la ecuación es autónoma? Si lo es, ¿cuáles son sus equilibrios y su estabilidad?
+		\item ¿es separable o puede resolverse por integración directa?
+		\item ¿la solución obtenida satisface la ecuación y la condición inicial?
+		\item ¿cuál es su intervalo máximo de definición?
+	\end{enumerate}
+
+	Esta secuencia conecta el análisis cualitativo con el analítico. Resolver una EDO no consiste solamente en obtener una fórmula: también implica determinar dónde tiene sentido, qué solución seleccionan los datos iniciales y cómo se comporta.
+
+	\clearpage
+	\section*{Bibliografía y recursos recomendados}
+
+	\begin{itemize}[leftmargin=*]
+		\item Zill, Dennis G. \textit{A First Course in Differential Equations with Modeling Applications}. 12.\textsuperscript{a} edición, edición métrica internacional. Blue Kingfisher, 2023. Capítulos 1 y 2. ISBN: 9798214038209.
+
+		\item Strogatz, Steven H. \textit{Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering}. 3.\textsuperscript{a} edición. CRC Press, 2024. En particular, los capítulos sobre flujos unidimensionales, puntos fijos y estabilidad. ISBN: 978-0-367-02650-9.
+
+		\item Strogatz, Steven H. \textit{Nonlinear Dynamics and Chaos}. Curso de 25 clases dictado en Cornell University:
+
+		\begin{center}
+			\url{https://www.youtube.com/playlist?list=PLbN57C5Zdl6j_qJA-pARJnKsmROzPnO9V}
+		\end{center}
+	\end{itemize}
+
+	\subsection*{Nota sobre la elaboración del material}
+
+	Este material fue elaborado por Benjamín Marcolongo con la asistencia de \textbf{GPT-5.6 Sol}, un modelo de OpenAI utilizado a través del entorno Codex, para la organización, redacción y revisión del contenido.
+
+	\clearpage
+	\appendix
+
+	\section{Un PVI con múltiples soluciones}
+
+	Consideremos nuevamente
+
+	\[
+	\begin{cases}
+		y'=\sqrt{|y|},\\
+		y(0)=0.
+	\end{cases}
+	\]
+Además de la solución nula, para cada \(a\geq 0\) podemos definir
+
+	\[
+	y_a(x)=
+	\begin{cases}
+		0, & x\leq a,\\[0.2cm]
+		\dfrac{(x-a)^2}{4}, & x>a.
+	\end{cases}
+	\]
+La función es derivable en \(x=a\), ya que las derivadas laterales valen cero. Para \(x<a\),
+
+	\[
+	y_a'(x)=0=\sqrt{|y_a(x)|}.
+	\]
+Para \(x>a\),
+
+	\[
+	y_a'(x)=\frac{x-a}{2}
+	\]
+y
+
+	\[
+	\sqrt{|y_a(x)|}
+	=
+	\sqrt{\frac{(x-a)^2}{4}}
+	=
+	\frac{x-a}{2}.
+	\]
+Además, como \(a\geq 0\), se cumple \(y_a(0)=0\). Por lo tanto, cada elección de \(a\) produce una solución diferente del mismo PVI.
+
+	Este ejemplo muestra que la continuidad de \(f\) puede garantizar existencia sin garantizar unicidad.
+
+\end{document}
