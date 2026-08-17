@@ -58,7 +58,7 @@ Frente a un problema de este tipo aparecen, al menos, tres preguntas diferentes:
 
 	No todas las ecuaciones diferenciales pueden resolverse mediante una fórmula cerrada. Sin embargo, muchas propiedades de sus soluciones pueden deducirse directamente de la función \(f(x,y)\).
 
-	La idea que organiza esta clase es estudiar primero cuál es la máxima información que podemos extraer de una ecuación diferencial \emph{antes de resolverla}. Analizaremos su dominio, la existencia y unicidad de las soluciones, sus posibles formas de representación, el campo de direcciones, los puntos de equilibrio y su estabilidad. Recién después introduciremos métodos analíticos para obtener soluciones mediante integración directa o separación de variables.
+	La idea que organiza esta clase es estudiar primero cuál es la máxima información que podemos extraer de una ecuación diferencial \emph{antes de resolverla}. Analizaremos su dominio, la existencia y unicidad de las soluciones, sus posibles formas de representación y la estabilidad de los equilibrios. Recién después introduciremos la separación de variables como método analítico para obtener soluciones. Los campos de direcciones, el estudio general de las ecuaciones autónomas y la integración directa se desarrollan en el material suplementario de esta clase.
 
 	\begin{quote}
 		\textbf{Principio de trabajo.} Antes de buscar una fórmula para la solución, conviene determinar qué comportamientos permite la ecuación y cuáles excluye.
@@ -275,73 +275,14 @@ mientras que el signo de $y_0$ selecciona la rama correspondiente.
 	\end{quote}
 
 	\clearpage
-	\section{Campos de direcciones}
+	\section{Estabilidad}
 
-	En una ecuación de primer orden
-
-	\[
-	\dot{y}=f(x,y),
-	\]
-el valor \(f(x,y)\) indica la pendiente que debe tener una curva solución al pasar por el punto \((x,y)\). Un \textbf{campo de direcciones} se construye dibujando, en cada punto de una grilla, un pequeño segmento con pendiente \(f(x,y)\).
-
-	Una solución \(y=\varphi(x)\) debe ser tangente a esos segmentos, ya que
-
-	\[
-	\dot{\varphi}(x)=f\bigl(x,\varphi(x)\bigr).
-	\]
-El campo no proporciona necesariamente una fórmula para \(\varphi\), pero permite anticipar regiones de crecimiento y decrecimiento, comportamientos asintóticos y posibles soluciones de equilibrio.
-
-	\subsection{¿Pueden cruzarse dos curvas solución?}
-
-	Si por un punto \((x_0,y_0)\) pasa una única solución, dos curvas solución diferentes no pueden cruzarse allí. Si lo hicieran, ambas resolverían el mismo PVI
-
-	\[
-	y(x_0)=y_0,
-	\]
-en contradicción con la unicidad. Por lo tanto, en una región donde se cumplen las hipótesis del teorema de existencia y unicidad, las curvas solución no se intersectan.
-
-	\begin{quote}
-		\textbf{Relación con la Guía 1.} Los problemas 14 y 17 proponen interpretar campos de direcciones y asociar ecuaciones con posibles curvas solución. Antes de intentar resolver una ecuación, conviene identificar las regiones donde \(f(x,y)\) es positiva, negativa o nula.
-	\end{quote}
-
-	\clearpage
-	\section{Ecuaciones autónomas}
-
-	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente:
+	Para estudiar la estabilidad nos restringiremos a ecuaciones autónomas de la forma
 
 	\[
 	\dot{y}=f(y).
 	\]
-Si la variable independiente representa el tiempo, la tasa de cambio depende solamente del estado actual del sistema y no del instante en el que se lo observa.
-
-	\subsection{Puntos críticos y soluciones de equilibrio}
-
-	Un valor \(y_\ast\) es un \textbf{punto crítico} o \textbf{punto de equilibrio} si
-
-	\[
-	f(y_\ast)=0.
-	\]
-En ese caso, la función constante
-
-	\[
-	y(x)=y_\ast
-	\]
-es una solución de la ecuación diferencial.
-
-	Los puntos críticos dividen la recta de estados en intervalos. Dentro de cada intervalo, el signo de \(f(y)\) determina el sentido de evolución:
-
-	\[
-	f(y)>0 \quad\Longrightarrow\quad \dot{y}>0,
-	\]
-por lo que \(y\) crece, mientras que
-
-	\[
-	f(y)<0 \quad\Longrightarrow\quad \dot{y}<0,
-	\]
-por lo que \(y\) decrece. Esta información se representa mediante una \textbf{recta de fase}.
-
-	\clearpage
-	\section{Estabilidad}
+Un valor \(y_\ast\) es un punto de equilibrio si \(f(y_\ast)=0\), pues entonces la función constante \(y(x)=y_\ast\) es solución. El signo de \(f(y)\) a cada lado de los equilibrios determina el sentido de evolución y puede representarse mediante una recta de fase. El desarrollo detallado de estas ideas se encuentra en el material suplementario de la Clase 2.
 
 	Un equilibrio es:
 
@@ -408,48 +349,7 @@ Si \(v<v_T\), entonces \(\dot{v}>0\) y la velocidad aumenta. Si \(v>v_T\), enton
 		\textbf{Relación con la Guía 1.} Los problemas 15 y 16 se resuelven cualitativamente identificando puntos críticos y construyendo la recta de fase.
 	\end{quote}
 
-	Hasta aquí no fue necesario resolver explícitamente las ecuaciones. El signo del campo, los puntos críticos y la recta de fase permitieron describir el comportamiento de las soluciones. A partir de la sección siguiente comenzaremos a buscar fórmulas mediante métodos analíticos.
-
-	\clearpage
-	\section{Resolución por integración directa}
-
-	El caso más sencillo de una EDO de primer orden es
-
-	\[
-	\dot{y}=g(x),
-	\]
-donde la derivada depende únicamente de la variable independiente. Integrando respecto de \(x\), se obtiene
-
-	\[
-	y(x)=\int g(x)\,dx+C.
-	\]
-La constante \(C\) representa una familia uniparamétrica de soluciones. Una condición inicial permite seleccionar un único valor de \(C\).
-
-	\subsection{Ejemplo: un problema de valor inicial}
-
-	Consideremos
-
-	\[
-	\begin{cases}
-		\dot{y}=x^2+1,\\
-		y(0)=1.
-	\end{cases}
-	\]
-	Integrando,\nopagebreak[4]
-
-	\[
-	y(x)=\frac{x^3}{3}+x+C.
-	\]
-La condición inicial implica
-
-	\[
-	1=y(0)=C.
-	\]
-Por lo tanto,
-
-	\[
-	y(x)=\frac{x^3}{3}+x+1.
-	\]
+	Hasta aquí no fue necesario resolver explícitamente las ecuaciones. El signo de \(f(y)\), los puntos críticos y la recta de fase permitieron describir el comportamiento de las soluciones. A partir de la sección siguiente comenzaremos a buscar fórmulas mediante un método analítico.
 
 	\clearpage
 	\section{Ecuaciones de variables separables}
@@ -478,7 +378,7 @@ Integrando ambos miembros,
 	=
 	\int g(x)\,dx+C.
 	\]
-	El resultado puede definir a $y$ de manera explícita o dejar una relación implícita, en el sentido desarrollado en la sección anterior. Despejar $y$ es útil cuando puede hacerse, pero no es necesario para caracterizar las curvas solución.
+	El resultado puede definir a $y$ de manera explícita o dejar una relación implícita, en el sentido desarrollado en la sección sobre soluciones explícitas e implícitas. Despejar $y$ es útil cuando puede hacerse, pero no es necesario para caracterizar las curvas solución.
 
 	\subsection{Procedimiento}
 
@@ -593,7 +493,7 @@ en cualquier intervalo donde el denominador no se anule. La solución de equilib
 	El análisis cualitativo permite interpretar esta fórmula. Si \(0<y<1\), entonces \(\dot{y}>0\) y la población crece hacia \(y=1\). Si \(y>1\), entonces \(\dot{y}<0\) y decrece hacia el mismo equilibrio. Por lo tanto, \(y=1\) es asintóticamente estable y \(y=0\) es inestable.
 
 	\begin{quote}
-		\textbf{Relación con la Guía 1.} Los problemas 18--20 practican integración directa, separación de variables y PVI. El problema 25 retoma estos métodos en modelos de crecimiento.
+		\textbf{Relación con la Guía 1.} Los problemas 18--20 practican separación de variables y PVI. El caso de integración directa se desarrolla en el material suplementario. El problema 25 retoma estos métodos en modelos de crecimiento.
 	\end{quote}
 
 	\clearpage
@@ -606,9 +506,9 @@ en cualquier intervalo donde el denominador no se anule. La solución de equilib
 		\item ¿en qué dominio está definida la ecuación?
 		\item ¿hay una condición inicial?
 		\item ¿se cumplen hipótesis que garanticen existencia y unicidad?
-		\item ¿qué indica el campo de direcciones sobre las regiones de crecimiento y decrecimiento?
+		\item si se consulta el campo de direcciones desarrollado en el material suplementario, ¿qué indica sobre las regiones de crecimiento y decrecimiento?
 		\item ¿la ecuación es autónoma? Si lo es, ¿cuáles son sus equilibrios y qué estabilidad tienen?
-		\item después del análisis cualitativo, ¿puede resolverse por integración directa o separación de variables?
+		\item después del análisis cualitativo, ¿puede resolverse por separación de variables o corresponde al caso de integración directa desarrollado en el material suplementario?
 		\item ¿la solución obtenida satisface la ecuación y la condición inicial?
 		\item ¿cuál es su intervalo máximo de definición?
 	\end{enumerate}
