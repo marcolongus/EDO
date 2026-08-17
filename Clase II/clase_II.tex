@@ -58,7 +58,7 @@ Frente a un problema de este tipo aparecen, al menos, tres preguntas diferentes:
 
 	No todas las ecuaciones diferenciales pueden resolverse mediante una fórmula cerrada. Sin embargo, muchas propiedades de sus soluciones pueden deducirse directamente de la función \(f(x,y)\).
 
-	La idea que organiza esta clase es estudiar primero cuál es la máxima información que podemos extraer de una ecuación diferencial \emph{antes de resolverla}. Analizaremos su dominio, la existencia y unicidad de las soluciones, sus posibles formas de representación y la estabilidad de los equilibrios. Recién después introduciremos la separación de variables como método analítico para obtener soluciones. Los campos de direcciones, el estudio general de las ecuaciones autónomas y la integración directa se desarrollan en el material suplementario de esta clase.
+	La idea que organiza esta clase es estudiar primero cuál es la máxima información que podemos extraer de una ecuación diferencial \emph{antes de resolverla}. Analizaremos su dominio, la existencia y unicidad de las soluciones, sus posibles formas de representación y los campos de direcciones. El estudio de las ecuaciones autónomas y la estabilidad, junto con los métodos de integración directa y separación de variables, se desarrolla en el material suplementario de esta clase.
 
 	\begin{quote}
 		\textbf{Principio de trabajo.} Antes de buscar una fórmula para la solución, conviene determinar qué comportamientos permite la ecuación y cuáles excluye.
@@ -275,225 +275,33 @@ mientras que el signo de $y_0$ selecciona la rama correspondiente.
 	\end{quote}
 
 	\clearpage
-	\section{Estabilidad}
+	\section{Campos de direcciones}
 
-	Para estudiar la estabilidad nos restringiremos a ecuaciones autónomas de la forma
-
-	\[
-	\dot{y}=f(y).
-	\]
-Un valor \(y_\ast\) es un punto de equilibrio si \(f(y_\ast)=0\), pues entonces la función constante \(y(x)=y_\ast\) es solución. El signo de \(f(y)\) a cada lado de los equilibrios determina el sentido de evolución y puede representarse mediante una recta de fase. El desarrollo detallado de estas ideas se encuentra en el material suplementario de la Clase 2.
-
-	Un equilibrio es:
-
-	\begin{itemize}[leftmargin=*]
-		\item \textbf{asintóticamente estable} si las soluciones que comienzan suficientemente cerca permanecen cerca y tienden hacia él;
-		\item \textbf{inestable} si existen soluciones inicialmente cercanas que se alejan;
-		\item \textbf{semiestable} si atrae soluciones de un lado y las repele del otro.
-	\end{itemize}
-
-	En una recta de fase, un equilibrio es asintóticamente estable si las flechas apuntan hacia él desde ambos lados, e inestable si apuntan hacia afuera.
-
-	\subsection{Ejemplo: una ecuación cúbica}
-
-	Consideremos la ecuación autónoma
+	En una ecuación de primer orden
 
 	\[
-	\dot{y}=y-y^3=y(1-y)(1+y).
+	\dot{y}=f(x,y),
 	\]
-Los puntos críticos satisfacen
+el valor \(f(x,y)\) indica la pendiente que debe tener una curva solución al pasar por el punto \((x,y)\). Un \textbf{campo de direcciones} se construye dibujando, en cada punto de una grilla, un pequeño segmento con pendiente \(f(x,y)\).
+
+	Una solución \(y=\varphi(x)\) debe ser tangente a esos segmentos, ya que
 
 	\[
-	y(1-y)(1+y)=0,
+	\dot{\varphi}(x)=f\bigl(x,\varphi(x)\bigr).
 	\]
-por lo que
+El campo no proporciona necesariamente una fórmula para \(\varphi\), pero permite anticipar regiones de crecimiento y decrecimiento, comportamientos asintóticos y posibles soluciones de equilibrio.
+
+	\subsection{¿Pueden cruzarse dos curvas solución?}
+
+	Si por un punto \((x_0,y_0)\) pasa una única solución, dos curvas solución diferentes no pueden cruzarse allí. Si lo hicieran, ambas resolverían el mismo PVI
 
 	\[
-	y_\ast=-1,\qquad y_\ast=0,\qquad y_\ast=1.
+	y(x_0)=y_0,
 	\]
-El signo de \(f(y)=y-y^3\) en los intervalos determinados por esos puntos es
-
-	\begin{center}
-		\begin{tabular}{ccccc}
-			\toprule
-			Intervalo & \((-\infty,-1)\) & \((-1,0)\) & \((0,1)\) & \((1,\infty)\) \\
-			\midrule
-			Signo de \(f(y)\) & \(+\) & \(-\) & \(+\) & \(-\) \\
-			Evolución & crece & decrece & crece & decrece \\
-			\bottomrule
-		\end{tabular}
-	\end{center}
-
-	Por lo tanto, \(y=-1\) e \(y=1\) son equilibrios asintóticamente estables, mientras que \(y=0\) es inestable. Esta conclusión se obtiene sin resolver explícitamente la ecuación.
-
-	\subsection{Ejemplo físico: velocidad terminal}
-
-	Tomemos como positiva la dirección vertical hacia abajo. Para un cuerpo que cae con una resistencia del aire proporcional a la velocidad,
-
-	\[
-	m\dot{v}=mg-kv,
-	\]
-con \(m>0\) y \(k>0\). En forma normal,
-
-	\[
-	\dot{v}=g-\frac{k}{m}v.
-	\]
-El único punto crítico es
-
-	\[
-	v_T=\frac{mg}{k}.
-	\]
-Si \(v<v_T\), entonces \(\dot{v}>0\) y la velocidad aumenta. Si \(v>v_T\), entonces \(\dot{v}<0\) y la velocidad disminuye. En ambos casos la evolución apunta hacia \(v_T\); por eso la velocidad terminal es un equilibrio asintóticamente estable.
+en contradicción con la unicidad. Por lo tanto, en una región donde se cumplen las hipótesis del teorema de existencia y unicidad, las curvas solución no se intersectan.
 
 	\begin{quote}
-		\textbf{Relación con la Guía 1.} Los problemas 15 y 16 se resuelven cualitativamente identificando puntos críticos y construyendo la recta de fase.
-	\end{quote}
-
-	Hasta aquí no fue necesario resolver explícitamente las ecuaciones. El signo de \(f(y)\), los puntos críticos y la recta de fase permitieron describir el comportamiento de las soluciones. A partir de la sección siguiente comenzaremos a buscar fórmulas mediante un método analítico.
-
-	\clearpage
-	\section{Ecuaciones de variables separables}
-
-	Una ecuación de primer orden es \textbf{separable} si puede escribirse como
-
-	\[
-	\dot{y}=g(x)h(y).
-	\]
-Antes de dividir por \(h(y)\), deben buscarse sus ceros. Si
-
-	\[
-	h(y_\ast)=0,
-	\]
-entonces \(y(x)=y_\ast\) es una solución de equilibrio. Dividir por \(h(y)\) puede hacer que estas soluciones se pierdan.
-
-	En un intervalo donde \(h(y)\neq 0\), podemos separar las variables:
-
-	\[
-	\frac{1}{h(y)}\,dy=g(x)\,dx.
-	\]
-Integrando ambos miembros,
-
-	\[
-	\int\frac{1}{h(y)}\,dy
-	=
-	\int g(x)\,dx+C.
-	\]
-	El resultado puede definir a $y$ de manera explícita o dejar una relación implícita, en el sentido desarrollado en la sección sobre soluciones explícitas e implícitas. Despejar $y$ es útil cuando puede hacerse, pero no es necesario para caracterizar las curvas solución.
-
-	\subsection{Procedimiento}
-
-	Para resolver una ecuación separable conviene seguir este orden:
-
-	\begin{enumerate}[label=\arabic*.]
-		\item escribirla en la forma \(\dot{y}=g(x)h(y)\);
-		\item encontrar las soluciones de equilibrio resolviendo \(h(y)=0\);
-		\item separar las variables en los intervalos donde \(h(y)\neq 0\);
-		\item integrar ambos miembros;
-		\item despejar \(y\), si es posible;
-		\item imponer la condición inicial y determinar el intervalo de definición.
-	\end{enumerate}
-
-	\subsection{Ejemplo: crecimiento exponencial}
-
-	La ecuación
-
-	\[
-	\dot{y}=3y
-	\]
-es separable. La solución de equilibrio es \(y=0\). Para \(y\neq 0\),
-
-	\[
-	\frac{1}{y}\,dy=3\,dx.
-	\]
-	\newpage
-	Integrando,
-
-	\[
-	\ln|y|=3x+C.
-	\]
-Al exponenciar y absorber el signo en una nueva constante,
-
-	\[
-	y=Ce^{3x},
-	\]
-con \(C\in\mathbb{R}\). En este caso, la elección \(C=0\) recupera la solución de equilibrio.
-
-	\subsection{Ejemplo: un PVI separable}
-
-	Consideremos
-
-	\[
-	\begin{cases}
-		\dot{y}=3y+1,\\
-		y(0)=1.
-	\end{cases}
-	\]
-La ecuación puede escribirse como
-
-	\[
-	\frac{dy}{3y+1}=dx.
-	\]
-Integrando,
-
-	\[
-	\frac{1}{3}\ln|3y+1|=x+C.
-	\]
-Equivalentemente,
-
-	\[
-	3y+1=Ke^{3x}.
-	\]
-La condición \(y(0)=1\) da \(K=4\). Por lo tanto,
-
-	\[
-	y(x)=\frac{4e^{3x}-1}{3}.
-	\]
-	\subsection{Ejemplo: crecimiento logístico}
-
-	El modelo logístico normalizado está dado por
-
-	\[
-	\dot{y}=y(1-y).
-	\]
-Antes de separar variables identificamos las soluciones de equilibrio
-
-	\[
-	y(t)=0
-	\qquad\text{y}\qquad
-	y(t)=1.
-	\]
-Para una solución no constante con \(y\neq 0\) y \(y\neq 1\),
-
-	\[
-	\frac{dy}{y(1-y)}=dt.
-	\]
-	\newpage
-	Como
-
-	\[
-	\frac{1}{y(1-y)}=\frac{1}{y}+\frac{1}{1-y},
-	\]
-	obtenemos
-
-	\[
-	\ln|y|-\ln|1-y|=t+C.
-	\]
-Luego,
-
-	\[
-	\ln\left|\frac{y}{1-y}\right|=t+C,
-	\]
-y la familia de soluciones no constantes puede escribirse como
-
-	\[
-	y(t)=\frac{1}{1+Ce^{-t}},
-	\]
-en cualquier intervalo donde el denominador no se anule. La solución de equilibrio \(y=1\) corresponde a \(C=0\), mientras que \(y=0\) debe agregarse por separado.
-
-	El análisis cualitativo permite interpretar esta fórmula. Si \(0<y<1\), entonces \(\dot{y}>0\) y la población crece hacia \(y=1\). Si \(y>1\), entonces \(\dot{y}<0\) y decrece hacia el mismo equilibrio. Por lo tanto, \(y=1\) es asintóticamente estable y \(y=0\) es inestable.
-
-	\begin{quote}
-		\textbf{Relación con la Guía 1.} Los problemas 18--20 practican separación de variables y PVI. El caso de integración directa se desarrolla en el material suplementario. El problema 25 retoma estos métodos en modelos de crecimiento.
+		\textbf{Relación con la Guía 1.} Los problemas 14 y 17 proponen interpretar campos de direcciones y asociar ecuaciones con posibles curvas solución. Antes de intentar resolver una ecuación, conviene identificar las regiones donde \(f(x,y)\) es positiva, negativa o nula.
 	\end{quote}
 
 	\clearpage
@@ -506,7 +314,7 @@ en cualquier intervalo donde el denominador no se anule. La solución de equilib
 		\item ¿en qué dominio está definida la ecuación?
 		\item ¿hay una condición inicial?
 		\item ¿se cumplen hipótesis que garanticen existencia y unicidad?
-		\item si se consulta el campo de direcciones desarrollado en el material suplementario, ¿qué indica sobre las regiones de crecimiento y decrecimiento?
+		\item ¿qué indica el campo de direcciones sobre las regiones de crecimiento y decrecimiento?
 		\item ¿la ecuación es autónoma? Si lo es, ¿cuáles son sus equilibrios y qué estabilidad tienen?
 		\item después del análisis cualitativo, ¿puede resolverse por separación de variables o corresponde al caso de integración directa desarrollado en el material suplementario?
 		\item ¿la solución obtenida satisface la ecuación y la condición inicial?
