@@ -56,7 +56,13 @@ Frente a un problema de este tipo aparecen, al menos, tres preguntas diferentes:
 		\item ¿podemos encontrarla explícitamente o, al menos, describir cualitativamente su comportamiento?
 	\end{enumerate}
 
-	No todas las ecuaciones diferenciales pueden resolverse mediante una fórmula cerrada. Sin embargo, muchas propiedades de sus soluciones pueden deducirse directamente de la función \(f(x,y)\). Esta idea conduce al estudio de campos de direcciones y ecuaciones autónomas. Luego introduciremos uno de los primeros métodos analíticos de resolución: la separación de variables.
+	No todas las ecuaciones diferenciales pueden resolverse mediante una fórmula cerrada. Sin embargo, muchas propiedades de sus soluciones pueden deducirse directamente de la función \(f(x,y)\).
+
+	La idea que organiza esta clase es estudiar primero cuál es la máxima información que podemos extraer de una ecuación diferencial \emph{antes de resolverla}. Analizaremos su dominio, la existencia y unicidad de las soluciones, sus posibles formas de representación, el campo de direcciones, los puntos de equilibrio y su estabilidad. Recién después introduciremos métodos analíticos para obtener soluciones mediante integración directa o separación de variables.
+
+	\begin{quote}
+		\textbf{Principio de trabajo.} Antes de buscar una fórmula para la solución, conviene determinar qué comportamientos permite la ecuación y cuáles excluye.
+	\end{quote}
 
 	\clearpage
 	\section{Existencia y unicidad}
@@ -125,180 +131,6 @@ es una solución, pero también existen soluciones que permanecen en cero durant
 	\begin{quote}
 		\textbf{Idea central.} La continuidad de \(f\) está vinculada con la existencia; una condición adicional que controle cómo cambia \(f\) respecto de \(y\) permite garantizar la unicidad.
 	\end{quote}
-
-	\clearpage
-	\section{Campos de direcciones}
-
-	En una ecuación de primer orden
-
-	\[
-	\dot{y}=f(x,y),
-	\]
-el valor \(f(x,y)\) indica la pendiente que debe tener una curva solución al pasar por el punto \((x,y)\). Un \textbf{campo de direcciones} se construye dibujando, en cada punto de una grilla, un pequeño segmento con pendiente \(f(x,y)\).
-
-	Una solución \(y=\varphi(x)\) debe ser tangente a esos segmentos, ya que
-
-	\[
-	\dot{\varphi}(x)=f\bigl(x,\varphi(x)\bigr).
-	\]
-El campo no proporciona necesariamente una fórmula para \(\varphi\), pero permite anticipar regiones de crecimiento y decrecimiento, comportamientos asintóticos y posibles soluciones de equilibrio.
-
-	\subsection{¿Pueden cruzarse dos curvas solución?}
-
-	Si por un punto \((x_0,y_0)\) pasa una única solución, dos curvas solución diferentes no pueden cruzarse allí. Si lo hicieran, ambas resolverían el mismo PVI
-
-	\[
-	y(x_0)=y_0,
-	\]
-en contradicción con la unicidad. Por lo tanto, en una región donde se cumplen las hipótesis del teorema de existencia y unicidad, las curvas solución no se intersectan.
-
-	\begin{quote}
-		\textbf{Relación con la Guía 1.} Los problemas 14 y 17 proponen interpretar campos de direcciones y asociar ecuaciones con posibles curvas solución. Antes de intentar resolver una ecuación, conviene identificar las regiones donde \(f(x,y)\) es positiva, negativa o nula.
-	\end{quote}
-
-	\clearpage
-	\section{Ecuaciones autónomas}
-
-	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente:
-
-	\[
-	\dot{y}=f(y).
-	\]
-Si la variable independiente representa el tiempo, la tasa de cambio depende solamente del estado actual del sistema y no del instante en el que se lo observa.
-
-	\subsection{Puntos críticos y soluciones de equilibrio}
-
-	Un valor \(y_\ast\) es un \textbf{punto crítico} o \textbf{punto de equilibrio} si
-
-	\[
-	f(y_\ast)=0.
-	\]
-En ese caso, la función constante
-
-	\[
-	y(x)=y_\ast
-	\]
-es una solución de la ecuación diferencial.
-
-	Los puntos críticos dividen la recta de estados en intervalos. Dentro de cada intervalo, el signo de \(f(y)\) determina el sentido de evolución:
-
-	\[
-	f(y)>0 \quad\Longrightarrow\quad \dot{y}>0,
-	\]
-por lo que \(y\) crece, mientras que
-
-	\[
-	f(y)<0 \quad\Longrightarrow\quad \dot{y}<0,
-	\]
-por lo que \(y\) decrece. Esta información se representa mediante una \textbf{recta de fase}.
-
-	\subsection{Estabilidad}
-
-	Un equilibrio es:
-
-	\begin{itemize}[leftmargin=*]
-		\item \textbf{asintóticamente estable} si las soluciones que comienzan suficientemente cerca permanecen cerca y tienden hacia él;
-		\item \textbf{inestable} si existen soluciones inicialmente cercanas que se alejan;
-		\item \textbf{semiestable} si atrae soluciones de un lado y las repele del otro.
-	\end{itemize}
-
-	En una recta de fase, un equilibrio es asintóticamente estable si las flechas apuntan hacia él desde ambos lados, e inestable si apuntan hacia afuera.
-
-	\subsection{Ejemplo: una ecuación cúbica}
-
-	Consideremos la ecuación autónoma
-
-	\[
-	\dot{y}=y-y^3=y(1-y)(1+y).
-	\]
-Los puntos críticos satisfacen
-
-	\[
-	y(1-y)(1+y)=0,
-	\]
-por lo que
-
-	\[
-	y_\ast=-1,\qquad y_\ast=0,\qquad y_\ast=1.
-	\]
-El signo de \(f(y)=y-y^3\) en los intervalos determinados por esos puntos es
-
-	\begin{center}
-		\begin{tabular}{ccccc}
-			\toprule
-			Intervalo & \((-\infty,-1)\) & \((-1,0)\) & \((0,1)\) & \((1,\infty)\) \\
-			\midrule
-			Signo de \(f(y)\) & \(+\) & \(-\) & \(+\) & \(-\) \\
-			Evolución & crece & decrece & crece & decrece \\
-			\bottomrule
-		\end{tabular}
-	\end{center}
-
-	Por lo tanto, \(y=-1\) e \(y=1\) son equilibrios asintóticamente estables, mientras que \(y=0\) es inestable. Esta conclusión se obtiene sin resolver explícitamente la ecuación.
-
-	\subsection{Ejemplo físico: velocidad terminal}
-
-	Tomemos como positiva la dirección vertical hacia abajo. Para un cuerpo que cae con una resistencia del aire proporcional a la velocidad,
-
-	\[
-	m\dot{v}=mg-kv,
-	\]
-con \(m>0\) y \(k>0\). En forma normal,
-
-	\[
-	\dot{v}=g-\frac{k}{m}v.
-	\]
-El único punto crítico es
-
-	\[
-	v_T=\frac{mg}{k}.
-	\]
-Si \(v<v_T\), entonces \(\dot{v}>0\) y la velocidad aumenta. Si \(v>v_T\), entonces \(\dot{v}<0\) y la velocidad disminuye. En ambos casos la evolución apunta hacia \(v_T\); por eso la velocidad terminal es un equilibrio asintóticamente estable.
-
-	\begin{quote}
-		\textbf{Relación con la Guía 1.} Los problemas 15 y 16 se resuelven cualitativamente identificando puntos críticos y construyendo la recta de fase.
-	\end{quote}
-
-	\clearpage
-	\section{Resolución por integración directa}
-
-	El caso más sencillo de una EDO de primer orden es
-
-	\[
-	\dot{y}=g(x),
-	\]
-donde la derivada depende únicamente de la variable independiente. Integrando respecto de \(x\), se obtiene
-
-	\[
-	y(x)=\int g(x)\,dx+C.
-	\]
-La constante \(C\) representa una familia uniparamétrica de soluciones. Una condición inicial permite seleccionar un único valor de \(C\).
-
-	\subsection{Ejemplo: un problema de valor inicial}
-
-	Consideremos
-
-	\[
-	\begin{cases}
-		\dot{y}=x^2+1,\\
-		y(0)=1.
-	\end{cases}
-	\]
-	Integrando,\nopagebreak[4]
-
-	\[
-	y(x)=\frac{x^3}{3}+x+C.
-	\]
-La condición inicial implica
-
-	\[
-	1=y(0)=C.
-	\]
-Por lo tanto,
-
-	\[
-	y(x)=\frac{x^3}{3}+x+1.
-	\]
 
 	\clearpage
 	\section{Familias de soluciones y formas de representación}
@@ -381,23 +213,48 @@ de modo que
 	\[
 	\dot{y}=-\frac{x}{y},
 	\]
-definida en la región $y\neq 0$. Separando variables,
-
-	\[
-	y\,dy=-x\,dx.
-	\]
-Al integrar y redefinir la constante, se obtiene la familia implícita
+definida en la región $y\neq 0$. Consideremos la familia de curvas
 
 	\[
 	x^2+y^2=C,
 	\qquad C>0.
 	\]
-Cada valor de $C$ describe una circunferencia, pero una circunferencia completa no es la gráfica de una función $y(x)$. Para obtener soluciones explícitas deben elegirse sus ramas:
+Verifiquemos que esta relación define implícitamente soluciones de la ecuación. Derivando ambos miembros respecto de \(x\),
 
 	\[
-	y(x)=\sqrt{C-x^2}
+	2x+2y\dot{y}=0.
+	\]
+En los puntos donde \(y\neq0\), podemos despejar
+
+	\[
+	\dot{y}=-\frac{x}{y},
+	\]
+que es precisamente la ecuación diferencial original.
+
+Cada valor de $C$ describe una circunferencia, pero una circunferencia completa no es la gráfica de una función $y(x)$: para un mismo valor de $x$ existen, en general, dos valores posibles de $y$. Por lo tanto, para obtener soluciones explícitas debemos separar la circunferencia en dos \textbf{ramas}:
+
+	\[
+	y_+(x)=\sqrt{C-x^2}
 	\qquad\text{o}\qquad
-	y(x)=-\sqrt{C-x^2}.
+	y_-(x)=-\sqrt{C-x^2}.
+	\]
+La primera es la semicircunferencia superior y la segunda es la semicircunferencia inferior. Cada rama sí define una función de $x$ y satisface la ecuación diferencial. Por ejemplo,
+
+	\[
+	\frac{d}{dx}y_+(x)
+	=
+	-\frac{x}{\sqrt{C-x^2}}
+	=
+	-\frac{x}{y_+(x)}.
+	\]
+Para la rama inferior se obtiene análogamente
+
+	\[
+	\frac{d}{dx}y_-(x)
+	=
+	\frac{x}{\sqrt{C-x^2}}
+	=
+	-\frac{x}{y_-(x)}.
 	\]
 Cada rama es solución en cualquier intervalo abierto contenido en
 
@@ -414,8 +271,185 @@ Los extremos no se incluyen porque allí $y=0$, la ecuación diferencial origina
 mientras que el signo de $y_0$ selecciona la rama correspondiente.
 
 	\begin{quote}
-		\textbf{Idea central.} La constante de integración describe una familia de curvas. Una relación implícita puede contener varias ramas, y cada rama debe analizarse como una función junto con su intervalo de definición.
+		\textbf{Idea central.} Una relación implícita puede describir una curva que no es globalmente la gráfica de una función. Sus ramas son las partes de esa curva que sí pueden representarse como funciones $y(x)$ y, por lo tanto, analizarse como soluciones de la EDO.
 	\end{quote}
+
+	\clearpage
+	\section{Campos de direcciones}
+
+	En una ecuación de primer orden
+
+	\[
+	\dot{y}=f(x,y),
+	\]
+el valor \(f(x,y)\) indica la pendiente que debe tener una curva solución al pasar por el punto \((x,y)\). Un \textbf{campo de direcciones} se construye dibujando, en cada punto de una grilla, un pequeño segmento con pendiente \(f(x,y)\).
+
+	Una solución \(y=\varphi(x)\) debe ser tangente a esos segmentos, ya que
+
+	\[
+	\dot{\varphi}(x)=f\bigl(x,\varphi(x)\bigr).
+	\]
+El campo no proporciona necesariamente una fórmula para \(\varphi\), pero permite anticipar regiones de crecimiento y decrecimiento, comportamientos asintóticos y posibles soluciones de equilibrio.
+
+	\subsection{¿Pueden cruzarse dos curvas solución?}
+
+	Si por un punto \((x_0,y_0)\) pasa una única solución, dos curvas solución diferentes no pueden cruzarse allí. Si lo hicieran, ambas resolverían el mismo PVI
+
+	\[
+	y(x_0)=y_0,
+	\]
+en contradicción con la unicidad. Por lo tanto, en una región donde se cumplen las hipótesis del teorema de existencia y unicidad, las curvas solución no se intersectan.
+
+	\begin{quote}
+		\textbf{Relación con la Guía 1.} Los problemas 14 y 17 proponen interpretar campos de direcciones y asociar ecuaciones con posibles curvas solución. Antes de intentar resolver una ecuación, conviene identificar las regiones donde \(f(x,y)\) es positiva, negativa o nula.
+	\end{quote}
+
+	\clearpage
+	\section{Ecuaciones autónomas}
+
+	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente:
+
+	\[
+	\dot{y}=f(y).
+	\]
+Si la variable independiente representa el tiempo, la tasa de cambio depende solamente del estado actual del sistema y no del instante en el que se lo observa.
+
+	\subsection{Puntos críticos y soluciones de equilibrio}
+
+	Un valor \(y_\ast\) es un \textbf{punto crítico} o \textbf{punto de equilibrio} si
+
+	\[
+	f(y_\ast)=0.
+	\]
+En ese caso, la función constante
+
+	\[
+	y(x)=y_\ast
+	\]
+es una solución de la ecuación diferencial.
+
+	Los puntos críticos dividen la recta de estados en intervalos. Dentro de cada intervalo, el signo de \(f(y)\) determina el sentido de evolución:
+
+	\[
+	f(y)>0 \quad\Longrightarrow\quad \dot{y}>0,
+	\]
+por lo que \(y\) crece, mientras que
+
+	\[
+	f(y)<0 \quad\Longrightarrow\quad \dot{y}<0,
+	\]
+por lo que \(y\) decrece. Esta información se representa mediante una \textbf{recta de fase}.
+
+	\clearpage
+	\section{Estabilidad}
+
+	Un equilibrio es:
+
+	\begin{itemize}[leftmargin=*]
+		\item \textbf{asintóticamente estable} si las soluciones que comienzan suficientemente cerca permanecen cerca y tienden hacia él;
+		\item \textbf{inestable} si existen soluciones inicialmente cercanas que se alejan;
+		\item \textbf{semiestable} si atrae soluciones de un lado y las repele del otro.
+	\end{itemize}
+
+	En una recta de fase, un equilibrio es asintóticamente estable si las flechas apuntan hacia él desde ambos lados, e inestable si apuntan hacia afuera.
+
+	\subsection{Ejemplo: una ecuación cúbica}
+
+	Consideremos la ecuación autónoma
+
+	\[
+	\dot{y}=y-y^3=y(1-y)(1+y).
+	\]
+Los puntos críticos satisfacen
+
+	\[
+	y(1-y)(1+y)=0,
+	\]
+por lo que
+
+	\[
+	y_\ast=-1,\qquad y_\ast=0,\qquad y_\ast=1.
+	\]
+El signo de \(f(y)=y-y^3\) en los intervalos determinados por esos puntos es
+
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\toprule
+			Intervalo & \((-\infty,-1)\) & \((-1,0)\) & \((0,1)\) & \((1,\infty)\) \\
+			\midrule
+			Signo de \(f(y)\) & \(+\) & \(-\) & \(+\) & \(-\) \\
+			Evolución & crece & decrece & crece & decrece \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+
+	Por lo tanto, \(y=-1\) e \(y=1\) son equilibrios asintóticamente estables, mientras que \(y=0\) es inestable. Esta conclusión se obtiene sin resolver explícitamente la ecuación.
+
+	\subsection{Ejemplo físico: velocidad terminal}
+
+	Tomemos como positiva la dirección vertical hacia abajo. Para un cuerpo que cae con una resistencia del aire proporcional a la velocidad,
+
+	\[
+	m\dot{v}=mg-kv,
+	\]
+con \(m>0\) y \(k>0\). En forma normal,
+
+	\[
+	\dot{v}=g-\frac{k}{m}v.
+	\]
+El único punto crítico es
+
+	\[
+	v_T=\frac{mg}{k}.
+	\]
+Si \(v<v_T\), entonces \(\dot{v}>0\) y la velocidad aumenta. Si \(v>v_T\), entonces \(\dot{v}<0\) y la velocidad disminuye. En ambos casos la evolución apunta hacia \(v_T\); por eso la velocidad terminal es un equilibrio asintóticamente estable.
+
+	\begin{quote}
+		\textbf{Relación con la Guía 1.} Los problemas 15 y 16 se resuelven cualitativamente identificando puntos críticos y construyendo la recta de fase.
+	\end{quote}
+
+	Hasta aquí no fue necesario resolver explícitamente las ecuaciones. El signo del campo, los puntos críticos y la recta de fase permitieron describir el comportamiento de las soluciones. A partir de la sección siguiente comenzaremos a buscar fórmulas mediante métodos analíticos.
+
+	\clearpage
+	\section{Resolución por integración directa}
+
+	El caso más sencillo de una EDO de primer orden es
+
+	\[
+	\dot{y}=g(x),
+	\]
+donde la derivada depende únicamente de la variable independiente. Integrando respecto de \(x\), se obtiene
+
+	\[
+	y(x)=\int g(x)\,dx+C.
+	\]
+La constante \(C\) representa una familia uniparamétrica de soluciones. Una condición inicial permite seleccionar un único valor de \(C\).
+
+	\subsection{Ejemplo: un problema de valor inicial}
+
+	Consideremos
+
+	\[
+	\begin{cases}
+		\dot{y}=x^2+1,\\
+		y(0)=1.
+	\end{cases}
+	\]
+	Integrando,\nopagebreak[4]
+
+	\[
+	y(x)=\frac{x^3}{3}+x+C.
+	\]
+La condición inicial implica
+
+	\[
+	1=y(0)=C.
+	\]
+Por lo tanto,
+
+	\[
+	y(x)=\frac{x^3}{3}+x+1.
+	\]
 
 	\clearpage
 	\section{Ecuaciones de variables separables}
@@ -572,13 +606,14 @@ en cualquier intervalo donde el denominador no se anule. La solución de equilib
 		\item ¿en qué dominio está definida la ecuación?
 		\item ¿hay una condición inicial?
 		\item ¿se cumplen hipótesis que garanticen existencia y unicidad?
-		\item ¿la ecuación es autónoma? Si lo es, ¿cuáles son sus equilibrios y su estabilidad?
-		\item ¿es separable o puede resolverse por integración directa?
+		\item ¿qué indica el campo de direcciones sobre las regiones de crecimiento y decrecimiento?
+		\item ¿la ecuación es autónoma? Si lo es, ¿cuáles son sus equilibrios y qué estabilidad tienen?
+		\item después del análisis cualitativo, ¿puede resolverse por integración directa o separación de variables?
 		\item ¿la solución obtenida satisface la ecuación y la condición inicial?
 		\item ¿cuál es su intervalo máximo de definición?
 	\end{enumerate}
 
-	Esta secuencia conecta el análisis cualitativo con el analítico. Resolver una EDO no consiste solamente en obtener una fórmula: también implica determinar dónde tiene sentido, qué solución seleccionan los datos iniciales y cómo se comporta.
+	Esta secuencia coloca el análisis cualitativo antes que el cálculo explícito. Resolver una EDO no consiste solamente en obtener una fórmula: también implica determinar dónde tiene sentido, qué solución seleccionan los datos iniciales y cómo se comporta. La fórmula, cuando puede encontrarse, completa y precisa una comprensión que comenzó antes de integrar.
 
 	\clearpage
 	\section*{Bibliografía y recursos recomendados}
