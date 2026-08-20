@@ -1,0 +1,307 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+\usepackage{mathpazo}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{margin=2.5cm}
+
+\title{Ecuaciones Diferenciales Ordinarias\\Clase III -- Práctico}
+\author{Benjamín Marcolongo}
+\date{}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Objetivo}
+
+	En un problema de modelado no se comienza buscando una fórmula. Primero deben identificarse la magnitud desconocida, las leyes que describen su variación, los parámetros del modelo y las condiciones iniciales.
+
+	En cada problema conviene seguir este esquema:
+
+	\begin{enumerate}[label=\arabic*.]
+		\item definir la variable dependiente y la variable independiente;
+		\item elegir una convención de signos;
+		\item traducir cada mecanismo a una tasa de cambio;
+		\item comprobar la consistencia dimensional de la ecuación;
+		\item incorporar las condiciones iniciales;
+		\item analizar el dominio de validez del modelo.
+	\end{enumerate}
+
+	\clearpage
+	\section{Modelos de crecimiento}
+
+	Sea \(P(t)\) el tamaño de una población. Si durante un intervalo pequeño \(\Delta t\) el cambio es proporcional a la población presente,
+
+	\[
+	P(t+\Delta t)-P(t)
+	\approx
+	rP(t)\Delta t,
+	\]
+	%
+	entonces, al dividir por \(\Delta t\) y tomar el límite \(\Delta t\to0\), obtenemos
+
+	\[
+	\boxed{\dot P=rP.}
+	\]
+	%
+	El parámetro \(r\) tiene unidades de inversa de tiempo. Si \(r>0\), representa crecimiento neto; si \(r<0\), decrecimiento neto.
+
+	\subsection{Inmigración constante}
+
+	Si además ingresan \(I\) individuos por unidad de tiempo, la tasa total de cambio es
+
+	\[
+	\boxed{\dot P=rP+I.}
+	\]
+	%
+	El término \(rP\) depende del estado del sistema, mientras que \(I\) representa un flujo externo constante. Las unidades deben satisfacer
+
+	\[
+	[r]=\frac{1}{\text{tiempo}},
+	\qquad
+	[I]=\frac{\text{individuos}}{\text{tiempo}}.
+	\]
+
+	\subsection{Natalidad lineal y mortalidad cuadrática}
+
+	Supongamos que la tasa de natalidad es proporcional a \(P\), mientras que la tasa de mortalidad es proporcional a \(P^2\). Entonces
+
+	\[
+	\text{nacimientos por unidad de tiempo}=bP,
+	\]
+	%
+	\[
+	\text{muertes por unidad de tiempo}=dP^2,
+	\]
+	%
+	y el balance resulta
+
+	\[
+	\boxed{\dot P=bP-dP^2=P(b-dP).}
+	\]
+	%
+	El término cuadrático representa interacciones cuya frecuencia aumenta con la densidad poblacional. Si \(b,d>0\), el modelo puede escribirse como
+
+	\[
+	\dot P=bP\left(1-\frac{P}{K}\right),
+	\qquad
+	K=\frac{b}{d},
+	\]
+	%
+	que es la forma logística con capacidad de carga \(K\).
+
+	\clearpage
+	\section{Ley de enfriamiento y calentamiento}
+
+	Sea \(T(t)\) la temperatura de un cuerpo y \(T_m(t)\) la temperatura del medio. La ley de Newton establece que la tasa de cambio de \(T\) es proporcional a la diferencia entre la temperatura del cuerpo y la del ambiente:
+
+	\[
+	\boxed{\dot T=-k\bigl(T-T_m(t)\bigr),}
+	\qquad k>0.
+	\]
+	%
+	La elección del signo garantiza el comportamiento físico correcto:
+
+	\begin{itemize}[leftmargin=*]
+		\item si \(T>T_m\), entonces \(\dot T<0\) y el cuerpo se enfría;
+		\item si \(T<T_m\), entonces \(\dot T>0\) y el cuerpo se calienta;
+		\item si \(T=T_m\), entonces \(\dot T=0\) en ese instante.
+	\end{itemize}
+
+	Si la temperatura ambiente es constante, la ecuación es autónoma. Si \(T_m\) depende del tiempo, la ecuación deja de ser autónoma.
+
+	Por ejemplo, una temperatura ambiente periódica con período de 24 horas puede modelarse mediante
+
+	\[
+	T_m(t)
+	=
+	10\sin\left(\frac{\pi}{12}t-\frac{\pi}{2}\right)+8.
+	\]
+	%
+	En ese entorno, el modelo para el cuerpo es
+
+	\[
+	\boxed{
+	\dot T
+	=
+	-k\left[
+	T-10\sin\left(\frac{\pi}{12}t-\frac{\pi}{2}\right)-8
+	\right].}
+	\]
+	%
+	Para determinar una solución particular debe agregarse una condición inicial. Por ejemplo,
+
+	\[
+	T(t_0)=T_0.
+	\]
+
+	\clearpage
+	\section{Drenaje de un tanque: ley de Torricelli}
+
+	Sea \(h(t)\) la altura del líquido y \(A_w(h)\) el área de la sección transversal del tanque a esa altura. Un incremento \(dh\) produce un cambio de volumen
+
+	\[
+	dV=A_w(h)\,dh.
+	\]
+	%
+	Por lo tanto,
+
+	\[
+	\frac{dV}{dt}=A_w(h)\dot h.
+	\]
+	%
+	La ley de Torricelli aproxima la velocidad de salida por un orificio como
+
+	\[
+	v_s=\sqrt{2gh}.
+	\]
+	%
+	Si el orificio tiene área \(a\) y se incorpora un coeficiente de descarga \(C_d\), el caudal saliente es
+
+	\[
+	Q_s=C_da\sqrt{2gh}.
+	\]
+	%
+	Como el volumen disminuye,
+
+	\[
+	\frac{dV}{dt}=-Q_s.
+	\]
+	%
+	El modelo general queda entonces
+
+	\[
+	\boxed{A_w(h)\dot h=-C_da\sqrt{2gh}.}
+	\]
+
+	\subsection{Tanque cónico}
+
+	Consideremos un cono de altura total \(H\) y radio superior \(R\), con el vértice orientado hacia abajo. Por semejanza de triángulos,
+
+	\[
+	\frac{r(h)}{h}=\frac{R}{H},
+	\]
+	%
+	de modo que
+
+	\[
+	r(h)=\frac{R}{H}h.
+	\]
+
+	El área de la sección transversal es
+
+	\[
+	A_w(h)
+	=
+	\pi r(h)^2
+	=
+	\pi\frac{R^2}{H^2}h^2.
+	\]
+	%
+	Sustituyendo en el balance de volumen,
+
+	\[
+	\pi\frac{R^2}{H^2}h^2\dot h
+	=
+	-C_da\sqrt{2gh},
+	\]
+	%
+	y, para \(h>0\),
+
+	\[
+	\boxed{
+	\dot h
+	=
+	-\frac{C_daH^2\sqrt{2g}}{\pi R^2}\,h^{-3/2}.}
+	\]
+	%
+	\enlargethispage{3\baselineskip}
+	La geometría del tanque modifica la relación entre la disminución del volumen y la disminución de la altura. Por eso no puede suponerse un área transversal constante.
+
+	\clearpage
+	\section{Movimiento con masa variable}
+
+	Consideremos un cable uniforme de densidad lineal \(\rho\). Sea \(x(t)\) la longitud de cable que se encuentra en movimiento y tomemos como positiva la dirección vertical hacia abajo.
+
+	La masa del tramo móvil es
+
+	\[
+	m(t)=\rho x(t),
+	\]
+	%
+	y su velocidad es
+
+	\[
+	v(t)=\dot x(t).
+	\]
+
+	Siguiendo el balance de cantidad de movimiento propuesto para el sistema,
+
+	\[
+	F=\frac{d}{dt}\bigl(mv\bigr).
+	\]
+	%
+	La fuerza externa que impulsa el tramo móvil es su peso,
+
+	\[
+	F=m(t)g=\rho xg.
+	\]
+	%
+	Como
+
+	\[
+	mv=\rho x\dot x,
+	\]
+	%
+	la regla del producto da
+
+	\[
+	\frac{d}{dt}\bigl(\rho x\dot x\bigr)
+	=
+	\rho\left(\dot x^2+x\ddot x\right).
+	\]
+	%
+	Por lo tanto,
+
+	\[
+	\rho\left(\dot x^2+x\ddot x\right)
+	=
+	\rho xg,
+	\]
+	%
+	y el modelo se reduce a
+
+	\[
+	\boxed{x\ddot x+\dot x^2=gx.}
+	\]
+	%
+	Si inicialmente cuelga una longitud \(x_0>0\) y el cable está en reposo, las condiciones iniciales son
+
+	\[
+	\boxed{x(0)=x_0,
+	\qquad
+	\dot x(0)=0.}
+	\]
+
+	La densidad \(\rho\) se cancela porque tanto la fuerza gravitatoria como la cantidad de movimiento son proporcionales a ella. La ecuación obtenida describe el modelo bajo las hipótesis indicadas; en un sistema de masa variable, la elección de la frontera del sistema y el flujo de cantidad de movimiento deben especificarse cuidadosamente.
+
+	\clearpage
+	\section*{Articulación con la Guía 1}
+
+	Los modelos desarrollados corresponden a los problemas 10--13 de la Guía 1. En esta etapa el objetivo principal es construir correctamente las ecuaciones diferenciales. Su resolución se realizará con los métodos analíticos que se incorporen al curso.
+
+	\subsection*{Nota sobre la elaboración del material}
+
+	Este material fue elaborado por Benjamín Marcolongo con la asistencia de \textbf{GPT-5.6 Sol}, un modelo de OpenAI utilizado a través del entorno Codex, para la organización, redacción y revisión del contenido.
+
+\end{document}
