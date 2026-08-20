@@ -1,0 +1,350 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+\usepackage{mathpazo}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{margin=2.5cm}
+
+\title{Ecuaciones Diferenciales Ordinarias\\Clase III -- Teórico}
+\author{Benjamín Marcolongo}
+\date{}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Introducción}
+
+	En la Clase II estudiamos qué información puede obtenerse de una ecuación diferencial antes de resolverla: dominio, existencia y unicidad, formas de representación y campos de direcciones. En esta clase comenzaremos a desarrollar métodos analíticos para construir soluciones.
+
+	En todo el material usaremos \(\dot y\) cuando la variable independiente sea el tiempo. Si la variable independiente es \(x\), escribiremos explícitamente \(dy/dx\).
+
+	\clearpage
+	\section{Ecuaciones autónomas}
+
+	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente. Su forma general es
+
+	\[
+	\dot y=f(y).
+	\]
+	%
+	Si la variable independiente es el tiempo, la tasa de cambio depende únicamente del estado actual del sistema y no del instante en el que se lo observa.
+
+	Por ejemplo,
+
+	\[
+	\dot y=y(1-y)
+	\]
+	%
+	es autónoma, mientras que
+
+	\[
+	\dot y=t-y
+	\]
+	%
+	no lo es, porque el tiempo aparece explícitamente.
+
+	\subsection{Soluciones de equilibrio}
+
+	Un valor \(y_\ast\) es un \textbf{punto de equilibrio} si
+
+	\[
+	f(y_\ast)=0.
+	\]
+	%
+	En ese caso, la función constante
+
+	\[
+	y(t)=y_\ast
+	\]
+	%
+	es solución de la ecuación. Por ejemplo, para
+
+	\[
+	\dot y=y(1-y),
+	\]
+	%
+	los valores \(y_\ast=0\) e \(y_\ast=1\) determinan las soluciones constantes
+
+	\[
+	y(t)=0,
+	\qquad
+	y(t)=1.
+	\]
+
+	La clasificación de estos equilibrios mediante estabilidad se desarrollará más adelante. Por ahora, lo importante es identificarlos antes de realizar cualquier división algebraica, porque de otro modo pueden perderse soluciones.
+
+	\clearpage
+	\section{Resolución por integración directa}
+
+	El caso más sencillo de una EDO de primer orden es
+
+	\[
+	\frac{dy}{dx}=g(x),
+	\]
+	%
+	donde la derivada depende únicamente de la variable independiente. Si \(G\) es una primitiva de \(g\), entonces
+
+	\[
+	y(x)=G(x)+C.
+	\]
+	%
+	La constante \(C\) representa una familia uniparamétrica de soluciones. Una condición inicial permite seleccionar un único miembro de esa familia.
+
+	\subsection{Problema de valor inicial}
+
+	Consideremos
+
+	\[
+	\begin{cases}
+	\dfrac{dy}{dx}=x^2+1,\\[2mm]
+	y(0)=1.
+	\end{cases}
+	\]
+	%
+	Integrando,
+
+	\[
+	y(x)=\frac{x^3}{3}+x+C.
+	\]
+	%
+	La condición inicial implica
+
+	\[
+	1=y(0)=C.
+	\]
+	%
+	Por lo tanto,
+
+	\[
+	\boxed{y(x)=\frac{x^3}{3}+x+1.}
+	\]
+
+	También puede incorporarse directamente la condición inicial mediante una integral definida. Para
+
+	\[
+	\begin{cases}
+	\dfrac{dy}{dx}=g(x),\\[2mm]
+	y(x_0)=y_0,
+	\end{cases}
+	\]
+	%
+	se obtiene
+
+	\[
+	\boxed{y(x)=y_0+\int_{x_0}^{x}g(s)\,ds.}
+	\]
+	%
+	Esta expresión deja explícita la dependencia de la solución respecto de la condición inicial.
+
+	\subsection{El intervalo de definición}
+
+	La integración no elimina las restricciones del dominio. Por ejemplo,
+
+	\[
+	\frac{dy}{dx}=\frac{1}{x}
+	\]
+	%
+	tiene como familia de soluciones
+
+	\[
+	y(x)=\ln|x|+C,
+	\]
+	%
+	pero ninguna solución puede estar definida en un intervalo que atraviese \(x=0\). Si se impone una condición inicial con \(x_0<0\), el intervalo maximal correspondiente está contenido en \(( -\infty,0 )\); si \(x_0>0\), está contenido en \((0,\infty)\).
+
+	\clearpage
+	\section{Ecuaciones de variables separables}
+
+	Una ecuación diferencial de primer orden es \textbf{separable} si puede escribirse como
+
+	\[
+	\frac{dy}{dx}=g(x)h(y).
+	\]
+	%
+	Antes de dividir por \(h(y)\), deben buscarse sus ceros. Si
+
+	\[
+	h(y_\ast)=0,
+	\]
+	%
+	entonces \(y(x)=y_\ast\) es una solución de equilibrio. Dividir por \(h(y)\) elimina esa posibilidad y puede hacer que se pierdan soluciones.
+
+	En un intervalo donde \(h(y)\neq0\), podemos escribir
+
+	\[
+	\frac{1}{h(y)}\,dy=g(x)\,dx.
+	\]
+
+	\subsection{Justificación de la separación de variables}
+
+	La expresión anterior parece obtenida pasando \(dx\) y \(dy\) de un miembro al otro como si fueran factores algebraicos. Sin embargo, \(dy/dx\) no necesita interpretarse como una fracción ordinaria. El procedimiento se justifica mediante la regla de la cadena.
+
+	Sea \(y=y(x)\) una solución y supongamos que \(h(y(x))\neq0\) en el intervalo considerado. Al dividir la ecuación por \(h(y(x))\), obtenemos
+
+	\[
+	\frac{1}{h(y(x))}\frac{dy}{dx}=g(x).
+	\]
+	%
+	Definamos una función \(H\) tal que
+
+	\[
+	H'(y)=\frac{1}{h(y)}.
+	\]
+	%
+	Entonces, por la regla de la cadena,
+
+	\[
+	\frac{d}{dx}H(y(x))
+	=
+	H'(y(x))\frac{dy}{dx}
+	=
+	\frac{1}{h(y(x))}\frac{dy}{dx}.
+	\]
+	%
+	Por lo tanto, la ecuación separable equivale a
+
+	\[
+	\frac{d}{dx}H(y(x))=g(x).
+	\]
+	%
+	Integrando respecto de \(x\),
+
+	\[
+	H(y(x))=G(x)+C,
+	\qquad
+	G'(x)=g(x).
+	\]
+	%
+	La notación
+
+	\[
+	\frac{dy}{h(y)}=g(x)\,dx
+	\]
+	%
+	es una forma abreviada de este argumento. Sobre la curva solución se cumple \(dy=(dy/dx)\,dx\), y la igualdad entre diferenciales expresa precisamente la regla de la cadena.
+
+	\begin{quote}
+		\textbf{Importante.} Separar variables no consiste en tratar \(dy\) y \(dx\) como números independientes. Es una notación compacta para dividir por \(h(y)\), aplicar la regla de la cadena e integrar. La división solo es válida donde \(h(y)\neq0\); por eso los equilibrios deben estudiarse antes.
+	\end{quote}
+
+	Integrando ambos miembros,
+
+	\[
+	\int\frac{1}{h(y)}\,dy
+	=
+	\int g(x)\,dx+C.
+	\]
+	%
+	El resultado puede definir a \(y\) explícitamente o mediante una relación implícita. Despejar \(y\) es conveniente cuando puede hacerse, pero no es necesario para caracterizar una curva solución.
+
+	\subsection{Procedimiento}
+
+	Para resolver una ecuación separable conviene seguir este orden:
+
+	\begin{enumerate}[label=\arabic*.]
+		\item escribirla en la forma \(dy/dx=g(x)h(y)\);
+		\item encontrar las soluciones de equilibrio resolviendo \(h(y)=0\);
+		\item separar las variables en los intervalos donde \(h(y)\neq0\);
+		\item integrar ambos miembros;
+		\item despejar \(y\), si es posible;
+		\item imponer la condición inicial;
+		\item determinar el intervalo de definición de la solución obtenida.
+	\end{enumerate}
+
+	\clearpage
+	\subsection{Ejemplo: una solución que puede perderse}
+
+	Consideremos
+
+	\[
+	\frac{dy}{dx}=3y+1.
+	\]
+	%
+	La ecuación es autónoma y separable. Antes de dividir, observamos que
+
+	\[
+	3y+1=0
+	\quad\Longrightarrow\quad
+	y=-\frac13
+	\]
+	%
+	es una solución de equilibrio. Para las soluciones no constantes,
+
+	\[
+	\frac{dy}{3y+1}=dx.
+	\]
+	%
+	Integrando,
+
+	\[
+	\frac13\ln|3y+1|=x+C.
+	\]
+	%
+	Equivalentemente,
+
+	\[
+	3y+1=Ke^{3x},
+	\]
+	%
+	por lo que
+
+	\[
+	\boxed{y(x)=\frac{Ke^{3x}-1}{3}.}
+	\]
+	%
+	En este caso, \(K=0\) recupera la solución de equilibrio. Esto no ocurre siempre: por eso los equilibrios deben buscarse antes de dividir.
+
+	Si además se impone \(y(0)=1\), entonces \(K=4\) y
+
+	\[
+	y(x)=\frac{4e^{3x}-1}{3}.
+	\]
+
+	\subsection{Ejemplo: dominio e intervalo maximal}
+
+	Consideremos
+
+	\[
+	\frac{dy}{dx}=2xy^2.
+	\]
+	%
+	La solución de equilibrio es \(y=0\). Para \(y\neq0\),
+
+	\[
+	\frac{dy}{y^2}=2x\,dx.
+	\]
+	%
+	Integrando,
+
+	\[
+	-\frac{1}{y}=x^2+C,
+	\]
+	%
+	y, por lo tanto,
+
+	\[
+	\boxed{y(x)=-\frac{1}{x^2+C}.}
+	\]
+	%
+	La expresión solo define una solución en intervalos que no contengan ceros del denominador. La fórmula algebraica, por sí sola, no especifica el intervalo de definición: ese intervalo forma parte de la solución.
+
+	\clearpage
+	\section*{Articulación con la Guía 1}
+
+	Los problemas 18--20 practican integración directa, separación de variables y problemas de valor inicial. La definición de ecuación autónoma prepara el análisis de los problemas 15 y 16; la clasificación de los puntos de equilibrio se incorporará cuando estudiemos estabilidad.
+
+	\subsection*{Nota sobre la elaboración del material}
+
+	Este material fue elaborado por Benjamín Marcolongo con la asistencia de \textbf{GPT-5.6 Sol}, un modelo de OpenAI utilizado a través del entorno Codex, para la organización, redacción y revisión del contenido.
+
+\end{document}
