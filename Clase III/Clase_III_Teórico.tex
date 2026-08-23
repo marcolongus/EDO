@@ -29,61 +29,6 @@
 	En todo el material usaremos \(\dot y\) cuando la variable independiente sea el tiempo. Si la variable independiente es \(x\), escribiremos explícitamente \(dy/dx\).
 
 	\clearpage
-	\section{Ecuaciones autónomas}
-
-	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente. Su forma general es
-
-	\[
-	\dot y=f(y).
-	\]
-	%
-	Si la variable independiente es el tiempo, la tasa de cambio depende únicamente del estado actual del sistema y no del instante en el que se lo observa.
-
-	Por ejemplo,
-
-	\[
-	\dot y=y(1-y)
-	\]
-	%
-	es autónoma, mientras que
-
-	\[
-	\dot y=t-y
-	\]
-	%
-	no lo es, porque el tiempo aparece explícitamente.
-
-	\subsection{Soluciones de equilibrio}
-
-	Un valor \(y_\ast\) es un \textbf{punto de equilibrio} si
-
-	\[
-	f(y_\ast)=0.
-	\]
-	%
-	En ese caso, la función constante
-
-	\[
-	y(t)=y_\ast
-	\]
-	%
-	es solución de la ecuación. Por ejemplo, para
-
-	\[
-	\dot y=y(1-y),
-	\]
-	%
-	los valores \(y_\ast=0\) e \(y_\ast=1\) determinan las soluciones constantes
-
-	\[
-	y(t)=0,
-	\qquad
-	y(t)=1.
-	\]
-
-	La clasificación de estos equilibrios mediante estabilidad se desarrollará más adelante. Por ahora, lo importante es identificarlos antes de realizar cualquier división algebraica, porque de otro modo pueden perderse soluciones.
-
-	\clearpage
 	\section{Resolución por integración directa}
 
 	El caso más sencillo de una EDO de primer orden es
@@ -337,6 +282,61 @@
 	\]
 	%
 	La expresión solo define una solución en intervalos que no contengan ceros del denominador. La fórmula algebraica, por sí sola, no especifica el intervalo de definición: ese intervalo forma parte de la solución.
+
+	\clearpage
+	\section{Ecuaciones autónomas}
+
+	Una ecuación diferencial de primer orden es \textbf{autónoma} si la variable independiente no aparece explícitamente. Su forma general es
+
+	\[
+	\dot y=f(y).
+	\]
+	%
+	Si la variable independiente es el tiempo, la tasa de cambio depende únicamente del estado actual del sistema y no del instante en el que se lo observa.
+
+	Por ejemplo,
+
+	\[
+	\dot y=y(1-y)
+	\]
+	%
+	es autónoma, mientras que
+
+	\[
+	\dot y=t-y
+	\]
+	%
+	no lo es, porque el tiempo aparece explícitamente.
+
+	\subsection{Soluciones de equilibrio}
+
+	Un valor \(y_\ast\) es un \textbf{punto de equilibrio} si
+
+	\[
+	f(y_\ast)=0.
+	\]
+	%
+	En ese caso, la función constante
+
+	\[
+	y(t)=y_\ast
+	\]
+	%
+	es solución de la ecuación. Por ejemplo, para
+
+	\[
+	\dot y=y(1-y),
+	\]
+	%
+	los valores \(y_\ast=0\) e \(y_\ast=1\) determinan las soluciones constantes
+
+	\[
+	y(t)=0,
+	\qquad
+	y(t)=1.
+	\]
+
+	La clasificación de estos equilibrios mediante estabilidad se desarrollará más adelante. Por ahora, lo importante es identificarlos antes de realizar cualquier división algebraica, porque de otro modo pueden perderse soluciones.
 
 	\clearpage
 	\section*{Articulación con la Guía 1}
