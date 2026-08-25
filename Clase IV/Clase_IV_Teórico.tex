@@ -1,0 +1,735 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+\usepackage{mathpazo}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{margin=2.5cm}
+
+\title{Ecuaciones Diferenciales Ordinarias\\Clase IV -- Teórico}
+\author{Benjamín Marcolongo}
+\date{}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Introducción}
+
+	En la Clase III estudiamos integración directa y separación de variables. Sin embargo, no toda ecuación de primer orden puede resolverse separando las variables. En esta clase estudiaremos tres familias adicionales: ecuaciones lineales de primer orden, ecuaciones exactas y ecuaciones de Bernoulli.
+
+	El factor integrante aparecerá primero como el método general para resolver una ecuación lineal. Más adelante veremos que la misma idea permite transformar ciertas ecuaciones no exactas en exactas. Finalmente, una ecuación de Bernoulli se resolverá mediante un cambio de variable que la convierte en una ecuación lineal.
+
+	En todo el material, \(x\) representa la variable independiente e \(y=y(x)\) la función desconocida. Escribiremos \(dy/dx\) para la derivada de \(y\) respecto de \(x\).
+
+	\clearpage
+	\section{Ecuaciones lineales de primer orden}
+
+	Una ecuación diferencial de primer orden es \textbf{lineal en \(y\)} si puede escribirse como
+
+	\[
+	a_1(x)\frac{dy}{dx}+a_0(x)y=g(x),
+	\]
+	%
+	donde \(a_1\), \(a_0\) y \(g\) son funciones conocidas de \(x\). En un intervalo \(I\) donde \(a_1(x)\neq0\), podemos dividir por \(a_1(x)\) y obtener la \textbf{forma estándar}
+
+	\[
+	\boxed{
+	\frac{dy}{dx}+p(x)y=q(x),
+	}
+	\qquad
+	p(x)=\frac{a_0(x)}{a_1(x)},
+	\qquad
+	q(x)=\frac{g(x)}{a_1(x)}.
+	\]
+	%
+	La ecuación es homogénea si \(q(x)=0\) en \(I\), y es no homogénea si \(q\) no es idénticamente nula.
+
+	Los ceros de \(a_1\) son puntos singulares de la ecuación: la forma estándar no está definida allí. Por eso, el método debe aplicarse en un intervalo que no atraviese esos puntos. Si \(p\) y \(q\) son continuas en \(I\), entonces para cada condición inicial
+
+	\[
+	y(x_0)=y_0,
+	\qquad x_0\in I,
+	\]
+	%
+	existe una única solución definida en todo el intervalo \(I\).
+
+	\subsection{Construcción del factor integrante}
+
+	Consideremos la ecuación lineal en forma estándar
+
+	\[
+	\frac{dy}{dx}+p(x)y=q(x).
+	\]
+	%
+	Buscamos una función no nula \(\mu=\mu(x)\) tal que, al multiplicar toda la ecuación por ella, el miembro izquierdo se convierta en la derivada de un producto:
+
+	\[
+	\mu(x)\frac{dy}{dx}+\mu(x)p(x)y
+	=
+	\frac{d}{dx}\bigl(\mu(x)y(x)\bigr).
+	\]
+	%
+	Por la regla del producto,
+
+	\[
+	\frac{d}{dx}\bigl(\mu y\bigr)
+	=
+	\mu\frac{dy}{dx}+\frac{d\mu}{dx}y.
+	\]
+	%
+	Por lo tanto, necesitamos que
+
+	\[
+	\frac{d\mu}{dx}=p(x)\mu(x).
+	\]
+	%
+	Esta ecuación es separable. En cualquier intervalo donde \(p\) sea continua, podemos elegir
+
+	\[
+	\boxed{
+	\mu(x)=\exp\left(\int p(x)\,dx\right).
+	}
+	\]
+	%
+	La función \(\mu\) se denomina \textbf{factor integrante}. No es necesario agregar una constante al calcular la integral: multiplicar \(\mu\) por una constante no nula no modifica el método.
+
+	Al multiplicar la ecuación por \(\mu\), obtenemos
+
+	\[
+	\frac{d}{dx}\bigl(\mu(x)y(x)\bigr)
+	=
+	\mu(x)q(x).
+	\]
+	%
+	Integrando respecto de \(x\),
+
+	\[
+	\mu(x)y(x)
+	=
+	\int \mu(x)q(x)\,dx+C,
+	\]
+	%
+	y finalmente
+
+	\[
+	\boxed{
+	y(x)
+	=
+	\frac{1}{\mu(x)}
+	\left[
+	\int \mu(x)q(x)\,dx+C
+	\right].
+	}
+	\]
+
+	\begin{quote}
+		\textbf{Importante.} El factor integrante se calcula después de escribir la ecuación en forma estándar. Si se omite la división por \(a_1(x)\), se obtiene en general un factor incorrecto.
+	\end{quote}
+
+	\subsection{Procedimiento}
+
+	Para resolver una ecuación lineal de primer orden conviene seguir este orden:
+
+	\begin{enumerate}[label=\arabic*.]
+		\item identificar un intervalo \(I\) donde el coeficiente principal no se anule;
+		\item escribir la ecuación en la forma estándar;
+		\item identificar \(p(x)\) y \(q(x)\);
+		\item calcular el factor integrante \(\mu(x)\);
+		\item multiplicar toda la ecuación por \(\mu(x)\);
+		\item reconocer la derivada del producto \(\mu(x)y(x)\);
+		\item integrar e imponer la condición inicial, si existe;
+		\item determinar el intervalo de definición de la solución.
+	\end{enumerate}
+
+	\clearpage
+	\subsection{Ejemplo: el coeficiente principal se anula}
+
+	Consideremos
+
+	\[
+	2x\frac{dy}{dx}-3y=2x^2.
+	\]
+	%
+	El coeficiente de \(dy/dx\) se anula en \(x=0\). Trabajaremos primero en el intervalo \(x>0\). Al dividir por \(2x\),
+
+	\[
+	\frac{dy}{dx}-\frac{3}{2x}y=x.
+	\]
+	%
+	En este intervalo,
+
+	\[
+	p(x)=-\frac{3}{2x},
+	\qquad
+	q(x)=x,
+	\]
+	%
+	y el factor integrante es
+
+	\[
+	\mu(x)
+	=
+	\exp\left(-\frac32\int\frac{1}{x}\,dx\right)
+	=
+	x^{-3/2}.
+	\]
+	%
+	Multiplicando la ecuación por \(x^{-3/2}\),
+
+	\[
+	x^{-3/2}\frac{dy}{dx}
+	-
+	\frac32x^{-5/2}y
+	=
+	x^{-1/2},
+	\]
+	%
+	por lo que
+
+	\[
+	\frac{d}{dx}\left(x^{-3/2}y\right)=x^{-1/2}.
+	\]
+	%
+	Integrando,
+
+	\[
+	x^{-3/2}y=2x^{1/2}+C,
+	\]
+	%
+	y entonces
+
+	\[
+	\boxed{y(x)=2x^2+Cx^{3/2},\qquad x>0.}
+	\]
+	%
+	En un intervalo contenido en \(x<0\) debe repetirse el análisis usando \(\ln|x|\). Una solución no puede describirse automáticamente mediante una única constante a través del punto singular \(x=0\).
+
+	\subsection{Ejemplo: una integral no elemental}
+
+	Consideremos
+
+	\[
+	\frac{dy}{dx}+2xy=1.
+	\]
+	%
+	Aquí \(p(x)=2x\) y \(q(x)=1\), ambas continuas en toda la recta real. El factor integrante es
+
+	\[
+	\mu(x)=\exp\left(\int 2x\,dx\right)=e^{x^2}.
+	\]
+	%
+	Por lo tanto,
+
+	\[
+	\frac{d}{dx}\left(e^{x^2}y\right)=e^{x^2}.
+	\]
+	%
+	La integral de \(e^{x^2}\) no puede expresarse mediante funciones elementales. Esto no impide escribir la solución general. Fijando un punto de referencia \(x_0\in\mathbb{R}\),
+
+	\[
+	\boxed{
+	y(x)
+	=
+	e^{-x^2}
+	\left[
+	C+\int_{x_0}^{x}e^{s^2}\,ds
+	\right],
+	}
+	\]
+	%
+	donde \(s\) es la variable muda de integración y \(C\) es una constante real.
+
+	\clearpage
+	\section{Ecuaciones exactas}
+
+	Una ecuación diferencial de primer orden puede escribirse en \textbf{forma diferencial} como
+
+	\[
+	M(x,y)\,dx+N(x,y)\,dy=0,
+	\]
+	%
+	donde \(M\) y \(N\) son funciones conocidas. Sobre una curva \(y=y(x)\), esta expresión representa la ecuación
+
+	\[
+	M(x,y(x))+N(x,y(x))\frac{dy}{dx}=0.
+	\]
+
+	La ecuación es \textbf{exacta} en una región \(R\) si existe una función potencial \(F=F(x,y)\) tal que
+
+	\[
+	\frac{\partial F}{\partial x}=M,
+	\qquad
+	\frac{\partial F}{\partial y}=N.
+	\]
+	%
+	En ese caso,
+
+	\[
+	dF
+	=
+	\frac{\partial F}{\partial x}\,dx
+	+
+	\frac{\partial F}{\partial y}\,dy
+	=
+	M\,dx+N\,dy,
+	\]
+	%
+	y la ecuación diferencial se reduce a \(dF=0\). Por lo tanto, sus curvas solución están dadas implícitamente por
+
+	\[
+	\boxed{F(x,y)=C.}
+	\]
+
+	Esta conclusión también se obtiene directamente mediante la regla de la cadena:
+
+	\[
+	\frac{d}{dx}F(x,y(x))
+	=
+	\frac{\partial F}{\partial x}
+	+
+	\frac{\partial F}{\partial y}\frac{dy}{dx}
+	=
+	M+N\frac{dy}{dx}
+	=
+	0.
+	\]
+
+	\subsection{Criterio de exactitud}
+
+	Supongamos que \(M\) y \(N\) tienen derivadas parciales de primer orden continuas en una región rectangular \(R\). Entonces
+
+	\[
+	M(x,y)\,dx+N(x,y)\,dy
+	\]
+	%
+	es un diferencial exacto en \(R\) si y solo si
+
+	\[
+	\boxed{
+	\frac{\partial M}{\partial y}
+	=
+	\frac{\partial N}{\partial x}.
+	}
+	\]
+	%
+	La necesidad de esta igualdad proviene de la igualdad de las derivadas parciales mixtas de \(F\):
+
+	\[
+	\frac{\partial M}{\partial y}
+	=
+	\frac{\partial^2F}{\partial y\,\partial x},
+	\qquad
+	\frac{\partial N}{\partial x}
+	=
+	\frac{\partial^2F}{\partial x\,\partial y}.
+	\]
+	%
+	La hipótesis sobre la región es importante. En dominios con agujeros, la igualdad de las derivadas cruzadas es una condición local y puede no garantizar la existencia de una única función potencial global.
+
+	\subsection{Reconstrucción de la función potencial}
+
+	Si la ecuación es exacta, podemos comenzar con
+
+	\[
+	\frac{\partial F}{\partial x}=M(x,y).
+	\]
+	%
+	Integramos respecto de \(x\), manteniendo \(y\) constante:
+
+	\[
+	F(x,y)=\int M(x,y)\,dx+g(y),
+	\]
+	%
+	donde \(g(y)\) es una función desconocida de \(y\). Luego derivamos respecto de \(y\) e imponemos
+
+	\[
+	\frac{\partial F}{\partial y}=N(x,y).
+	\]
+	%
+	Esta igualdad permite determinar \(dg/dy\) y, después de integrar, reconstruir \(F\). También puede comenzarse integrando \(N\) respecto de \(y\); ambos procedimientos deben producir potenciales que difieran, como máximo, en una constante.
+
+	\subsection{Ejemplo}
+
+	Consideremos
+
+	\[
+	(3x+y)\,dx+x\,dy=0.
+	\]
+	%
+	Identificamos
+
+	\[
+	M(x,y)=3x+y,
+	\qquad
+	N(x,y)=x.
+	\]
+	%
+	Como
+
+	\[
+	\frac{\partial M}{\partial y}=1,
+	\qquad
+	\frac{\partial N}{\partial x}=1,
+	\]
+	%
+	la ecuación es exacta. Integramos \(M\) respecto de \(x\):
+
+	\[
+	F(x,y)
+	=
+	\int(3x+y)\,dx+g(y)
+	=
+	\frac32x^2+xy+g(y).
+	\]
+	%
+	Derivando respecto de \(y\),
+
+	\[
+	\frac{\partial F}{\partial y}=x+\frac{dg}{dy}.
+	\]
+	%
+	Como esta derivada debe ser igual a \(N(x,y)=x\), obtenemos \(dg/dy=0\). Por lo tanto,
+
+	\[
+	\boxed{\frac32x^2+xy=C.}
+	\]
+
+	\clearpage
+	\subsection{El factor integrante como puente entre lineales y exactas}
+
+	Una ecuación no exacta puede, en algunos casos, volverse exacta al multiplicarla por una función no nula \(\mu\). Para
+
+	\[
+	M(x,y)\,dx+N(x,y)\,dy=0,
+	\]
+	%
+	buscamos \(\mu\) de manera que
+
+	\[
+	\mu M\,dx+\mu N\,dy=0
+	\]
+	%
+	sea exacta. Encontrar un factor general \(\mu(x,y)\) requiere resolver una ecuación en derivadas parciales. Sin embargo, existen dos casos simples.
+
+	Si
+
+	\[
+	\frac{\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}}{N}
+	\]
+	%
+	depende solamente de \(x\), entonces puede elegirse
+
+	\[
+	\boxed{
+	\mu(x)
+	=
+	\exp\left[
+	\int
+	\frac{\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}}{N}
+	\,dx
+	\right].
+	}
+	\]
+	%
+	Si, en cambio,
+
+	\[
+	\frac{\dfrac{\partial N}{\partial x}-\dfrac{\partial M}{\partial y}}{M}
+	\]
+	%
+	depende solamente de \(y\), entonces puede elegirse
+
+	\[
+	\boxed{
+	\mu(y)
+	=
+	\exp\left[
+	\int
+	\frac{\dfrac{\partial N}{\partial x}-\dfrac{\partial M}{\partial y}}{M}
+	\,dy
+	\right].
+	}
+	\]
+
+	La fórmula usada para ecuaciones lineales es un caso particular. En efecto, la ecuación
+
+	\[
+	\frac{dy}{dx}+p(x)y=q(x)
+	\]
+	%
+	puede escribirse como
+
+	\[
+	\bigl(p(x)y-q(x)\bigr)\,dx+dy=0.
+	\]
+	%
+	En este caso,
+
+	\[
+	M(x,y)=p(x)y-q(x),
+	\qquad
+	N(x,y)=1,
+	\]
+	%
+	y por lo tanto
+
+	\[
+	\frac{\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}}{N}
+	=
+	p(x).
+	\]
+	%
+	Así recuperamos exactamente
+
+	\[
+	\mu(x)=\exp\left(\int p(x)\,dx\right).
+	\]
+
+	\begin{quote}
+		\textbf{Lectura conceptual.} El factor integrante no es una receta exclusiva de las ecuaciones lineales. Su función es transformar una expresión diferencial en una derivada exacta. En las ecuaciones lineales sabemos construirlo siempre a partir de \(p(x)\); en una ecuación no exacta general, encontrarlo puede ser mucho más difícil.
+	\end{quote}
+
+	\subsection{Ejemplo: una ecuación no exacta}
+
+	Consideremos
+
+	\[
+	(3x+2y)\,dx+x\,dy=0,
+	\qquad x>0.
+	\]
+	%
+	Aquí
+
+	\[
+	M(x,y)=3x+2y,
+	\qquad
+	N(x,y)=x,
+	\]
+	%
+	y la ecuación no es exacta porque
+
+	\[
+	\frac{\partial M}{\partial y}=2,
+	\qquad
+	\frac{\partial N}{\partial x}=1.
+	\]
+	%
+	Sin embargo,
+
+	\[
+	\frac{\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}}{N}
+	=
+	\frac{1}{x},
+	\]
+	%
+	que depende solamente de \(x\). Un factor integrante es
+
+	\[
+	\mu(x)=\exp\left(\int\frac{1}{x}\,dx\right)=x.
+	\]
+	%
+	Al multiplicar por \(x\), obtenemos
+
+	\[
+	(3x^2+2xy)\,dx+x^2\,dy=0,
+	\]
+	%
+	que es exacta. Una función potencial es
+
+	\[
+	F(x,y)=x^3+x^2y,
+	\]
+	%
+	por lo que la solución queda dada implícitamente por
+
+	\[
+	\boxed{x^3+x^2y=C.}
+	\]
+
+	\clearpage
+	\section{Ecuaciones de Bernoulli}
+
+	Una ecuación de \textbf{Bernoulli} tiene la forma
+
+	\[
+	\boxed{
+	\frac{dy}{dx}+p(x)y=q(x)y^n,
+	}
+	\]
+	%
+	donde \(p\) y \(q\) son funciones conocidas y \(n\) es una constante real. Si \(n=0\), la ecuación ya es lineal. Si \(n=1\), también es lineal y además es separable. El caso nuevo corresponde a \(n\neq0\) y \(n\neq1\).
+
+	Antes de realizar cualquier división por una potencia de \(y\), debe verificarse por separado si \(y=0\) satisface la ecuación original. La respuesta depende del valor de \(n\) y del dominio donde esté definida la potencia \(y^n\).
+
+	En un intervalo donde la solución no se anula y las potencias involucradas están definidas, dividimos por \(y^n\):
+
+	\[
+	y^{-n}\frac{dy}{dx}+p(x)y^{1-n}=q(x).
+	\]
+	%
+	Definimos la nueva variable dependiente
+
+	\[
+	u(x)=y(x)^{1-n}.
+	\]
+	%
+	Por la regla de la cadena,
+
+	\[
+	\frac{du}{dx}
+	=
+	(1-n)y^{-n}\frac{dy}{dx}.
+	\]
+	%
+	Multiplicando la ecuación anterior por \(1-n\), obtenemos
+
+	\[
+	\boxed{
+	\frac{du}{dx}
+	+(1-n)p(x)u
+	=
+	(1-n)q(x),
+	}
+	\]
+	%
+	que es una ecuación lineal de primer orden para la función desconocida \(u=u(x)\). Se resuelve con un factor integrante y, finalmente, se vuelve a la variable \(y\).
+
+	\subsection{Procedimiento}
+
+	\begin{enumerate}[label=\arabic*.]
+		\item escribir la ecuación en la forma de Bernoulli;
+		\item identificar \(p(x)\), \(q(x)\) y el exponente \(n\);
+		\item comprobar directamente las soluciones que puedan perderse al dividir por \(y^n\);
+		\item introducir \(u=y^{1-n}\);
+		\item resolver la ecuación lineal obtenida para \(u\);
+		\item regresar a la variable \(y\);
+		\item imponer la condición inicial y determinar el intervalo de definición.
+	\end{enumerate}
+
+	\subsection{Ejemplo}
+
+	Consideremos
+
+	\[
+	t^2\frac{dy}{dt}+y^2-ty=0.
+	\]
+	%
+	Ahora \(t\) es la variable independiente e \(y=y(t)\) la función desconocida. Como el coeficiente principal se anula en \(t=0\), trabajaremos en un intervalo que no contenga ese punto. Dividiendo por \(t^2\),
+
+	\[
+	\frac{dy}{dt}-\frac{1}{t}y
+	=
+	-\frac{1}{t^2}y^2.
+	\]
+	%
+	Esta es una ecuación de Bernoulli con
+
+	\[
+	p(t)=-\frac{1}{t},
+	\qquad
+	q(t)=-\frac{1}{t^2},
+	\qquad
+	n=2.
+	\]
+	%
+	La función \(y(t)=0\) es una solución y debe conservarse. Para las soluciones no nulas, definimos
+
+	\[
+	u(t)=y(t)^{-1}=\frac{1}{y(t)}.
+	\]
+	%
+	Como \(1-n=-1\), la ecuación transformada es
+
+	\[
+	\frac{du}{dt}+\frac{1}{t}u=\frac{1}{t^2}.
+	\]
+	%
+	En el intervalo \(t>0\), el factor integrante es
+
+	\[
+	\mu(t)=\exp\left(\int\frac{1}{t}\,dt\right)=t.
+	\]
+	%
+	Por lo tanto,
+
+	\[
+	\frac{d}{dt}\bigl(tu(t)\bigr)=\frac{1}{t}.
+	\]
+	%
+	Integrando,
+
+	\[
+	tu(t)=\ln t+C.
+	\]
+	%
+	Como \(u=1/y\), obtenemos
+
+	\[
+	\boxed{
+	y(t)=\frac{t}{\ln t+C},
+	\qquad t>0,
+	}
+	\]
+	%
+	en todo intervalo donde \(\ln t+C\neq0\). En un intervalo contenido en \(t<0\), la expresión correspondiente utiliza \(\ln|t|\). La familia de soluciones no nulas no incluye \(y=0\), que debe agregarse por separado.
+
+	\clearpage
+	\section{Cómo reconocer el método}
+
+	\begin{center}
+	\begin{tabularx}{\textwidth}{@{}
+		>{\raggedright\arraybackslash}p{0.22\textwidth}
+		>{\raggedright\arraybackslash}X
+		>{\raggedright\arraybackslash}X@{}}
+		\toprule
+		\textbf{Tipo} & \textbf{Forma característica} & \textbf{Idea principal} \\
+		\midrule
+		Lineal &
+		\(\dfrac{dy}{dx}+p(x)y=q(x)\) &
+		Multiplicar por \(\mu(x)=\exp(\int p(x)\,dx)\). \\
+		\addlinespace
+		Exacta &
+		\(M(x,y)\,dx+N(x,y)\,dy=0\), con \(M_y=N_x\) &
+		Reconstruir una función potencial \(F(x,y)\). \\
+		\addlinespace
+		Bernoulli &
+		\(\dfrac{dy}{dx}+p(x)y=q(x)y^n\) &
+		Usar \(u=y^{1-n}\) y resolver la lineal resultante. \\
+		\bottomrule
+	\end{tabularx}
+	\end{center}
+
+	Una ecuación puede pertenecer a más de una clase. Antes de aplicar una receta conviene revisar si también es separable, lineal o exacta y elegir el método más simple. En todos los casos deben controlarse las divisiones realizadas, las soluciones que pueden perderse y el intervalo donde la solución es válida.
+
+	\section*{Articulación con la Guía 1}
+
+	Los métodos desarrollados permiten resolver los problemas 21--24 de la Guía 1:
+
+	\begin{itemize}[leftmargin=*]
+		\item el problema 21 corresponde a ecuaciones lineales de primer orden;
+		\item los problemas 22 y 23 corresponden a ecuaciones exactas;
+		\item el problema 24 corresponde a una ecuación de Bernoulli.
+	\end{itemize}
+
+	La subsección sobre factores integrantes para ecuaciones no exactas amplía el contenido mínimo de la guía, pero muestra que los métodos de esta clase no son procedimientos aislados.
+
+	\section*{Bibliografía y recursos recomendados}
+
+	\begin{itemize}[leftmargin=*]
+		\item D. G. Zill, \textit{A First Course in Differential Equations with Modeling Applications}, 12.\textsuperscript{a} ed., secciones 2.3--2.5.
+	\end{itemize}
+
+	\subsection*{Nota sobre la elaboración del material}
+
+	Este material fue elaborado por Benjamín Marcolongo con la asistencia de \textbf{GPT-5.6 Sol}, un modelo de OpenAI utilizado a través del entorno Codex, para la organización, redacción y revisión del contenido.
+
+\end{document}
