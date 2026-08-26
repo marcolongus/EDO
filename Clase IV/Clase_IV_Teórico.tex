@@ -60,7 +60,7 @@
 	\qquad x_0\in I,
 	\]
 	%
-	existe una única solución definida en todo el intervalo \(I\).
+	existe una única solución definida en todo el intervalo \(I\). La demostración de este resultado y algunos comentarios sobre sus hipótesis se presentan en el Apéndice~\ref{ap:existencia-unicidad-lineales}.
 
 	\subsection{Construcción del factor integrante}
 
@@ -726,6 +726,111 @@
 
 	\begin{itemize}[leftmargin=*]
 		\item D. G. Zill, \textit{A First Course in Differential Equations with Modeling Applications}, 12.\textsuperscript{a} ed., secciones 2.3--2.5.
+	\end{itemize}
+
+	\clearpage
+	\appendix
+	\section{Existencia y unicidad}
+	\label{ap:existencia-unicidad-lineales}
+
+	\subsection{Enunciado}
+
+	Sea \(I\) un intervalo abierto de la recta real y sean \(p:I\to\mathbb{R}\) y \(q:I\to\mathbb{R}\) funciones continuas. Dados un punto \(x_0\in I\) y un valor \(y_0\in\mathbb{R}\), el problema de valor inicial
+
+	\[
+	\frac{dy}{dx}+p(x)y(x)=q(x),
+	\qquad
+	y(x_0)=y_0,
+	\]
+	%
+	posee una única solución \(y:I\to\mathbb{R}\). En particular, la solución está definida en todo el intervalo \(I\), no solamente en un entorno del punto inicial \(x_0\).
+
+	\subsection{Demostración de la existencia}
+
+	Definimos el factor integrante normalizado en el punto inicial mediante
+
+	\[
+	\mu(x)
+	=
+	\exp\left(\int_{x_0}^{x}p(s)\,ds\right),
+	\]
+	%
+	donde \(s\) es una variable muda de integración. Como \(p\) es continua en \(I\), la integral existe para todo \(x\in I\). Además, \(\mu(x)>0\) y
+
+	\[
+	\frac{d\mu}{dx}=p(x)\mu(x),
+	\qquad
+	\mu(x_0)=1.
+	\]
+	%
+	Multiplicando la ecuación diferencial por \(\mu(x)\) y usando la regla del producto, obtenemos
+
+	\[
+	\frac{d}{dx}\bigl(\mu(x)y(x)\bigr)
+	=
+	\mu(x)q(x).
+	\]
+	%
+	Integramos entre \(x_0\) y \(x\):
+
+	\[
+	\mu(x)y(x)-\mu(x_0)y(x_0)
+	=
+	\int_{x_0}^{x}\mu(s)q(s)\,ds.
+	\]
+	%
+	Al utilizar \(\mu(x_0)=1\) e \(y(x_0)=y_0\), resulta
+
+	\[
+	\boxed{
+	y(x)
+	=
+	\frac{1}{\mu(x)}
+	\left[
+	 y_0+\int_{x_0}^{x}\mu(s)q(s)\,ds
+	\right].
+	}
+	\]
+	%
+	Esta expresión está bien definida para todo \(x\in I\), porque \(\mu(x)\neq0\) y el producto \(\mu q\) es continuo. Al derivarla se recuperan la ecuación diferencial y la condición inicial. Por lo tanto, la fórmula construye una solución en todo \(I\).
+
+	\subsection{Demostración de la unicidad}
+
+	Supongamos que \(y_1:I\to\mathbb{R}\) e \(y_2:I\to\mathbb{R}\) son dos soluciones del mismo problema de valor inicial. Definimos
+
+	\[
+	z(x)=y_1(x)-y_2(x).
+	\]
+	%
+	Al restar las ecuaciones satisfechas por \(y_1\) e \(y_2\), obtenemos
+
+	\[
+	\frac{dz}{dx}+p(x)z(x)=0,
+	\qquad
+	z(x_0)=0.
+	\]
+	%
+	Multiplicando por el mismo factor integrante \(\mu(x)\), resulta
+
+	\[
+	\frac{d}{dx}\bigl(\mu(x)z(x)\bigr)=0.
+	\]
+	%
+	Por lo tanto, \(\mu(x)z(x)\) es constante en \(I\). Como \(\mu(x_0)z(x_0)=0\), esa constante es cero. Dado que \(\mu(x)>0\), se sigue que
+
+	\[
+	z(x)=0
+	\]
+	%
+	para todo \(x\in I\). En consecuencia, \(y_1(x)=y_2(x)\) en todo \(I\), lo que demuestra la unicidad.
+
+	\subsection{Comentarios sobre las hipótesis}
+
+	\begin{itemize}[leftmargin=*]
+		\item La continuidad de \(p\) garantiza que el factor integrante esté definido y sea derivable en todo \(I\). La continuidad de \(q\) garantiza que \(\mu q\) pueda integrarse y que la función obtenida sea una solución clásica.
+		\item Si la ecuación original es \(a_1(x)y'(x)+a_0(x)y(x)=g(x)\), el intervalo \(I\) debe elegirse de modo que \(a_1(x)\neq0\) en todo \(I\). Además, los cocientes \(p=a_0/a_1\) y \(q=g/a_1\) deben ser continuos allí. El teorema no permite atravesar automáticamente un cero de \(a_1\).
+		\item El resultado también puede relacionarse con el teorema de Picard--Lindelöf. Al escribir la ecuación como \(dy/dx=q(x)-p(x)y\), el miembro derecho es continuo en \(x\) y localmente Lipschitz respecto de \(y\). Picard--Lindelöf proporciona existencia y unicidad local; la fórmula explícita obtenida con el factor integrante muestra, además, que la solución se extiende a todo el intervalo \(I\).
+		\item Para demostrar este teorema lineal no es necesario invocar un resultado general de existencia y unicidad: el propio método del factor integrante construye la solución y permite probar directamente que no puede haber otra.
 	\end{itemize}
 
 	\subsection*{Nota sobre la elaboración del material}
