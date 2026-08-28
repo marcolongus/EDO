@@ -19,8 +19,8 @@ Este repositorio reúne el material de clase de **Ecuaciones Diferenciales Ordin
 | `Clase-I/` | Introducción, definiciones básicas, problemas de valor inicial y ecuaciones lineales. |
 | `Clase-II/` | Existencia y unicidad, formas de representar soluciones y campos de direcciones. |
 | `Clase-III/` | Ecuaciones autónomas, integración directa, variables separables y problemas de modelado. |
-| `Clase-IV/` | Ecuaciones lineales de primer orden, factores integrantes y ecuaciones exactas. |
-| `Clase-V/` | Ecuaciones de Bernoulli y reducción a ecuaciones lineales. |
+| `Clase-IV/` | Ecuaciones lineales de primer orden y factores integrantes. |
+| `Clase-V/` | Ecuaciones exactas, factores integrantes para ecuaciones no exactas y ecuaciones de Bernoulli. |
 | `Suplementario/` | Material adicional para profundizar conceptos y discusiones teóricas. |
 | `Trabajos prácticos/` | Guías de ejercicios de la asignatura. |
 | `Programa/` | Programa de la materia. |
