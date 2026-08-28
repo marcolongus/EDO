@@ -48,9 +48,9 @@ Ejemplo:
 ```bash
 mkdir -p /tmp/edo-build
 pdflatex -interaction=nonstopmode -halt-on-error \
-  -output-directory=/tmp/edo-build "Clase III/Clase_III_Teórico.tex"
+  -output-directory=/tmp/edo-build "Clase-III/Clase_III_Teórico.tex"
 pdflatex -interaction=nonstopmode -halt-on-error \
-  -output-directory=/tmp/edo-build "Clase III/Clase_III_Teórico.tex"
+  -output-directory=/tmp/edo-build "Clase-III/Clase_III_Teórico.tex"
 ```
 
 No sobrescribir un PDF versionado con una compilación fallida. Actualizar el PDF

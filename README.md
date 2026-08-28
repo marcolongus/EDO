@@ -16,11 +16,11 @@ Este repositorio reúne el material de clase de **Ecuaciones Diferenciales Ordin
 
 | Carpeta | Contenido |
 |---|---|
-| `Clase I/` | Introducción, definiciones básicas, problemas de valor inicial y ecuaciones lineales. |
-| `Clase II/` | Existencia y unicidad, formas de representar soluciones y campos de direcciones. |
-| `Clase III/` | Ecuaciones autónomas, integración directa, variables separables y problemas de modelado. |
-| `Clase IV/` | Ecuaciones lineales de primer orden, factores integrantes y ecuaciones exactas. |
-| `Clase V/` | Ecuaciones de Bernoulli y reducción a ecuaciones lineales. |
+| `Clase-I/` | Introducción, definiciones básicas, problemas de valor inicial y ecuaciones lineales. |
+| `Clase-II/` | Existencia y unicidad, formas de representar soluciones y campos de direcciones. |
+| `Clase-III/` | Ecuaciones autónomas, integración directa, variables separables y problemas de modelado. |
+| `Clase-IV/` | Ecuaciones lineales de primer orden, factores integrantes y ecuaciones exactas. |
+| `Clase-V/` | Ecuaciones de Bernoulli y reducción a ecuaciones lineales. |
 | `Suplementario/` | Material adicional para profundizar conceptos y discusiones teóricas. |
 | `Trabajos prácticos/` | Guías de ejercicios de la asignatura. |
 | `Programa/` | Programa de la materia. |
@@ -35,7 +35,7 @@ Si encontrás un error de escritura, de notación o de contenido, podés comunic
 Para modificar o compilar las fuentes se necesita una distribución de LaTeX. Por ejemplo:
 
 ```bash
-pdflatex "Clase I/clase_I.tex"
+pdflatex "Clase-I/clase_I.tex"
 ```
 
 No es necesario compilar los documentos para utilizarlos: las versiones en PDF se incluyen en el repositorio.
