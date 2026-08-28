@@ -24,9 +24,9 @@
 
 	\section*{Introducción}
 
-	En la Clase III estudiamos integración directa y separación de variables. Sin embargo, no toda ecuación de primer orden puede resolverse separando las variables. En esta clase estudiaremos tres familias adicionales: ecuaciones lineales de primer orden, ecuaciones exactas y ecuaciones de Bernoulli.
+	En la Clase III estudiamos integración directa y separación de variables. Sin embargo, no toda ecuación de primer orden puede resolverse separando las variables. En esta clase estudiaremos dos familias adicionales: ecuaciones lineales de primer orden y ecuaciones exactas.
 
-	El factor integrante aparecerá primero como el método general para resolver una ecuación lineal. Más adelante veremos que la misma idea permite transformar ciertas ecuaciones no exactas en exactas. Finalmente, una ecuación de Bernoulli se resolverá mediante un cambio de variable que la convierte en una ecuación lineal.
+	El factor integrante aparecerá primero como el método general para resolver una ecuación lineal. Más adelante veremos que la misma idea permite transformar ciertas ecuaciones no exactas en exactas. De este modo, ambos métodos quedan conectados por una misma idea: convertir la ecuación en una derivada que pueda integrarse directamente.
 
 	En todo el material, \(x\) representa la variable independiente e \(y=y(x)\) la función desconocida. Escribiremos \(dy/dx\) para la derivada de \(y\) respecto de \(x\).
 
@@ -556,133 +556,6 @@
 	\]
 
 	\clearpage
-	\section{Ecuaciones de Bernoulli}
-
-	Una ecuación de \textbf{Bernoulli} tiene la forma
-
-	\[
-	\boxed{
-	\frac{dy}{dx}+p(x)y=q(x)y^n,
-	}
-	\]
-	%
-	donde \(p\) y \(q\) son funciones conocidas y \(n\) es una constante real. Si \(n=0\), la ecuación ya es lineal. Si \(n=1\), también es lineal y además es separable. El caso nuevo corresponde a \(n\neq0\) y \(n\neq1\).
-
-	Antes de realizar cualquier división por una potencia de \(y\), debe verificarse por separado si \(y=0\) satisface la ecuación original. La respuesta depende del valor de \(n\) y del dominio donde esté definida la potencia \(y^n\).
-
-	En un intervalo donde la solución no se anula y las potencias involucradas están definidas, dividimos por \(y^n\):
-
-	\[
-	y^{-n}\frac{dy}{dx}+p(x)y^{1-n}=q(x).
-	\]
-	%
-	Definimos la nueva variable dependiente
-
-	\[
-	u(x)=y(x)^{1-n}.
-	\]
-	%
-	Por la regla de la cadena,
-
-	\[
-	\frac{du}{dx}
-	=
-	(1-n)y^{-n}\frac{dy}{dx}.
-	\]
-	%
-	Multiplicando la ecuación anterior por \(1-n\), obtenemos
-
-	\[
-	\boxed{
-	\frac{du}{dx}
-	+(1-n)p(x)u
-	=
-	(1-n)q(x),
-	}
-	\]
-	%
-	que es una ecuación lineal de primer orden para la función desconocida \(u=u(x)\). Se resuelve con un factor integrante y, finalmente, se vuelve a la variable \(y\).
-
-	\subsection{Procedimiento}
-
-	\begin{enumerate}[label=\arabic*.]
-		\item escribir la ecuación en la forma de Bernoulli;
-		\item identificar \(p(x)\), \(q(x)\) y el exponente \(n\);
-		\item comprobar directamente las soluciones que puedan perderse al dividir por \(y^n\);
-		\item introducir \(u=y^{1-n}\);
-		\item resolver la ecuación lineal obtenida para \(u\);
-		\item regresar a la variable \(y\);
-		\item imponer la condición inicial y determinar el intervalo de definición.
-	\end{enumerate}
-
-	\subsection{Ejemplo}
-
-	Consideremos
-
-	\[
-	t^2\frac{dy}{dt}+y^2-ty=0.
-	\]
-	%
-	Ahora \(t\) es la variable independiente e \(y=y(t)\) la función desconocida. Como el coeficiente principal se anula en \(t=0\), trabajaremos en un intervalo que no contenga ese punto. Dividiendo por \(t^2\),
-
-	\[
-	\frac{dy}{dt}-\frac{1}{t}y
-	=
-	-\frac{1}{t^2}y^2.
-	\]
-	%
-	Esta es una ecuación de Bernoulli con
-
-	\[
-	p(t)=-\frac{1}{t},
-	\qquad
-	q(t)=-\frac{1}{t^2},
-	\qquad
-	n=2.
-	\]
-	%
-	La función \(y(t)=0\) es una solución y debe conservarse. Para las soluciones no nulas, definimos
-
-	\[
-	u(t)=y(t)^{-1}=\frac{1}{y(t)}.
-	\]
-	%
-	Como \(1-n=-1\), la ecuación transformada es
-
-	\[
-	\frac{du}{dt}+\frac{1}{t}u=\frac{1}{t^2}.
-	\]
-	%
-	En el intervalo \(t>0\), el factor integrante es
-
-	\[
-	\mu(t)=\exp\left(\int\frac{1}{t}\,dt\right)=t.
-	\]
-	%
-	Por lo tanto,
-
-	\[
-	\frac{d}{dt}\bigl(tu(t)\bigr)=\frac{1}{t}.
-	\]
-	%
-	Integrando,
-
-	\[
-	tu(t)=\ln t+C.
-	\]
-	%
-	Como \(u=1/y\), obtenemos
-
-	\[
-	\boxed{
-	y(t)=\frac{t}{\ln t+C},
-	\qquad t>0,
-	}
-	\]
-	%
-	en todo intervalo donde \(\ln t+C\neq0\). En un intervalo contenido en \(t<0\), la expresión correspondiente utiliza \(\ln|t|\). La familia de soluciones no nulas no incluye \(y=0\), que debe agregarse por separado.
-
-	\clearpage
 	\section{Cómo reconocer el método}
 
 	\begin{center}
@@ -700,10 +573,6 @@
 		Exacta &
 		\(M(x,y)\,dx+N(x,y)\,dy=0\), con \(M_y=N_x\) &
 		Reconstruir una función potencial \(F(x,y)\). \\
-		\addlinespace
-		Bernoulli &
-		\(\dfrac{dy}{dx}+p(x)y=q(x)y^n\) &
-		Usar \(u=y^{1-n}\) y resolver la lineal resultante. \\
 		\bottomrule
 	\end{tabularx}
 	\end{center}
@@ -712,12 +581,11 @@
 
 	\section*{Articulación con la Guía 1}
 
-	Los métodos desarrollados permiten resolver los problemas 21--24 de la Guía 1:
+	Los métodos desarrollados permiten resolver los problemas 21--23 de la Guía 1:
 
 	\begin{itemize}[leftmargin=*]
 		\item el problema 21 corresponde a ecuaciones lineales de primer orden;
 		\item los problemas 22 y 23 corresponden a ecuaciones exactas;
-		\item el problema 24 corresponde a una ecuación de Bernoulli.
 	\end{itemize}
 
 	La subsección sobre factores integrantes para ecuaciones no exactas amplía el contenido mínimo de la guía, pero muestra que los métodos de esta clase no son procedimientos aislados.
@@ -725,7 +593,7 @@
 	\section*{Bibliografía y recursos recomendados}
 
 	\begin{itemize}[leftmargin=*]
-		\item D. G. Zill, \textit{A First Course in Differential Equations with Modeling Applications}, 12.\textsuperscript{a} ed., secciones 2.3--2.5.
+		\item D. G. Zill, \textit{A First Course in Differential Equations with Modeling Applications}, 12.\textsuperscript{a} ed., secciones 2.3--2.4.
 	\end{itemize}
 
 	\clearpage
