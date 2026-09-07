@@ -22,29 +22,78 @@
 
 	\maketitle
 
-	\section*{Introducción}
+	\section*{Introducción: la forma diferencial de una ecuación}
 
-	En la Clase IV estudiamos las ecuaciones lineales de primer orden y el método del factor integrante. En esta clase estudiaremos ecuaciones exactas y ecuaciones de Bernoulli.
+	Hasta ahora hemos escrito las ecuaciones de primer orden usando la derivada \(dy/dx\). Por ejemplo,
+	\[
+	\frac{dy}{dx}=-\frac{x}{y},\qquad y\neq0,
+	\]
+	%
+	nos dice qué pendiente debe tener una solución al pasar por un punto \((x,y)\). Esta misma relación puede escribirse de otra manera, que será útil para reconocer un nuevo método de resolución.
 
-	El factor integrante reaparecerá como una función que puede transformar ciertas ecuaciones no exactas en exactas. Luego, para resolver una ecuación de Bernoulli, introduciremos una nueva variable dependiente que satisfaga una ecuación lineal. Ambos temas reutilizan herramientas de la Clase IV en contextos diferentes.
+	Si \(y=y(x)\) es una función diferenciable, su diferencial satisface
+	\[
+	 dy=\frac{dy}{dx}\,dx.
+	\]
+	%
+	Aquí \(dx\) representa un incremento de la variable independiente y \(dy\) el cambio lineal que la derivada le asigna a \(y\). Para un incremento pequeño \(\Delta x\), el cambio real cumple
+	\[
+	\Delta y=\frac{dy}{dx}\,\Delta x+o(\Delta x).
+	\]
+	%
+	El último término representa un error cuyo cociente con \(\Delta x\) tiende a cero cuando \(\Delta x\to0\). Por eso el diferencial describe la variación de \(y\) a primer orden; no debe confundirse con su incremento finito exacto.
 
-	En todo el material, \(x\) representa la variable independiente e \(y=y(x)\) la función desconocida. Escribiremos \(dy/dx\) para la derivada de \(y\) respecto de \(x\).
+	En el ejemplo, la ecuación equivale a \(x+y\,dy/dx=0\). Usando la relación entre los diferenciales, la escribimos como
+	\[
+	\boxed{x\,dx+y\,dy=0.}
+	\]
+	%
+	Esta es su \textbf{forma diferencial}. Para comprobar qué significa, basta sustituir \(dy=(dy/dx)\,dx\): la condición sobre la pendiente vuelve a ser \(x+y\,dy/dx=0\). La equivalencia con la ecuación original se entiende en el dominio \(y\neq0\).
+
+	\clearpage
+	\subsection*{De la pendiente a una relación entre diferenciales}
+
+	En general, una ecuación escrita como
+	\[
+	M(x,y)+N(x,y)\frac{dy}{dx}=0
+	\]
+	%
+	se expresa en forma diferencial como
+	\[
+	\boxed{M(x,y)\,dx+N(x,y)\,dy=0,}
+	\]
+	%
+	donde \(M\) y \(N\) son funciones conocidas. Sobre una solución \(y=y(x)\), esta escritura exige que sus diferenciales satisfagan la relación indicada. Donde \(N\neq0\), podemos recuperar la forma normal:
+	\[
+	\frac{dy}{dx}=-\frac{M(x,y)}{N(x,y)}.
+	\]
+	%
+	Si \(N=0\), esa división no está permitida y debemos analizar la ecuación sin despejar la derivada. En particular, escribir una ecuación en forma diferencial no elimina las restricciones de su dominio original.
+
+	¿Por qué resulta útil esta escritura? En nuestro ejemplo podemos reconocer
+	\[
+	x\,dx+y\,dy
+	=d\!\left(\frac{x^2+y^2}{2}\right).
+	\]
+	%
+	Por lo tanto, la ecuación expresa que \((x^2+y^2)/2\) permanece constante a lo largo de cada solución:
+	\[
+	\frac{d}{dx}\left[\frac{x^2+y(x)^2}{2}\right]
+	=x+y(x)\frac{dy}{dx}=0.
+	\]
+	%
+	Las soluciones quedan descritas implícitamente por \(x^2+y^2=C\). Para \(C>0\), estas curvas son circunferencias; cada rama \(y=\pm\sqrt{C-x^2}\), restringida a \(-\sqrt C<x<\sqrt C\), es una solución de la ecuación original.
+
+	La pregunta que orientará el próximo método es: \textbf{¿cuándo podemos reconocer en \(M\,dx+N\,dy\) el diferencial de una función \(F(x,y)\)?} Las ecuaciones para las que esto es posible se llaman exactas. Después estudiaremos cómo un factor integrante puede volver exactas ciertas ecuaciones y cómo transformar una ecuación de Bernoulli en una lineal.
 
 	\clearpage
 	\section{Ecuaciones exactas}
 
-	Una ecuación diferencial de primer orden puede escribirse en \textbf{forma diferencial} como
-
+	Consideremos la ecuación
 	\[
-	M(x,y)\,dx+N(x,y)\,dy=0,
+	M(x,y)\,dx+N(x,y)\,dy=0.
 	\]
 	%
-	donde \(M\) y \(N\) son funciones conocidas. Sobre una curva \(y=y(x)\), esta expresión representa la ecuación
-
-	\[
-	M(x,y(x))+N(x,y(x))\frac{dy}{dx}=0.
-	\]
-
 	La ecuación es \textbf{exacta} en una región \(R\) si existe una función potencial \(F=F(x,y)\) tal que
 
 	\[
