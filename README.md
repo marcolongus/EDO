@@ -21,7 +21,7 @@ Este repositorio reúne el material de clase de **Ecuaciones Diferenciales Ordin
 | `Clase-III/` | Ecuaciones autónomas, integración directa, variables separables y problemas de modelado. |
 | `Clase-IV/` | Ecuaciones lineales de primer orden y factores integrantes. |
 | `Clase-V/` | Ecuaciones exactas y factores integrantes para ecuaciones no exactas. |
-| `Clase-VI/` | Ecuaciones de Bernoulli y reducción a una ecuación lineal. |
+| `Clase-VI/` | Ecuaciones de Bernoulli, reducción a una ecuación lineal y repaso integrador de las clases I--VI. |
 | `Suplementario/` | Material adicional para profundizar conceptos y discusiones teóricas. |
 | `Trabajos prácticos/` | Guías de ejercicios de la asignatura. |
 | `Programa/` | Programa de la materia. |

@@ -27,6 +27,8 @@
 	En las clases anteriores estudiamos integración directa, separación de variables, ecuaciones lineales de primer orden y ecuaciones exactas. En esta clase incorporaremos las ecuaciones de Bernoulli: una familia de ecuaciones no lineales que puede transformarse en una ecuación lineal mediante un cambio de variable.
 
 	La idea es reconocer una estructura conocida dentro de una ecuación nueva. Después del cambio, aplicaremos el factor integrante de la Clase IV y regresaremos a la variable original, cuidando el dominio y las soluciones que puedan perderse al dividir.
+	%
+	Finalmente, realizaremos un repaso integrador de las clases I--VI, con actividades de reconocimiento, ejemplos resueltos y análisis de errores frecuentes.
 
 	\clearpage
 
@@ -164,17 +166,239 @@
 	Antes de aplicar el cambio de variable de Bernoulli conviene verificar si la ecuación también es separable o si los valores \(n=0\) o \(n=1\) la reducen inmediatamente a un caso más simple.
 
 	\begin{quote}
-			extbf{Idea central.} El cambio \(u=y^{1-n}\) no elimina la no linealidad por casualidad. Su derivada contiene precisamente el producto \(y^{-n}dy/dx\) que aparece al dividir la ecuación por \(y^n\).
+		\textbf{Idea central.} El cambio \(u=y^{1-n}\) no elimina la no linealidad por casualidad. Su derivada contiene precisamente el producto \(y^{-n}dy/dx\) que aparece al dividir la ecuación por \(y^n\).
 	\end{quote}
 
 	\section*{Articulación con la Guía 1}
 
 	El método desarrollado permite resolver el problema 24 de la Guía 1.
 
+	\clearpage
+	\section{Repaso integrador: de la ecuación a la solución}
+
+	El objetivo de este repaso es reunir las herramientas de las clases I--VI para analizar una ecuación, elegir un método y justificar la respuesta. En las actividades, \(y=y(x)\) y escribiremos \(y'=dy/dx\).
+
+	\subsection{Qué significa resolver una ecuación diferencial}
+
+	Una EDO relaciona una función desconocida de una variable con sus derivadas. Su \textbf{orden} es el de la derivada más alta que aparece. Es \textbf{lineal} si la función y sus derivadas aparecen linealmente, con coeficientes que dependen solamente de la variable independiente. Por ejemplo,
+	\[
+	y''+xy'-y=0 \quad\text{es lineal de segundo orden},
+	\]
+	%
+	mientras que \(y'+y^2=0\) es no lineal de primer orden. En una ecuación lineal, ``homogénea'' significa que el término independiente es idénticamente nulo.
+
+	Una \textbf{solución} es una función definida en un intervalo que satisface la ecuación en todos sus puntos. Bajo condiciones regulares, la solución general de una ecuación de orden \(m\) contiene \(m\) constantes independientes; una solución particular se obtiene fijándolas. Es necesario comprobar si hay soluciones adicionales que el procedimiento de integración haya excluido.
+	%
+	Un \textbf{PVI} agrega datos de la función y, cuando corresponde, de sus derivadas en un mismo punto. Para primer orden se escribe
+	\[
+	y'=f(x,y),\qquad y(x_0)=y_0.
+	\]
+	%
+	La respuesta puede ser explícita, \(y=\varphi(x)\), o implícita, \(F(x,y)=C\). En este último caso hay que identificar las ramas que definen funciones y sus intervalos de validez.
+
+	\subsection{Qué podemos saber antes de integrar}
+
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Dominio.} Determinar dónde está definida la ecuación y qué divisiones están permitidas.
+		\item \textbf{Existencia y unicidad.} Si \(f\) y \(\partial f/\partial y\) son continuas en un rectángulo que contiene al punto inicial en su interior, existe una única solución local del PVI. Estas hipótesis son suficientes: si fallan, el teorema no decide.
+		\item \textbf{Campo de direcciones.} El signo de \(f\) indica dónde las soluciones crecen o decrecen; \(f=0\) indica pendiente nula. Donde hay unicidad, dos soluciones distintas no pueden cruzarse.
+		\item \textbf{Autonomía y equilibrios.} Si \(y'=f(y)\), los ceros de \(f\) dan soluciones constantes. En una ecuación no autónoma, una curva donde \(f(x,y)=0\) no necesariamente es una solución.
+	\end{enumerate}
+
+	\clearpage
+	\subsection{Cómo elegir el método}
+
+	Las categorías pueden superponerse. Conviene reconocer primero la estructura y elegir la vía que simplifique el cálculo.
+
+	\begin{center}
+	\renewcommand{\arraystretch}{1.3}
+	\begin{tabularx}{\textwidth}{@{}p{0.23\textwidth}X X@{}}
+	\toprule
+	\textbf{Tipo} & \textbf{Forma} & \textbf{Operación principal} \\
+	\midrule
+	Integración directa & \(y'=g(x)\) & Integrar respecto de \(x\). \\
+	Separable & \(y'=g(x)h(y)\) & Buscar los ceros de \(h\); luego separar e integrar. \\
+	Lineal & \(y'+p(x)y=q(x)\) & Usar \(\mu=e^{\int p(x)\,dx}\) para obtener \((\mu y)'=\mu q\). \\
+	Exacta & \(M\,dx+N\,dy=0\), con \(M_y=N_x\) & Reconstruir \(F\) con \(F_x=M\), \(F_y=N\). \\
+	No exacta con factor integrante & \(M\,dx+N\,dy=0\) & Buscar \(\mu\) que vuelva exacta la expresión. \\
+	Bernoulli & \(y'+p(x)y=q(x)y^n\) & Para \(n\neq0,1\), usar \(u=y^{1-n}\). \\
+	\bottomrule
+	\end{tabularx}
+	\end{center}
+
+	Aquí \(M_y=\partial M/\partial y\) y \(N_x=\partial N/\partial x\). El criterio de exactitud se aplica, por ejemplo, cuando estas derivadas son continuas en una región rectangular. Para buscar factores integrantes:
+	\[
+	\frac{M_y-N_x}{N}=a(x)
+	\quad\Longrightarrow\quad
+	\mu(x)=e^{\int a(x)\,dx},
+	\]
+	\[
+	\frac{N_x-M_y}{M}=b(y)
+	\quad\Longrightarrow\quad
+	\mu(y)=e^{\int b(y)\,dy}.
+	\]
+	%
+	Los cocientes deben estar definidos y depender únicamente de la variable indicada. Si no cumplen estas condiciones, estas fórmulas no proporcionan un factor; eso no demuestra que no exista otro.
+
+	\subsection{Cuándo está completa la respuesta}
+
+	Después de integrar, debemos comprobar la ecuación por sustitución, imponer los datos iniciales, revisar las soluciones excluidas por divisiones y especificar el intervalo de definición. El \textbf{intervalo maximal} es el mayor intervalo al que puede extenderse esa solución como solución de la ecuación original. Para un PVI debe contener al punto inicial.
+
+	\begin{quote}
+		\textbf{Pregunta de control.} ¿La fórmula obtenida describe una solución en todo su dominio algebraico o hay que seleccionar un intervalo y una rama?
+	\end{quote}
+
+	\clearpage
+	\subsection{Actividad: reconocer antes de calcular}
+
+	Para cada ecuación, indique orden, linealidad, autonomía y un método de resolución. Identifique restricciones de dominio y soluciones constantes. No es necesario integrar. Si reconoce dos métodos, explique cuál elegiría.
+
+	\begin{enumerate}[label=\alph*)]
+		\item \(y'=x^2+1\).
+		\item \(y'=3y+1\).
+		\item \(y'+2xy=1\).
+		\item \(x\,dx+y\,dy=0\).
+		\item \((3x+2y)\,dx+x\,dy=0\), en \(x>0\).
+		\item \(y'+y=xy^2\).
+	\end{enumerate}
+
+	\subsubsection*{Puesta en común}
+
+	Todas son de primer orden. Las ecuaciones a), b), c) y e) son lineales en \(y\); d) y f) son no lineales. Solo b) es autónoma cuando se escriben en forma normal.
+
+	\begin{enumerate}[label=\alph*)]
+		\item Integración directa; está definida en todo el plano y no admite soluciones constantes.
+		\item Es separable y lineal. Antes de dividir por \(3y+1\), conservar \(y=-1/3\). El dominio es todo el plano.
+		\item Es lineal, con factor integrante \(e^{x^2}\). No tiene soluciones constantes y está definida en todo el plano.
+		\item Es exacta, con potencial \(F=(x^2+y^2)/2\), y también separable donde \(y\neq0\). La forma diferencial está definida en todo el plano; la forma normal \(y'=-x/y\) exige \(y\neq0\). No admite soluciones constantes en un intervalo abierto.
+		\item No es exacta: \(M_y=2\), \(N_x=1\). La fórmula para \(\mu(x)\) da \(\mu=x\). También es lineal al dividir por \(x\): \(y'+2y/x=-3\), cuyo factor integrante es \(x^2\). Ambas vías producen la misma ecuación multiplicada, pues la segunda parte de una expresión ya dividida por \(x\). No tiene soluciones constantes.
+		\item Es Bernoulli con \(n=2\). Conservar \(y=0\); para \(y\neq0\), usar \(u=1/y\) y obtener \(u'-u=-x\). La ecuación original está definida en todo el plano.
+	\end{enumerate}
+
+	\clearpage
+	\subsection{Ejemplo integrador: un PVI y su intervalo maximal}
+
+	Consideremos
+	\[
+	y'=2xy^2,\qquad y(0)=1.
+	\]
+	%
+	Es una ecuación no lineal, no autónoma y separable. Como \(f(x,y)=2xy^2\) y \(f_y(x,y)=4xy\) son continuas en todo el plano, el PVI tiene una única solución local. Esto todavía no garantiza existencia en toda la recta.
+
+	La función \(y=0\) es una solución de equilibrio, pero no satisface el dato inicial. Para las soluciones no nulas,
+	\[
+	\frac{dy}{y^2}=2x\,dx
+	\quad\Longrightarrow\quad
+	-\frac{1}{y}=x^2+C.
+	\]
+	%
+	La condición \(y(0)=1\) da \(C=-1\). Entonces
+	\[
+	\boxed{y(x)=\frac{1}{1-x^2},\qquad -1<x<1.}
+	\]
+
+	\subsubsection*{Verificación y dominio}
+
+	Derivando y sustituyendo,
+	\[
+	y'(x)=\frac{2x}{(1-x^2)^2}=2x\,y(x)^2,
+	\qquad y(0)=1.
+	\]
+	%
+	La fórmula no está definida en \(x=\pm1\). El intervalo maximal que contiene a \(0\) es \((-1,1)\), porque la solución diverge al aproximarse a sus extremos y no puede prolongarse allí como función diferenciable real. La misma expresión algebraica también define soluciones en los intervalos exteriores, pero esas restricciones no resuelven el PVI dado, pues sus intervalos no contienen a \(0\).
+
+	\subsubsection*{Lectura del campo de direcciones}
+
+	Como \(y^2>0\) para \(y\neq0\), el signo de la pendiente coincide con el de \(x\). Nuestra solución decrece para \(-1<x<0\), tiene pendiente cero en \(x=0\) y crece para \(0<x<1\). Su mínimo es \(y(0)=1\).
+	%
+	La recta \(y=0\) es una solución constante; la recta \(x=0\) es un conjunto de puntos con pendiente nula, pero no es la gráfica de una solución \(y(x)\). La unicidad impide que nuestra solución cruce \(y=0\).
+
+	\begin{quote}
+		\textbf{Conclusión del ejemplo.} Una ecuación puede estar definida y tener unicidad local en todo el plano, mientras que una de sus soluciones solo existe en un intervalo acotado.
+	\end{quote}
+
+	\clearpage
+	\subsection{Ejemplo integrador: exactitud, ramas y condición inicial}
+
+	Consideremos
+	\[
+	y'=-\frac{x}{y},\qquad y(0)=2.
+	\]
+	%
+	El dominio de la ecuación es \(y\neq0\). Allí \(f=-x/y\) y \(f_y=x/y^2\) son continuas, de modo que hay existencia y unicidad local alrededor del dato inicial.
+
+	En forma diferencial,
+	\[
+	x\,dx+y\,dy=0.
+	\]
+	%
+	Como \(M_y=N_x=0\), es exacta. Buscamos un potencial:
+	\[
+	F_x=x
+	\quad\Longrightarrow\quad
+	F(x,y)=\frac{x^2}{2}+g(y).
+	\]
+	%
+	Imponer \(F_y=y\) da \(g'(y)=y\), por lo que podemos elegir
+	\[
+	F(x,y)=\frac{x^2+y^2}{2}.
+	\]
+	%
+	Las curvas de nivel pueden escribirse \(x^2+y^2=C\), renombrando la constante. El dato inicial determina \(C=4\) y selecciona la rama superior:
+	\[
+	\boxed{y(x)=\sqrt{4-x^2},\qquad -2<x<2.}
+	\]
+
+	\subsubsection*{Por qué no alcanza con escribir la circunferencia}
+
+	La circunferencia completa no es la gráfica de una función de \(x\). La rama inferior \(-\sqrt{4-x^2}\) satisface la ecuación en \((-2,2)\), pero no el dato \(y(0)=2\). Para la rama elegida,
+	\[
+	y'(x)=-\frac{x}{\sqrt{4-x^2}}=-\frac{x}{y(x)},
+	\qquad y(0)=2.
+	\]
+	%
+	En los extremos \(x=\pm2\), la función tiende a cero y la ecuación original deja de estar definida. Por eso \((-2,2)\) es el intervalo maximal. A diferencia del ejemplo anterior, aquí la solución permanece acotada, pero llega al borde del dominio de la ecuación.
+
+	\begin{quote}
+		\textbf{Para discutir.} La forma diferencial tiene sentido en puntos donde no podemos despejar \(y'\). Esto no autoriza a incorporar esos puntos a una solución de la ecuación original sin revisar su dominio.
+	\end{quote}
+
+	\clearpage
+	\subsection{Actividad: detectar y corregir errores}
+
+	Analice los siguientes razonamientos. Identifique el paso incorrecto o la conclusión injustificada y proponga una corrección.
+
+	\begin{enumerate}[label=\arabic*.]
+		\item ``De \(y'=y^2\) obtengo \(dy/y^2=dx\) y, por lo tanto, todas las soluciones son \(y=-1/(x+C)\).''
+		\item ``Para \(2xy'+y=x\), en \(x>0\), el coeficiente de \(y\) es uno, así que el factor integrante es \(e^x\).''
+		\item ``Como \(f\) y \(f_y\) son continuas en todo el plano, cualquier solución está definida para todo \(x\in\mathbb R\).''
+		\item ``Si no se cumplen las hipótesis del teorema de existencia y unicidad, el PVI no tiene solución única.''
+		\item ``En \(y'=x-y\), la pendiente es cero sobre \(y=x\); por lo tanto, \(y=x\) es una solución.''
+	\end{enumerate}
+
+	\subsubsection*{Correcciones para la puesta en común}
+
+	\begin{enumerate}[label=\arabic*.]
+		\item La división excluyó \(y=0\), que también satisface la ecuación. Además, cada solución no nula debe restringirse a un intervalo que no contenga \(x=-C\).
+		\item Primero hay que dividir por \(2x\):
+		\[
+		y'+\frac{1}{2x}y=\frac12.
+		\]
+		El factor es \(\mu=\sqrt{x}\). Así, \((\sqrt{x}\,y)'=\sqrt{x}/2\) y \(y=x/3+C/\sqrt{x}\). Se comprueba que \(2xy'+y=x\).
+		\item El teorema garantiza existencia local. El PVI \(y'=2xy^2\), \(y(0)=1\), proporciona un contraejemplo a la afirmación global.
+		\item Las hipótesis son suficientes, no necesarias. Si no se cumplen, hay que analizar el problema por otra vía: el teorema no permite concluir ni unicidad ni falta de ella.
+		\item Si \(y=x\), entonces \(y'=1\), mientras que \(x-y=0\). No satisface la ecuación. Tener pendiente nula en ciertos puntos no convierte al conjunto de esos puntos en una curva solución.
+	\end{enumerate}
+
+	\subsection{Preguntas de cierre}
+
+	¿Puede una ecuación ser lineal y separable a la vez? ¿Puede una ecuación exacta ser no lineal? ¿Una solución acotada siempre puede prolongarse? ¿Qué aporta una condición inicial cuando la solución está dada implícitamente? Justifique cada respuesta con un ejemplo de este repaso.
+
+
 	\section*{Bibliografía y recursos recomendados}
 
 	\begin{itemize}[leftmargin=*]
-		\item D. G. Zill, \textit{A First Course in Differential Equations with Modeling Applications}, 12.\textsuperscript{a} ed., sección 2.5.
+		\item D. G. Zill, \textit{A First Course in Differential Equations with Modeling Applications}, 12.\textsuperscript{a} ed., capítulos 1 y 2; en particular, sección 2.5 para Bernoulli.
 	\end{itemize}
 
 	\subsection*{Nota sobre la elaboración del material}
